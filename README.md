@@ -12,3 +12,6 @@ Also check out the projects tab, and feel free to add anything you think needs t
 ## Changing Main Styling
 To change the styling for anything that will change accross all the pages, use the navbar-style.css file within the navbarstyle folder in the root directory. This will allow for consistent displaying across the website.
 
+## Changing Individual Page Styling
+To change an individual page's styling, simply create new css file in that page's folder and link it to the page from the HTML.
+
