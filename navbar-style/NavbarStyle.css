@@ -44,7 +44,6 @@ body{
 }
 
 #navlist a:link{
-    transition:color 1s;
     text-decoration:none;
     color:black;
 }
