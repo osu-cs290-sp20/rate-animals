@@ -8,6 +8,8 @@
    
     <link rel="stylesheet" href="style.css" media="screen">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,700;0,900;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <script src="RandomAnimals.js" charset="utf-8" defer></script>
 
   </head>
 
@@ -15,13 +17,17 @@
     <div id="topbar">
         <ul id="navlist">
             
-            <li class="navitem current"><a href="#" class = "navitem-link">Rate</a></li>
-            <li class="navitem"><a href="#" class = "navitem-link">Guess!</a></li>
-            <li class="navitem"><a href="#" class = "navitem-link">Gallery</a></li>
-            <li class="navitem"><a href="#" class = "navitem-link">Leaderboards</a></li>
-            <li class="navitem"><a href="#" class = "navitem-link">Upload Your Animal</a></li>
-            <li class="navitem"><a href="#" class = "navitem-link">My Profile</a></li>
+            <li class="navitem current" title="You're already here">Rate</li>
+            <li class="navitem"><a title="Guess how other people guessed" href="" class = "navitem-link">Guess!</a></li>
+            <li class="navitem"><a title="Look at cute animals" href="" class = "navitem-link">Gallery</a></li>
+            <li class="navitem"><a href="" title="Look at the leaderboards" class = "navitem-link">Leaderboards</a></li>
+            <li class="navitem"><a href="" title="Upload your own buddy" class = "navitem-link">Upload Your Animal</a></li>
+            <li class="navitem"><a href="" class = "navitem-link">My Profile</a></li>
         </ul>
+    </div>
+
+    <div id="button-holder">
+      <button id="rate-button" type="button">Start Rating!</button>
     </div>
 
 
