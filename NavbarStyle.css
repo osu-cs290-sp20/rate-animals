@@ -1,0 +1,86 @@
+*{
+    margin:0px;
+    padding:0px;
+    font-family: 'Rubik', sans-serif;
+}
+
+:root{
+    --background-color: #ffe4c9;
+    --secondary-color: #4c4cb9;
+}
+
+
+body{
+    background-color:var(--background-color);
+}
+
+/*navbar*/
+#topbar{
+    background-color:white;
+    box-shadow:0px 10px 10px #00000065;
+    padding-bottom:20px;
+    padding-top:20px;
+    font-size:25px;  
+    
+
+}
+#navlist li{
+    flex-grow:0;
+    flex-shrink:0;
+    padding:0px;
+    flex-basis:7%;
+    list-style-type:none;
+    
+}
+#navlist{
+    padding:0px;
+    margin-left:40px;
+    display:flex;
+    flex-flow:flex wrap;
+    
+}
+.current{
+    text-decoration:underline;
+}
+
+#navlist a:link{
+    transition:color 1s;
+    text-decoration:none;
+    color:black;
+}
+#navlist a:visited{
+    color:black;
+}
+#navlist a:hover{
+    color: var(--secondary-color);
+}
+
+/* NOTE CAN SOMEONE BETTER THAN ME AT FLEXBOX MAKE THIS WORK BETTER THANK YOU */
+
+#navlist li:nth-child(1){
+    flex-grow:0;
+    flex-shrink:0;
+    flex-basis:6%;
+}
+
+/*LeaderBoards*/
+#navlist li:nth-child(4){
+    flex-grow:1;
+    flex-shrink:1;
+    flex-basis:20%;
+}
+
+
+/*Upload Animal*/
+#navlist li:nth-child(5){
+    flex-grow:0;
+    flex-shrink:0;
+    flex-basis:15%;
+}
+
+/*Profile Page*/
+#navlist li:nth-child(6){
+    flex-grow:0;
+    flex-shrink:0;
+    flex-basis:10%;
+}
