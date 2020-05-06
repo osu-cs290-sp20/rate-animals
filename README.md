@@ -1,4 +1,5 @@
-# final-project-blue-team
-We are Blue Team.
-This is our Project.
-Enjoy.
+# Animal Ranker
+Hello! Welcome to our Animal Ranking Project.
+Not much else to put in the ReadMe Right now.
+Bye!
+
