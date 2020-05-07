@@ -9,6 +9,8 @@ let buttonHolder = document.getElementById("button-holder");
 let images=buttonHolder.getElementsByClassName("animal-image");;
 let button = document.getElementById("rate-button")
 
+
+//Note that this function works assuming that the images are stored as squares.
 function generateAnimal(){
     
     let newImage = document.createElement("img");
