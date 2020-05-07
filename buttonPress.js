@@ -48,21 +48,24 @@ function addRateBox(){
     rateContainer.style.display = "relative";
     console.log("Navbar Height:" + navbarHeight);
     rateContainer.style.height = window.innerHeight-navbarHeight+"px"; //this fills up the whole window except the navbar.
+    let boxHeight = (window.innerHeight-navbarHeight)/1.75; //box height will be half of available page.
+
 
     let rateBox = document.createElement("div");
     rateContainer.appendChild(rateBox);
     rateBox.style.backgroundColor = "white";
-    rateBox.style.width = "750px";
-    rateBox.style.height = "500px";
+    rateBox.style.width = (boxHeight*1.5) + "px"
+    rateBox.style.height = boxHeight+"px";
     rateBox.style.borderRadius = "15px";
+    let topMargin = boxHeight/4;
     rateBox.style.display = "inline-block";
     rateBox.style.boxShadow = "10px 10px 10px #0000004d"
     rateBox.style.opacity = "0";
     rateBox.style.transition = "margin 2s, opacity 2s, display 2s";
-    rateBox.style.margin = "300px"; //add stuff within this rate box to add animal pictures and such.
+    rateBox.style.margin = topMargin*2 + "px"; //add stuff within this rate box to add animal pictures and such. make it all relative to box height so it scales with the box.
     document.body.appendChild(rateContainer);
-    setTimeout(function(){
-        rateBox.style.margin = "100px"
+    setTimeout(function(){ //to make box slide up.
+        rateBox.style.margin = topMargin+"px" 
         rateBox.style.opacity = "1";
     },200);
 
