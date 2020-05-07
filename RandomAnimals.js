@@ -10,7 +10,9 @@ let images=buttonHolder.getElementsByClassName("animal-image");;
 let button = document.getElementById("rate-button")
 
 
+
 var placing_animals = true;
+//Note that this function works assuming that the images are stored as squares.
 function generateAnimal(){
     if(!placing_animals){
         return;
