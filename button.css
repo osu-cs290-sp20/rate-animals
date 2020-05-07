@@ -15,7 +15,7 @@
     height:150px;
     width:300px;
     border-radius:25px;
-    transition:box-shadow .5s;
+    transition:box-shadow .5s, opacity 1s;
   
 }
 #rate-button:hover{

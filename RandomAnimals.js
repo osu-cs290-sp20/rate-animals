@@ -9,7 +9,12 @@ let buttonHolder = document.getElementById("button-holder");
 let images=buttonHolder.getElementsByClassName("animal-image");;
 let button = document.getElementById("rate-button")
 
+
+var placing_animals = true;
 function generateAnimal(){
+    if(!placing_animals){
+        return;
+    }
     
     let newImage = document.createElement("img");
     
@@ -151,4 +156,17 @@ function dissapearImage(){
         images[0].style.opacity="0";
     }
     
+}
+
+function fadeAllAnimals(){
+    placing_animals = false;
+    images = buttonHolder.getElementsByClassName("animal-image");
+    for(var i = images.length-1; i >=0;i--){
+        images[i].style.opacity = "0";
+    }
+    setTimeout(function(){
+        for(var i = images.length-1; i >=0;i--){
+            buttonHolder.removeChild(images[i]);
+        }  
+    }, 1000);
 }
