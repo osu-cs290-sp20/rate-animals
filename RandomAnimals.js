@@ -9,7 +9,15 @@ let buttonHolder = document.getElementById("button-holder");
 let images=buttonHolder.getElementsByClassName("animal-image");;
 let button = document.getElementById("rate-button")
 
+document.body.onload = fixBoxSize;
 
+function fixBoxSize(){
+    let navbar = document.getElementById("topbar");
+    let navbarHeight = navbar.offsetHeight;
+    let margins = (window.innerHeight-navbarHeight-button.offsetHeight)/2; //size leftover on page /2
+    button.style.marginTop = margins-2 + "px";
+    button.style.marginBottom = margins-2 + "px"; //minus 2 cuz it's kinda weird and adds a bar if it's exact
+}
 
 var placing_animals = true;
 //Note that this function works assuming that the images are stored as squares.
