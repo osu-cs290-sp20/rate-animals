@@ -46,8 +46,8 @@ function addRateBox(){
     rateContainer.style.width = "auto";
     rateContainer.style.textAlign = "center";
     rateContainer.style.display = "relative";
-    console.log("Navbar Height:" + navbarHeight);
-    rateContainer.style.height = window.innerHeight-navbarHeight+"px"; //this fills up the whole window except the navbar.
+    
+    rateContainer.style.height = window.innerHeight-navbarHeight-2+"px"; //this fills up the whole window except the navbar.
     let boxHeight = (window.innerHeight-navbarHeight)/1.75; //box height will be half of available page.
 
 
