@@ -5,6 +5,8 @@ rateButton.addEventListener("mouseleave",stopFillingButton);
 
 rateButton.addEventListener("click",buttonClicked)
 
+
+
 var cancelled = false;
 function fillUpButton(){
     cancelled = false;
@@ -52,6 +54,7 @@ function addRateBox(){
 
 
     let rateBox = document.createElement("div");
+    rateBox.id = "rate-box";
     rateContainer.appendChild(rateBox);
     rateBox.style.backgroundColor = "white";
     rateBox.style.width = (boxHeight*1.5) + "px"
@@ -62,11 +65,31 @@ function addRateBox(){
     rateBox.style.boxShadow = "10px 10px 10px #0000004d"
     rateBox.style.opacity = "0";
     rateBox.style.transition = "margin 2s, opacity 2s, display 2s";
-    rateBox.style.margin = topMargin*2 + "px"; //add stuff within this rate box to add animal pictures and such. make it all relative to box height so it scales with the box.
+    rateBox.style.marginTop= topMargin*2 + "px"; //add stuff within this rate box to add animal pictures and such. make it all relative to box height so it scales with the box.
     document.body.appendChild(rateContainer);
     setTimeout(function(){ //to make box slide up.
-        rateBox.style.margin = topMargin+"px" 
+        rateBox.style.marginTop = topMargin+"px" 
         rateBox.style.opacity = "1";
     },200);
+
+}
+
+
+window.onresize = resizeRateBox;
+
+function resizeRateBox(){
+    
+    let navbar = document.getElementById("topbar");
+    let navbarHeight = navbar.offsetHeight;
+    let rateContainer = document.getElementById("rate-container");
+    rateContainer.style.height = window.innerHeight-navbarHeight-2+"px";
+    let boxHeight = (window.innerHeight-navbarHeight)/1.75; //box height will be half of available page
+    let rateBox = document.getElementById("rate-box");
+    rateBox.style.transition = "margin .1s, opacity 2s, display 2s, width 1s, height 1s";
+    rateBox.style.width = (boxHeight*1.5) + "px"
+    rateBox.style.height = boxHeight+"px";
+    let topMargin = boxHeight/4;
+    rateBox.style.marginTop = topMargin+"px";
+
 
 }
