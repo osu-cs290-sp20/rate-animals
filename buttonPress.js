@@ -78,18 +78,18 @@ function addRateBox(){
 window.onresize = resizeRateBox;
 
 function resizeRateBox(){
-    
-    let navbar = document.getElementById("topbar");
-    let navbarHeight = navbar.offsetHeight;
-    let rateContainer = document.getElementById("rate-container");
-    rateContainer.style.height = window.innerHeight-navbarHeight-2+"px";
-    let boxHeight = (window.innerHeight-navbarHeight)/1.75; //box height will be half of available page
-    let rateBox = document.getElementById("rate-box");
-    rateBox.style.transition = "margin .1s, opacity 2s, display 2s, width 1s, height 1s";
-    rateBox.style.width = (boxHeight*1.5) + "px"
-    rateBox.style.height = boxHeight+"px";
-    let topMargin = boxHeight/4;
-    rateBox.style.marginTop = topMargin+"px";
-
-
+    if(document.getElementById("rate-container")){ //only do this stuff if the rate container even exists.
+        let navbar = document.getElementById("topbar");
+        let navbarHeight = navbar.offsetHeight;
+        let rateContainer = document.getElementById("rate-container");
+        rateContainer.style.height = window.innerHeight-navbarHeight-2+"px";
+        let boxHeight = (window.innerHeight-navbarHeight)/1.75; //box height will be half of available page
+        let rateBox = document.getElementById("rate-box");
+        rateBox.style.transition = "margin .1s, opacity 2s, display 2s, width 1s, height 1s";
+        rateBox.style.width = (boxHeight*1.5) + "px"
+        rateBox.style.height = boxHeight+"px";
+        let topMargin = boxHeight/4;
+        rateBox.style.marginTop = topMargin+"px";
+    }
+    //maybe add a different resizer for the main button that you press to actually start the rating.
 }
