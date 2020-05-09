@@ -15,8 +15,8 @@ function fixBoxSize(){
     let navbar = document.getElementById("topbar");
     let navbarHeight = navbar.offsetHeight;
     let margins = (window.innerHeight-navbarHeight-button.offsetHeight)/2; //size leftover on page /2
-    button.style.marginTop = margins-2 + "px";
-    button.style.marginBottom = margins-2 + "px"; //minus 2 cuz it's kinda weird and adds a bar if it's exact
+    button.style.marginTop = margins-5 + "px";
+    button.style.marginBottom = margins-5 + "px"; //minus 2 cuz it's kinda weird and adds a bar if it's exact
 }
 
 var placing_animals = true;
@@ -41,7 +41,6 @@ function generateAnimal(){
     let objectHeight;
     let objectWidth;
     do{
-        console.log("attempting place");
         objectHeight = Math.random() * (buttonHolder.clientHeight-randomHeight); //eventually we can change the size and change the height.
         objectWidth = Math.random() * (buttonHolder.clientWidth-randomHeight);
         //minus 300 because we need to make sure it's in the box not at the edges.
