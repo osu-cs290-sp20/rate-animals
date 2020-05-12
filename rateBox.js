@@ -2,7 +2,7 @@
 
 let animal1; //will store animal info here, and access this when user decides who won.
 let animal2;
-
+let canHover = true;
 
 function styleBox(){
     let rateBox = document.querySelector("#rate-box");
@@ -115,27 +115,43 @@ function styleBox(){
     name2.style.height = "auto";
     name2.style.width = "40%";
 
-
-
     text_holder.appendChild(name1);
     text_holder.appendChild(name_div);
     text_holder.appendChild(name2);
   
-   image_holder.style.display = "flex";
-   image_holder.style.flexfolow = "row wrap";
-   image_holder.style.width = "100%";
-   image_holder.style.height = "60%";
+    image_holder.style.display = "flex";
+    image_holder.style.flexfolow = "row wrap";
+    image_holder.style.width = "100%";
+    image_holder.style.height = "60%";
+    image_holder.id = "image-holder";
+
+
+    let image1_holder = document.createElement("div");
+    image1_holder.id = "image1-holder";
+    let image2_holder = document.createElement("div");
+    image2_holder.id = "image2-holder";
+    image1_holder.style.width = "40%";
+    image2_holder.style.width = "40%";
+    image1_holder.style.height = "100%";
+    image2_holder.style.height = "100%";
 
     let image1 = document.createElement("img");
     let image2 = document.createElement("img");
+    image1_holder.appendChild(image1);
+    image2_holder.appendChild(image2);
+    image1_holder.style.textAlign = "left";
+    image2_holder.style.textAlign = "left";
     image1.id = "image-1";
     image2.id = "image-2";
 
-    image1.style.cursor = "pointer";
-    image2.style.cursor = "pointer";
-    image1.addEventListener("click",selectAnimalOne);
-    image2.addEventListener("click",selectAnimalTwo);
-
+    image1_holder.style.cursor = "pointer";
+    image2_holder.style.cursor = "pointer";
+    image1_holder.addEventListener("click",selectAnimalOne);
+    image2_holder.addEventListener("click",selectAnimalTwo);
+    image1_holder.addEventListener("mouseover",fillImageOne);
+    image2_holder.addEventListener("mousemove",fillImageTwo);
+    image1_holder.addEventListener("mouseleave",stopFillImageOne);
+    image2_holder.addEventListener("mouseleave",stopFillImageTwo);
 
     let img_div = document.createElement("div");
 
@@ -144,10 +160,10 @@ function styleBox(){
 
     image1.src = "https://placekitten.com/800/800";                                 //CHANGE THIS TO HAVE DIFFERENT PICTURES
     image2.src = "https://placekitten.com/300/300";
-    image1.style.height = "auto";
-    image1.style.width = "40%";
-    image2.style.height = "auto";
-    image2.style.width = "40%";
+    image1.style.height = "100%";
+    image1.style.width = "auto";
+    image2.style.height = "100%";
+    image2.style.width = "auto";
 
     image1.style.transition = "opacity 1s";
     image2.style.transition = "opacity 1s";
@@ -155,10 +171,77 @@ function styleBox(){
     stuffHolder.appendChild(report_buttons_holder);
     stuffHolder.appendChild(image_holder);
     stuffHolder.appendChild(text_holder);
-    image_holder.appendChild(image1);
+    image_holder.appendChild(image1_holder);
     image_holder.appendChild(img_div);
-    image_holder.appendChild(image2);
+    image_holder.appendChild(image2_holder);
     rateBox.appendChild(stuffHolder);
+    addHoverAnimation();
+}
+
+
+function addHoverAnimation(){
+    let image1_holder = document.getElementById("image1-holder");
+    let image2_holder = document.getElementById("image2-holder");
+    let image_holders = [image1_holder, image2_holder];
+    let slide1 = document.createElement("div");
+    let slide2 = document.createElement("div");
+    let slides = [slide1, slide2];
+    for(var i = 0; i < image_holders.length; ++i){
+        image_holders[i].style.position = "relative";
+        image_holders[i].style.overflow = "hidden";
+        slides[i].id = "slide"+(i+1);
+        slides[i].style.position = "absolute";
+        slides[i].style.left = "0px";
+        slides[i].style.width = "100%";
+        slides[i].style.height = "100%";
+        slides[i].style.top = document.getElementById("image-1").clientHeight +"px";
+        slides[i].style.background = "#347C2C6B";
+        slides[i].style.transition = "top 2s";
+        slides[i].style.transitionTimingFunction = "linear";
+     
+        image_holders[i].appendChild(slides[i]);
+
+    }
+    
+
+
+}
+
+function fillImageOne(){
+    if(canHover){
+        let slide1 = document.getElementById("slide1");
+        
+        slide1.style.top = "0";
+        slide1.addEventListener("transitionend",function(){
+            if(slide1.style.top==="0px"){
+                selectAnimalOne();
+            }   
+        }); 
+    }
+}
+    
+function fillImageTwo(){
+    if(canHover){
+        let slide2 = document.getElementById("slide2");
+        slide2.style.top = "0";
+        slide2.addEventListener("transitionend",function(){
+            if(slide2.style.top==="0px"){
+                selectAnimalTwo();
+            }   
+        });
+    }
+}
+
+function stopFillImageOne(){
+    let slide1 = document.getElementById("slide1");
+    let imageHeight = document.getElementById("image-1").clientHeight;
+    slide1.style.top = imageHeight+"px";
+}
+
+function stopFillImageTwo(){
+    let slide2 = document.getElementById("slide2");
+    let imageHeight = document.getElementById("image-2").clientHeight;
+    slide2.style.top = imageHeight+"px";
 }
 
 
@@ -175,12 +258,14 @@ function reportAnimalTwo(){
 
 
 
-function selectAnimalOne(){
+function selectAnimalOne(){             //here will be the calling of the updating scores of the animals.
     //alert("animal one selected");
     image1 = document.querySelector("#image-1");
     image1_text = document.querySelector("#animal1-text");
     image1.style.opacity = "0";
     image1_text.style.opacity = "0";
+    dissapearBoth();
+    setTimeout(createNewAnimals,1000);
 
 
 
@@ -191,8 +276,68 @@ function selectAnimalTwo(){
     image2_text = document.querySelector("#animal2-text");
     image2.style.opacity = "0";
     image2_text.style.opacity = "0";
+    dissapearBoth();
+    setTimeout(createNewAnimals,1000);
 }
 
 function dissapearBoth(){
+    canHover = false;
+    image1 = document.querySelector("#image-1");
+    image1_text = document.querySelector("#animal1-text");
+    image1.style.opacity = "0";
+    image1_text.style.opacity = "0";
+    image2 = document.querySelector("#image-2");
+    image2_text = document.querySelector("#animal2-text");
+    image2.style.opacity = "0";
+    image2_text.style.opacity = "0";
+    let slide1 = document.getElementById("slide1");
+    let slide2 = document.getElementById("slide2");
+    let imageHeight = document.getElementById("image-1").clientHeight;
+    slide1.style.opacity = "0";
+    slide2.style.opacity = "0";
+    slide1.style.transition = "0s";
+    slide2.style.transition = "0s";
+    slide1.style.top = imageHeight + "px";
+    slide2.style.top = imageHeight + "px";
+    
+    
+
+}
+
+
+function createNewAnimals(){
+    image1 = document.querySelector("#image-1");
+    image1_text = document.querySelector("#animal1-text");
+    image2 = document.querySelector("#image-2");
+    image2_text = document.querySelector("#animal2-text");
+
+    image1_text.textContent = "New_Name1";
+    image2_text.textContent = "New_Name2";
+
+    image1.src = "https://placekitten.com/500/500";
+    image2.src = "https://placekitten.com/1000/1000";
+
+    image1.style.opacity = "1";
+    image1_text.style.opacity = "1";
+    image2_text.style.opacity = "1";
+    image2.style.opacity = "1";
+    
+    
+    let imageHeight = document.getElementById("image-1").clientHeight;
+    let slide1 = document.getElementById("slide1");
+    
+    let slide2 = document.getElementById("slide2");
+
+    image1.addEventListener("transitionend",function(){
+        canHover = true;
+        slide1.style.top = imageHeight+"px";
+        slide1.style.opacity = "1";
+        slide2.style.opacity = "1";
+        slide1.style.transition = "top 2s";
+        slide1.style.transitionTimingFunction = "linear";
+        slide2.style.transition = "top 2s";
+        slide2.style.transitionTimingFunction = "linear";
+        
+    });
 
 }
