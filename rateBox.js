@@ -4,6 +4,9 @@ let animal1; //will store animal info here, and access this when user decides wh
 let animal2;
 let canHover = true;
 
+
+
+
 function styleBox(){
     let rateBox = document.querySelector("#rate-box");
     let stuffHolder = document.createElement("div");
@@ -55,7 +58,7 @@ function styleBox(){
     report_text1.classList.toggle("report_text");
     
     report_text1.textContent = "(Flag as inappropriate)"
-    report_text1.fontWeight = "10px";
+    report_text1.style.fontSize = "1.5vh";
     text1_italicize.appendChild(report_text1);
     report1.appendChild(text1_italicize);
     report_buttons_holder.appendChild(report1);
@@ -83,7 +86,7 @@ function styleBox(){
     report_text2.classList.toggle("report_text");
     
     report_text2.textContent = "(Flag as inappropriate)"
-    report_text2.fontWeight = "10px";                                       //change these font weights in an update funciton.
+    report_text2.style.fontSize = "1.5vh";                                       //change these font weights in an update funciton.
     text2_italicize.appendChild(report_text2);
     report2.appendChild(text2_italicize);
     report_buttons_holder.appendChild(report2);
@@ -101,14 +104,15 @@ function styleBox(){
 
     name_div.textContent = "or"
     name_div.style.fontWeight = "bold";
+    name_div.id = "orText";
     name1.textContent = "George"                        //change this stuff
     name2.textContent = "Freddy"
     name1.style.height = "auto";
     name1.style.width = "40%";
 
-    name1.style.fontSize = "30px";
-    name2.style.fontSize = "30px";
-    name_div.style.fontSize = "30px";
+    name1.style.fontSize = "4vh";
+    name2.style.fontSize = "4vh";
+    name_div.style.fontSize = "4vh";
     name_div.style.width = "20%";
     name_div.style.height = "100%";
 
@@ -341,3 +345,4 @@ function createNewAnimals(){
     });
 
 }
+
