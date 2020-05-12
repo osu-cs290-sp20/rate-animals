@@ -50,7 +50,7 @@ function addRateBox(){
     rateContainer.style.display = "relative";
     
     rateContainer.style.height = window.innerHeight-navbarHeight-2+"px"; //this fills up the whole window except the navbar.
-    let boxHeight = (window.innerHeight-navbarHeight)/1.75; //box height will be half of available page.
+    let boxHeight = (window.innerHeight-navbarHeight)/1.25; //box height will be half of available page.
 
 
     let rateBox = document.createElement("div");
@@ -60,7 +60,7 @@ function addRateBox(){
     rateBox.style.width = (boxHeight*1.5) + "px"
     rateBox.style.height = boxHeight+"px";
     rateBox.style.borderRadius = "15px";
-    let topMargin = boxHeight/4;
+    let topMargin = ((window.innerHeight-navbarHeight)-boxHeight)/2;
     rateBox.style.display = "inline-block";
     rateBox.style.boxShadow = "10px 10px 10px #0000004d"
     rateBox.style.opacity = "0";
