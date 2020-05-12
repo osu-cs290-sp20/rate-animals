@@ -37,7 +37,7 @@ function ratingScreen(){
     setTimeout(function(){
         document.body.removeChild(buttonHolder)
         addRateBox();
-    },100);
+    },500);
 }
 
 function addRateBox(){
@@ -65,8 +65,10 @@ function addRateBox(){
     rateBox.style.boxShadow = "10px 10px 10px #0000004d"
     rateBox.style.opacity = "0";
     rateBox.style.transition = "margin 2s, opacity 2s, display 2s";
+
     rateBox.style.marginTop= topMargin*2 + "px"; //add stuff within this rate box to add animal pictures and such. make it all relative to box height so it scales with the box.
     document.body.appendChild(rateContainer);
+    styleBox();
     setTimeout(function(){ //to make box slide up.
         rateBox.style.marginTop = topMargin+"px" 
         rateBox.style.opacity = "1";

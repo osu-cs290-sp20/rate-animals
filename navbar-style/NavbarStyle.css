@@ -6,7 +6,7 @@
 
 :root{
     --background-color: #89cff0;
-    --secondary-color: #4c4cb9;
+    --secondary-color: #456777;
 }
 
 
@@ -57,7 +57,76 @@ body{
 #navlist a:visited{
     color:black;
 }
-#navlist a:hover{
-    color: var(--secondary-color);
+
+
+
+
+/* taken from here https://codepen.io/maheshambure21/pen/QwXaRw */
+#topbar ul li a:hover,
+#topbar ul li a:after,
+#topbar ul li a:before {
+  transition: all .5s;
+}   
+nav ul li a:hover {
+  color: #555;
 }
 
+/* stroke */
+#topbar ul li a,
+#topbar ul li a {
+  position: relative;
+}
+#topbar ul li a:after,
+#topbar ul li a:after {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: 0%;
+  content: '.';
+  color: transparent;
+  background: #aaa;
+  height: 1px;
+}
+#topbar ul li a:hover:after {
+  width: 100%;
+}
+
+#topbar ul li a:hover {
+  transition: all 2s;
+}
+
+#topbar ul li a:after {
+  text-align: left;
+  content: '.';
+  margin: 0;
+  opacity: 0;
+}
+#topbar ul li a:hover {
+  color: #fff;
+  z-index: 1;
+}
+#topbar ul li a:hover:after {
+  z-index: -10;
+  animation: fill 1s forwards;
+  -webkit-animation: fill 1s forwards;
+  -moz-animation: fill 1s forwards;
+  opacity: 1;
+}
+/* Keyframes */
+@-webkit-keyframes fill {
+    0% {
+      width: 0%;
+      height: 1px;
+    }
+    50% {
+      width: 100%;
+      height: 1px;
+    }
+    100% {
+      width: 100%;
+      height: 100%;
+      background: #333;
+    }
+  }
