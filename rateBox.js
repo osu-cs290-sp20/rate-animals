@@ -152,7 +152,7 @@ function styleBox(){
     image2_holder.style.cursor = "pointer";
     image1_holder.addEventListener("click",selectAnimalOne);
     image2_holder.addEventListener("click",selectAnimalTwo);
-    image1_holder.addEventListener("mouseover",fillImageOne);
+    image1_holder.addEventListener("mousemove",fillImageOne);
     image2_holder.addEventListener("mousemove",fillImageTwo);
     image1_holder.addEventListener("mouseleave",stopFillImageOne);
     image2_holder.addEventListener("mouseleave",stopFillImageTwo);
