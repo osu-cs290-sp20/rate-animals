@@ -93,9 +93,15 @@ function styleBox(){
     let name1 = document.createElement("p");                    
     let name2 = document.createElement("p");
     let name_div = document.createElement("p");
+
+    name1.id = "animal1-text";
+    name2.id = "animal2-text";
+    name1.style.transition = "opacity 1s";
+    name2.style.transition = "opacity 1s";
+
     name_div.textContent = "or"
     name_div.style.fontWeight = "bold";
-    name1.textContent = "George"
+    name1.textContent = "George"                        //change this stuff
     name2.textContent = "Freddy"
     name1.style.height = "auto";
     name1.style.width = "40%";
@@ -103,11 +109,6 @@ function styleBox(){
     name1.style.fontSize = "30px";
     name2.style.fontSize = "30px";
     name_div.style.fontSize = "30px";
-
-
-
-    
-
     name_div.style.width = "20%";
     name_div.style.height = "100%";
 
@@ -127,6 +128,8 @@ function styleBox(){
 
     let image1 = document.createElement("img");
     let image2 = document.createElement("img");
+    image1.id = "image-1";
+    image2.id = "image-2";
 
     image1.style.cursor = "pointer";
     image2.style.cursor = "pointer";
@@ -146,13 +149,15 @@ function styleBox(){
     image2.style.height = "auto";
     image2.style.width = "40%";
 
+    image1.style.transition = "opacity 1s";
+    image2.style.transition = "opacity 1s";
+
     stuffHolder.appendChild(report_buttons_holder);
     stuffHolder.appendChild(image_holder);
     stuffHolder.appendChild(text_holder);
     image_holder.appendChild(image1);
     image_holder.appendChild(img_div);
     image_holder.appendChild(image2);
-
     rateBox.appendChild(stuffHolder);
 }
 
@@ -171,10 +176,23 @@ function reportAnimalTwo(){
 
 
 function selectAnimalOne(){
-    alert("animal one selected");
+    //alert("animal one selected");
+    image1 = document.querySelector("#image-1");
+    image1_text = document.querySelector("#animal1-text");
+    image1.style.opacity = "0";
+    image1_text.style.opacity = "0";
+
+
 
 }
 
 function selectAnimalTwo(){
-    alert("animal two selected");
+    image2 = document.querySelector("#image-2");
+    image2_text = document.querySelector("#animal2-text");
+    image2.style.opacity = "0";
+    image2_text.style.opacity = "0";
+}
+
+function dissapearBoth(){
+
 }
