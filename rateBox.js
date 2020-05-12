@@ -250,15 +250,6 @@ function stopFillImageTwo(){
 
 
 
-function reportAnimalOne(){
-    
-    alert("Animal one has been reported as inappropriate.");
-
-}
-
-function reportAnimalTwo(){
-    alert("Animal two has been reported as inappropriate.");
-}
 
 
 
