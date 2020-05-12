@@ -5,9 +5,27 @@ function reportAnimalOne(){
     createReportBox(1);
 }
 
+window.addEventListener('resize', fixReportSizes);
 
 function reportAnimalTwo(){
     createReportBox(2);
+}
+
+
+function fixReportSizes(){
+    if(document.getElementById("grayWindow")){
+        grayWindow = document.getElementById("grayWindow");
+        grayWindow.style.width = window.innerWidth+"px";
+        grayWindow.style.height = window.innerHeight+"px";
+        reportBoxHolder = document.getElementById("reportBoxHolder");
+        let boxHeight = window.innerHeight/3;
+        reportBoxHolder.style.height = boxHeight +"px";
+        let boxWidth = boxHeight * 1.25;
+        reportBoxHolder.style.top = ((window.innerHeight-boxHeight)/2)+"px";
+        reportBoxHolder.style.left = ((window.innerWidth-boxWidth)/2) +"px";
+
+
+    }
 }
 
 function getRidOfAnimal(animalChoice){
@@ -48,6 +66,7 @@ function createReportBox(animalChoice){     //animal choice is either 1 or 2 I w
     buttonHolder.style.height = "10%";
     buttonHolder.style.width = "100%";
     buttonHolder.style.textAlign = "right";
+ 
     let xButton = document.createElement("button");
     xButton.style.height="100%";
     xButton.style.width="10%";
