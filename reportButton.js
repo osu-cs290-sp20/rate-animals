@@ -21,6 +21,7 @@ function fixReportSizes(){
         let boxHeight = window.innerHeight/3;
         reportBoxHolder.style.height = boxHeight +"px";
         let boxWidth = boxHeight * 1.25;
+        reportBoxHolder.style.width = boxWidth+"px";
         reportBoxHolder.style.top = ((window.innerHeight-boxHeight)/2)+"px";
         reportBoxHolder.style.left = ((window.innerWidth-boxWidth)/2) +"px";
 
@@ -73,7 +74,7 @@ function createReportBox(animalChoice){     //animal choice is either 1 or 2 I w
     xButton.style.borderRadius = "15px";
     xButton.style.border = "none";
     xButton.textContent = "x";
-    xButton.style.backgroundColor = "white";
+    xButton.style.backgroundColor = "#00000000";
     xButton.style.cursor = "pointer";
     xButton.addEventListener("click",closeReportBox);
     buttonHolder.appendChild(xButton);
@@ -83,7 +84,8 @@ function createReportBox(animalChoice){     //animal choice is either 1 or 2 I w
     areYouSure.style.textAlign = "center";
     areYouSure.style.fontWeight = "bold";
     areYouSure.textContent = "Are you sure that you want to report insert_name_here for having an inappropriate picture or name?";
-    areYouSure.style.fontSize = "2vh";
+    areYouSure.style.fontSize = "3vh";
+    areYouSure.style.overflow = "hidden";
 
 
     let choiceButtons = document.createElement("div");
@@ -104,6 +106,8 @@ function createReportBox(animalChoice){     //animal choice is either 1 or 2 I w
     yesButton.style.marginLeft = "40%";
     yesButton.textContent = "Yes";
     yesButton.style.color = "white";
+    yesButton.style.fontSize = "1.5vh";
+    yesButton.style.fontWeight = "bold";
     yesButton.style.cursor = "pointer";
     yesButton.addEventListener("click",function(){
         getRidOfAnimal(animalChoice);
@@ -121,6 +125,8 @@ function createReportBox(animalChoice){     //animal choice is either 1 or 2 I w
     cancelButton.style.color = "white";
     cancelButton.textContent = "Cancel";
     cancelButton.style.cursor = "pointer";
+    cancelButton.style.fontWeight = "bold";
+    cancelButton.style.fontSize = "1.5vh";
     cancelButton.addEventListener("click",closeReportBox);
     choiceButtons.appendChild(cancelButton);
     choiceButtons.appendChild(yesButton);
