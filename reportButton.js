@@ -98,7 +98,7 @@ function createReportBox(animalChoice){     //animal choice is either 1 or 2 I w
     yesButton.id = "yesButton";
     yesButton.style.height = "100%";
     yesButton.style.width = "20%";
-    yesButton.style.borderRadius = "15px";
+    yesButton.style.borderRadius = "5px";
     yesButton.style.border = "none";
     yesButton.style.backgroundColor = "#5ccc74";
     yesButton.style.marginLeft = "40%";
@@ -115,7 +115,7 @@ function createReportBox(animalChoice){     //animal choice is either 1 or 2 I w
     cancelButton.style.width = "20%";
     cancelButton.style.marginLeft = "10%";
     
-    cancelButton.style.borderRadius = "15px";
+    cancelButton.style.borderRadius = "5px";
     cancelButton.style.border = "none";
     cancelButton.style.backgroundColor = "#db444c";
     cancelButton.style.color = "white";
