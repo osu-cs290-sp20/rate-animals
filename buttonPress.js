@@ -66,7 +66,7 @@ function addRateBox(){
     rateBox.style.opacity = "0";
     rateBox.style.transition = "margin 2s, opacity 2s, display 2s";
 
-    rateBox.style.marginTop= topMargin*2 + "px"; //add stuff within this rate box to add animal pictures and such. make it all relative to box height so it scales with the box.
+    rateBox.style.marginTop= topMargin*1.9 + "px"; //add stuff within this rate box to add animal pictures and such. make it all relative to box height so it scales with the box.
     document.body.appendChild(rateContainer);
     styleBox();
     setTimeout(function(){ //to make box slide up.
