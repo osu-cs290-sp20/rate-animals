@@ -40,12 +40,17 @@ function generateAnimal(){
     newImage.style.zIndex = "-1";
     let objectHeight;
     let objectWidth;
+    let number_of_collides = 0;
     do{
+        if(number_of_collides >=20){ //in case the window is too small.
+            break;
+        }
         objectHeight = Math.random() * (buttonHolder.clientHeight-randomHeight); //eventually we can change the size and change the height.
         objectWidth = Math.random() * (buttonHolder.clientWidth-randomHeight);
         //minus 300 because we need to make sure it's in the box not at the edges.
         newImage.style.left = objectWidth+"px";
         newImage.style.top = objectHeight+"px";
+        number_of_collides++;
     }while(!collideWithButton(newImage));
     appearImage(objectHeight,newImage);
 
