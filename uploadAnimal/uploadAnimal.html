@@ -32,6 +32,7 @@
                 <div id="animalSelectorHolder">
                     <label for="animalChoice">Type of animal:</label>
                     <select id="animalChoice">
+                        <option value="select" class="selectOption">Select...</option>
                         <option value="dog">Dog</option>
                         <option value="cat">Cat</option>
                         <option value="snake">Snake</option>
@@ -44,10 +45,12 @@
                 <div id="otherInputHolder">
                     <label for="otherInput">Other type:</label>
                     <input type = "text" id="otherInput" name="otherInput">
+                    <p id="otherCount">20</p>
                 </div>
                 <div id="ageHolder">
-                    <label for="animalChoice">Animal Age:</label>
-                    <select id="animalChoice">
+                    <label for="animalAge">Animal Age:</label>
+                    <select id="animalAge">
+                        <option value="select" class="selectOption">Select...</option>
                         <option value="adult">Adult</option>
                         <option value="baby">Baby</option>
                     </select>
@@ -58,7 +61,7 @@
                     <p id="characterCount">20</p>
                 </div>
 
-                <div submitButtonHolder>
+                <div submitButtonHolder id="submitButtonHolder">
                     <button type="button" id="submitButton">Submit!</button>
 
                 </div>

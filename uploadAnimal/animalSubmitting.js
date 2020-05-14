@@ -65,3 +65,70 @@ function checkCharactersRemaining(){
         numberCharsLeft.style.color = "#3bc456";
     }
 }
+
+let otherCount = document.getElementById("otherInput");
+otherCount.addEventListener("input",checkOtherCount);
+let maxTypeChars = 20;
+
+function checkOtherCount(){
+    let numberCharsLeft = document.getElementById("otherCount");
+    let characters = otherCount.value.length;
+    numberCharsLeft.textContent = maxTypeChars-characters;
+    if(maxTypeChars-characters<0){
+        numberCharsLeft.style.color = "#ed2132";
+        numberCharsLeft.textContent = numberCharsLeft.textContent + ": Too Many Characters!"; 
+    }else{
+        numberCharsLeft.style.color = "#3bc456";
+    }
+}
+
+
+
+let submitButton =document.getElementById("submitButton");
+
+submitButton.addEventListener("click",attemptSubmit);
+
+function attemptSubmit(){
+    let nameInput = document.getElementById("nameInput");
+    let animalSelector = document.getElementById("animalChoice");
+    let ageSelector = document.getElementById("animalAge");
+    let otherInput = document.getElementById("otherInput")
+                                                                                                        //need to add testing for picture uploading as well.
+    let goodToSubmit = true;
+
+    if(nameInput.value === "" || nameInput.value.length >maxChars){
+        goodToSubmit = false;
+        highlightName();
+    }
+    if(animalSelector.value === "select"){
+        goodToSubmit = false;
+        highlightAnimalSelector();
+    }
+    if(ageSelector.value === "select"){
+        goodToSubmit = false;
+        highlightAgeSelector();
+    }
+    if(animalSelector.value === "other"){
+        if(otherInput.value === "" || otherInput.value > maxTypeChars){
+            goodToSubmit = false;
+            highlightOtherInput();
+        }
+    }
+    if(goodToSubmit){
+        alert("Good to submit");
+    }
+}
+
+function highlightName(){
+
+}
+function highlightAnimalSelector(){
+
+}
+
+function highlightAgeSelector(){
+
+}
+function highlightOtherInput(){
+
+}
