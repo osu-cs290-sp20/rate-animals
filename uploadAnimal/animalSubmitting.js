@@ -35,3 +35,33 @@ function setup(){
         autoProcessQueue: false // myDropzone.processQueue() to call once the user has entered all the data.
     };
 }
+
+let animalSelector = document.getElementById("animalChoice");
+animalSelector.addEventListener("change",checkAnimalType);
+
+function checkAnimalType(){
+    let otherType = document.getElementById("otherInputHolder");
+    if(animalSelector.value === "other"){
+        otherInputHolder.style.display = "block";
+    }else{
+        otherInputHolder.style.display = "none";
+    }
+}
+
+
+
+let nameInput = document.getElementById("nameInput");
+nameInput.addEventListener("input",checkCharactersRemaining);
+let maxChars = 20;
+
+function checkCharactersRemaining(){
+    let numberCharsLeft = document.getElementById("characterCount");
+    let characters = nameInput.value.length;
+    numberCharsLeft.textContent = maxChars-characters;
+    if(maxChars-characters<0){
+        numberCharsLeft.style.color = "#ed2132";
+        numberCharsLeft.textContent = numberCharsLeft.textContent + ": Too Many Characters!"; 
+    }else{
+        numberCharsLeft.style.color = "#3bc456";
+    }
+}
