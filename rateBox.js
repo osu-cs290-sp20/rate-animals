@@ -306,7 +306,7 @@ function createNewAnimals(){
     image2 = document.querySelector("#image-2");
     image2_text = document.querySelector("#animal2-text");
 
-    image1_text.textContent = "New_Name1";
+    image1_text.textContent = "thisanimalthisanimal";
     image2_text.textContent = "New_Name2";
 
     image1.src = "https://placekitten.com/500/500";

@@ -6,11 +6,13 @@
         <title>Upload an Animal</title> <!--Title too long make it better-->
 
         <link rel="stylesheet" href="../navbar-style/NavbarStyle.css" media="screen">
-        
+        <link rel="stylesheet" href="uploadStyle.css" media="screen">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,700;0,900;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
 
-        <script src="../dropzone-5.7.0/dist/dropzone.js"></script>
+        <script src="../dropzone-5.7.0/dist/dropzone.js" defer></script>
+        <script src = "animalSubmitting.js" defer></script>
+
     </head>
     <body>
         <div id="topbar">
@@ -24,10 +26,48 @@
                 <li class="navitem"><a href="../profile/profile.html" class = "navitem-link">My Profile</a></li>
             </ul>
         </div>
+        <div id="wrapper">
+            <div id="submitAnimalHolder">
+                <form action="/file-upload" class="dropzone" id="animalDropzone"></form>
+                <div id="animalSelectorHolder">
+                    <label for="animalChoice">Type of animal:</label>
+                    <select id="animalChoice">
+                        <option value="select" class="selectOption">Select...</option>
+                        <option value="dog">Dog</option>
+                        <option value="cat">Cat</option>
+                        <option value="snake">Snake</option>
+                        <option value="rabbit">Rabbit</option>
+                        <option value="other">Other</option>
+                    </select>
 
-        <div id="submitAnimalHolder">
-            <form action="/file-upload" class="dropzone" id="animalDropzone"></form>
+                    
+                </div>
+                <div id="otherInputHolder">
+                    <label for="otherInput">Other type:</label>
+                    <input type = "text" id="otherInput" name="otherInput">
+                    <p id="otherCount">20</p>
+                </div>
+                <div id="ageHolder">
+                    <label for="animalAge">Animal Age:</label>
+                    <select id="animalAge">
+                        <option value="select" class="selectOption">Select...</option>
+                        <option value="adult">Adult</option>
+                        <option value="baby">Baby</option>
+                    </select>
+                </div>
+                <div id="nameInputHolder">
+                    <label for="nameInput">Animal Name:</label>
+                    <input type = "text" id="nameInput" name="nameInput">
+                    <p id="characterCount">20</p>
+                </div>
 
+                <div submitButtonHolder id="submitButtonHolder">
+                    <button type="button" id="submitButton">Submit!</button>
+
+                </div>
+
+            </div>
+            
         </div>
 
         
