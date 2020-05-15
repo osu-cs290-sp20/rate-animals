@@ -135,42 +135,84 @@ function setButtonColor(){
 
     if(nameInput.value === "" || nameInput.value.length >maxChars){
         goodToSubmit = false;
-        highlightName();
+        
     }
     if(animalSelector.value === "select"){
         goodToSubmit = false;
-        highlightAnimalSelector();
+     
     }
     if(ageSelector.value === "select"){
         goodToSubmit = false;
-        highlightAgeSelector();
+      
     }
     if(animalSelector.value === "other"){
         if(otherInput.value === "" || otherInput.value > maxTypeChars){
             goodToSubmit = false;
-            highlightOtherInput();
+         
         }
     }
     let button = document.getElementById("submitButton");
     if(goodToSubmit){
         button.style.backgroundColor = "#69bf84"
+        button.style.color = "white";
     }else{
-        button.style.backgroundColor = "#c72e3b";
+        button.style.backgroundColor = "#828282";
+        button.style.color = "black";
     }
 }
 
 
+let button = document.getElementById("submitButton");
+button.addEventListener("mouseenter",highlightButton);
+
+function highlightButton(){
+    if(button.style.color){
+        button.style.cursor="pointer";
+        button.style.boxShadow = "10px 10px 10px #00000086";
+    }else{
+        button.style.cursor = "initial";
+    }
+}
+button.addEventListener("mouseleave",unhighlightButton);
+
+function unhighlightButton(){
+    button.style.boxShadow = "5px 5px 10px #00000086";
+}
 
 function highlightName(){
+    let nameHolder = document.getElementById("nameInputHolder");
+    nameHolder.style.transition = "background-color .5s";
+    nameHolder.style.backgroundColor = "#d95757";
+    setTimeout(function(){
+        nameHolder.style.backgroundColor = "white";
+    },500);
 
 }
 function highlightAnimalSelector(){
+    let animalSelector = document.getElementById("animalSelectorHolder");
+    animalSelector.style.transition = "background-color .5s";
+    animalSelector.style.backgroundColor = "#d95757";
+    setTimeout(function(){
+        animalSelector.style.backgroundColor = "white";
+    },500);
 
 }
 
 function highlightAgeSelector(){
+    let ageHolder = document.getElementById("ageHolder");
+    ageHolder.style.transition = "background-color .5s";
+    ageHolder.style.backgroundColor = "#d95757";
+    setTimeout(function(){
+        ageHolder.style.backgroundColor = "white";
+    },500);
 
 }
 function highlightOtherInput(){
+    let otherHolder = document.getElementById("otherInputHolder");
+    otherHolder.style.transition = "background-color .5s";
+    otherHolder.style.backgroundColor = "#d95757";
+    setTimeout(function(){
+        otherHolder.style.backgroundColor = "white";
+    },500);
 
 }
