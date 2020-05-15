@@ -37,6 +37,9 @@ function getRidOfAnimal(animalChoice){
 
 }
 
+
+
+
 function createReportBox(animalChoice){     //animal choice is either 1 or 2 I wish the cancel and accept buttons looked better
     let grayWindow = document.createElement("div");
     grayWindow.style.width = window.innerWidth+"px";
@@ -82,8 +85,9 @@ function createReportBox(animalChoice){     //animal choice is either 1 or 2 I w
     let areYouSure = document.createElement("p");
     areYouSure.id = "areYouSure"
     areYouSure.style.textAlign = "center";
-    areYouSure.style.fontWeight = "bold";
-    areYouSure.textContent = "Are you sure that you want to report insert_name_here for having an inappropriate picture or name?";
+
+    let name = document.getElementById("animal"+animalChoice+"-text").textContent;
+    areYouSure.textContent = "Are you sure that you want to report "+name+" for having an inappropriate picture or name?";
     areYouSure.style.fontSize = "3vh";
     areYouSure.style.overflow = "hidden";
 
@@ -130,8 +134,6 @@ function createReportBox(animalChoice){     //animal choice is either 1 or 2 I w
     cancelButton.addEventListener("click",closeReportBox);
     choiceButtons.appendChild(cancelButton);
     choiceButtons.appendChild(yesButton);
-
-    
 
     reportBoxHolder.appendChild(buttonHolder);
     reportBoxHolder.appendChild(areYouSure);
