@@ -97,14 +97,14 @@
 
 #submitButton{
     border:none;
-    background-color:#6565cf;
+    background-color:#c72e3b;
     width:20%;
     height:100%;
     border-radius:5px;
     box-shadow:5px 5px 10px #00000086;
     color:white;
     cursor:pointer;
-    transition:box-shadow .5s;
+    transition:box-shadow .5s, background-color .5s;
 }
 
 #submitButton:hover{
