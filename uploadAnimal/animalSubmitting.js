@@ -166,11 +166,12 @@ let button = document.getElementById("submitButton");
 button.addEventListener("mouseenter",highlightButton);
 
 function highlightButton(){
-    if(button.style.color){
+    if(button.style.color === "black" || button.style.color == ""){
+        button.style.cursor = "default";
+        button.style.boxShadow = "5px 5px 10px #00000086";
+    }else{
         button.style.cursor="pointer";
         button.style.boxShadow = "10px 10px 10px #00000086";
-    }else{
-        button.style.cursor = "initial";
     }
 }
 button.addEventListener("mouseleave",unhighlightButton);
