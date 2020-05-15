@@ -46,6 +46,7 @@ function checkAnimalType(){
     }else{
         otherInputHolder.style.display = "none";
     }
+    setButtonColor();
 }
 
 
@@ -64,7 +65,11 @@ function checkCharactersRemaining(){
     }else{
         numberCharsLeft.style.color = "#3bc456";
     }
+    setButtonColor();
 }
+
+let animalAge = document.getElementById("animalAge");
+animalAge.addEventListener("change",setButtonColor);
 
 let otherCount = document.getElementById("otherInput");
 otherCount.addEventListener("input",checkOtherCount);
@@ -80,6 +85,7 @@ function checkOtherCount(){
     }else{
         numberCharsLeft.style.color = "#3bc456";
     }
+    setButtonColor();
 }
 
 
@@ -118,6 +124,42 @@ function attemptSubmit(){
         alert("Good to submit");
     }
 }
+
+function setButtonColor(){
+    let nameInput = document.getElementById("nameInput");
+    let animalSelector = document.getElementById("animalChoice");
+    let ageSelector = document.getElementById("animalAge");
+    let otherInput = document.getElementById("otherInput")
+                                                                                                        //need to add testing for picture uploading as well.
+    let goodToSubmit = true;
+
+    if(nameInput.value === "" || nameInput.value.length >maxChars){
+        goodToSubmit = false;
+        highlightName();
+    }
+    if(animalSelector.value === "select"){
+        goodToSubmit = false;
+        highlightAnimalSelector();
+    }
+    if(ageSelector.value === "select"){
+        goodToSubmit = false;
+        highlightAgeSelector();
+    }
+    if(animalSelector.value === "other"){
+        if(otherInput.value === "" || otherInput.value > maxTypeChars){
+            goodToSubmit = false;
+            highlightOtherInput();
+        }
+    }
+    let button = document.getElementById("submitButton");
+    if(goodToSubmit){
+        button.style.backgroundColor = "#69bf84"
+    }else{
+        button.style.backgroundColor = "#c72e3b";
+    }
+}
+
+
 
 function highlightName(){
 
