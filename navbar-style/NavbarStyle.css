@@ -20,13 +20,7 @@ body{
     box-shadow:0px 10px 10px #00000065;
     padding-bottom:20px;
     padding-top:20px;
-<<<<<<< HEAD
-    font-size:25px;  
-=======
     font-size:1.75vw;  
-    
-
->>>>>>> 4fafe9c19fd21eff303abbe77e2d3041227d2f24
 }
 #navlist li{
     flex-shrink:0;
