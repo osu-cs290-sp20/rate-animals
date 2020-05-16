@@ -37,7 +37,7 @@ function ratingScreen(){
     setTimeout(function(){
         document.body.removeChild(buttonHolder)
         addRateBox();
-    },100);
+    },500);
 }
 
 function addRateBox(){
@@ -50,7 +50,7 @@ function addRateBox(){
     rateContainer.style.display = "relative";
     
     rateContainer.style.height = window.innerHeight-navbarHeight-2+"px"; //this fills up the whole window except the navbar.
-    let boxHeight = (window.innerHeight-navbarHeight)/1.75; //box height will be half of available page.
+    let boxHeight = (window.innerHeight-navbarHeight)/1.25; //box height will be half of available page.
 
 
     let rateBox = document.createElement("div");
@@ -60,13 +60,15 @@ function addRateBox(){
     rateBox.style.width = (boxHeight*1.5) + "px"
     rateBox.style.height = boxHeight+"px";
     rateBox.style.borderRadius = "15px";
-    let topMargin = boxHeight/4;
+    let topMargin = ((window.innerHeight-navbarHeight)-boxHeight)/2;
     rateBox.style.display = "inline-block";
     rateBox.style.boxShadow = "10px 10px 10px #0000004d"
     rateBox.style.opacity = "0";
     rateBox.style.transition = "margin 2s, opacity 2s, display 2s";
-    rateBox.style.marginTop= topMargin*2 + "px"; //add stuff within this rate box to add animal pictures and such. make it all relative to box height so it scales with the box.
+
+    rateBox.style.marginTop= topMargin*1.9 + "px"; //add stuff within this rate box to add animal pictures and such. make it all relative to box height so it scales with the box.
     document.body.appendChild(rateContainer);
+    styleBox();
     setTimeout(function(){ //to make box slide up.
         rateBox.style.marginTop = topMargin+"px" 
         rateBox.style.opacity = "1";
@@ -83,12 +85,12 @@ function resizeRateBox(){
         let navbarHeight = navbar.offsetHeight;
         let rateContainer = document.getElementById("rate-container");
         rateContainer.style.height = window.innerHeight-navbarHeight-2+"px";
-        let boxHeight = (window.innerHeight-navbarHeight)/1.75; //box height will be half of available page
+        let boxHeight = (window.innerHeight-navbarHeight)/1.25; //box height will be half of available page
         let rateBox = document.getElementById("rate-box");
         rateBox.style.transition = "margin .1s, opacity 2s, display 2s, width 1s, height 1s";
         rateBox.style.width = (boxHeight*1.5) + "px"
         rateBox.style.height = boxHeight+"px";
-        let topMargin = boxHeight/4;
+        let topMargin = ((window.innerHeight-navbarHeight)-boxHeight)/2;
         rateBox.style.marginTop = topMargin+"px";
     }
     //maybe add a different resizer for the main button that you press to actually start the rating.

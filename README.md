@@ -15,3 +15,6 @@ To change the styling for anything that will change accross all the pages, use t
 ## Changing Individual Page Styling
 To change an individual page's styling, simply create new css file in that page's folder and link it to the page from the HTML.
 
+## Adding temporary images.
+Use this website url to add images. https://placekitten.com/
+
