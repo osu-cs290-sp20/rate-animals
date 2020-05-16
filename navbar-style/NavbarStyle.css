@@ -21,8 +21,6 @@ body{
     padding-bottom:20px;
     padding-top:20px;
     font-size:25px;  
-    
-
 }
 #navlist li{
     flex-shrink:0;
@@ -47,7 +45,7 @@ body{
 }
 
 .current{
-    text-decoration:underline;
+    text-decoration:underline #4c4cb9;
 }
 
 #navlist a:link{
