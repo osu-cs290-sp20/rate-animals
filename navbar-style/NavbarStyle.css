@@ -45,7 +45,9 @@ body{
 }
 
 .current{
-    text-decoration:underline #4c4cb9;
+    color:#89cff0;
+    font-weight: bold;
+    text-decoration:underline #89cff0;
 }
 
 #navlist a:link{
@@ -55,8 +57,6 @@ body{
 #navlist a:visited{
     color:black;
 }
-
-
 
 
 /* taken from here https://codepen.io/maheshambure21/pen/QwXaRw */
