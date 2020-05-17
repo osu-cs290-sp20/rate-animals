@@ -28,7 +28,7 @@ function updateImageDisplay(){
         croppie_holder.style.display = "";
     }else{
         label.textContent = "Invalid File Type!"
-        croppie_holder.style.display = "";
+        croppie_holder.style.display = "none";
     }
     if(!curFiles[0]){
         croppie_holder.style.display = "none";
