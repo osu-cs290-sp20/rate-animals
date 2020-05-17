@@ -1,8 +1,9 @@
 
-
-
+const MAXANIMALS = 100;//how many animals can be on the screen at a time.
+const AMOUNTOFTIMEBETWEENANIMALS = 50;  //amount of time between animals showing up in milliseconds
+const INITIALOFFSET = 40;   //how far down the animals fade in from.  
 //To change how oftten animals appear, just change the number in the sentInterval. It represents milliseconds.
-var intervalBetweenAnimals = window.setInterval(generateAnimal,1000);
+var intervalBetweenAnimals = window.setInterval(generateAnimal,AMOUNTOFTIMEBETWEENANIMALS);
 
 let buttonHolder = document.getElementById("button-holder");
 
@@ -49,13 +50,14 @@ function generateAnimal(){
         objectWidth = Math.random() * (buttonHolder.clientWidth-randomHeight);
         //minus 300 because we need to make sure it's in the box not at the edges.
         newImage.style.left = objectWidth+"px";
+        objectHeight-=INITIALOFFSET
         newImage.style.top = objectHeight+"px";
         number_of_collides++;
     }while(!collideWithButton(newImage));
     appearImage(objectHeight,newImage);
 
     images = buttonHolder.getElementsByClassName("animal-image");
-    if(buttonHolder.childElementCount >= 15){
+    if(buttonHolder.childElementCount >= MAXANIMALS){
      
         dissapearImage();
     }
@@ -143,16 +145,16 @@ function collideWithButton(newImage){ //DONT TOUCH - Jacob
 
 
 function appearImage(initialY,newImage){
-    var initialOffset = 40;
+   
     buttonHolder.appendChild(newImage);
-    newImage.style.top = initialY+initialOffset+"px";
+    newImage.style.top = initialY+INITIALOFFSET+"px";
     if(images.length >1){
         if(images[images.length-2].style.opacity ==="0"){
             images[images.length-2].style.opacity = "1";
             let temptop = images[images.length-2].style.top;
             temptop = temptop.substring(0,temptop.length-2);
             temptop = Number(temptop);
-            temptop -=initialOffset;
+            temptop -=INITIALOFFSET;
             images[images.length-2].style.top = temptop+"px";
             
         
