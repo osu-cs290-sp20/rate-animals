@@ -15,27 +15,37 @@
   
 }
 
-#animalDropzone{
-    height:20%;
+#croppie_and_button_holder{
+  height:40%;
+  width:100%;
+  margin-top:2%;
+  display:flex;
+  flex-flow:row wrap;
+
+}
+
+#button_holder{
+    margin-left:10%;
+    width:30%;
+    text-align:left;
+    height:100%;
+    display:flex;
+    flex-flow:column wrap;
+    justify-content:center;
+}
+#fileButton{
+    
     width:50%;
-    border: 4px dotted #40c2c7;
-    cursor:pointer;
-    display:table;
-    border-radius: 15px;
-    overflow:hidden;
 }
 
-.dz-message{
-    vertical-align: middle;
-    display:table-cell; 
-}
-
-.dz-button{
-    border:none;
+#croppie_holder{
+    height:80%;
+    width:30%;
+    margin-left:10%;
     background-color:white;
-    cursor:pointer;
-    font-size: 3vh;
 }
+
+
 
 #animalSelectorHolder{
     text-align:left;

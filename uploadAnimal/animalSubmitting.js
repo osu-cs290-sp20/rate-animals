@@ -22,18 +22,12 @@ function fixSizes(){
 
 
 
+
 function setup(){
 
     fixSizes();
     
-    Dropzone.options.animalDropzone = {
-        acceptedFiles: ".png, .jpg, .jpeg",
-        maxFiles:1,
-        createImageThumbnails: true,
-        resizeWidth:500,
-        resizeHeight:500,
-        autoProcessQueue: false // myDropzone.processQueue() to call once the user has entered all the data.
-    };
+   
 }
 
 let animalSelector = document.getElementById("animalChoice");
@@ -120,6 +114,12 @@ function attemptSubmit(){
             highlightOtherInput();
         }
     }
+    const curFiles = fileSelector.files;
+    if(!validFileType(curFiles[0])){
+        goodToSubmit = false;
+        highlightImageSelector();
+    }
+
     if(goodToSubmit){
         alert("Good to submit");
     }
@@ -130,6 +130,7 @@ function setButtonColor(){
     let animalSelector = document.getElementById("animalChoice");
     let ageSelector = document.getElementById("animalAge");
     let otherInput = document.getElementById("otherInput")
+    let fileSelector = document.getElementById("fileSelector");
                                                                                                         //need to add testing for picture uploading as well.
     let goodToSubmit = true;
 
@@ -151,6 +152,12 @@ function setButtonColor(){
          
         }
     }
+    const curFiles = fileSelector.files;
+
+    if(!validFileType(curFiles[0])){
+        goodToSubmit = false;
+    }
+
     let button = document.getElementById("submitButton");
     if(goodToSubmit){
         button.style.backgroundColor = "#69bf84"
@@ -216,4 +223,13 @@ function highlightOtherInput(){
         otherHolder.style.backgroundColor = "white";
     },500);
 
+}
+
+function highlightImageSelector(){
+    let imageSelector = document.getElementById("buttonHolder");
+    imageSelector.style.transition = "background-color .5s";
+    imageSelector.style.backgroundColor = "#d95757";
+    setTimeout(function(){
+        imageSelector.style.backgroundColor = "white";
+    },500);
 }

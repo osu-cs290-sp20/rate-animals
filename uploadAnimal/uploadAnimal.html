@@ -9,8 +9,11 @@
         <link rel="stylesheet" href="uploadStyle.css" media="screen">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,700;0,900;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+        <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script> 
 
-        <script src="../dropzone-5.7.0/dist/dropzone.js" defer></script>
+        <link rel="stylesheet" href="../node_modules/croppie/croppie.css" />
+        <script src="../node_modules/croppie/croppie.js"></script>
+        <script src = "uploading.js" defer></script>
         <script src = "animalSubmitting.js" defer></script>
 
     </head>
@@ -28,7 +31,14 @@
         </div>
         <div id="wrapper">
             <div id="submitAnimalHolder">
-                <form action="/file-upload" class="dropzone" id="animalDropzone"></form>
+                <div id="croppie_and_button_holder">
+                    <div id="croppie_holder"></div>
+                    <div id = "button_holder">
+                        <label for="fileSelector" id="selector_label">Choose an Image:</label>
+                        <input type="file" id="fileSelector" name="fileSelector" accept ="image/*">
+                    </div>
+                    
+                </div>
                 <div id="animalSelectorHolder">
                     <label for="animalChoice">Type of animal:</label>
                     <select id="animalChoice">
