@@ -1,0 +1,22 @@
+{
+  "name": "rateanimal_default",
+  "version": "1.0.0",
+  "description": "default package",
+  "main": "RandomAnimals.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/osu-cs290-sp20/final-project-blue-team.git"
+  },
+  "author": "Jacob Eckroth",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/osu-cs290-sp20/final-project-blue-team/issues"
+  },
+  "homepage": "https://github.com/osu-cs290-sp20/final-project-blue-team#readme",
+  "dependencies": {
+    "croppie": "^2.6.4"
+  }
+}
