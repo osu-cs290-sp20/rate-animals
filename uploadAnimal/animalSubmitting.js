@@ -121,7 +121,7 @@ function attemptSubmit(){
     }
 
     if(goodToSubmit){
-        alert("Good to submit");
+        submitInfo();
     }
 }
 
@@ -233,3 +233,5 @@ function highlightImageSelector(){
         imageSelector.style.backgroundColor = "white";
     },500);
 }
+
+
