@@ -1,6 +1,6 @@
 
-const MAXANIMALS = 100;//how many animals can be on the screen at a time.
-const AMOUNTOFTIMEBETWEENANIMALS = 50;  //amount of time between animals showing up in milliseconds
+const MAXANIMALS = 20;//how many animals can be on the screen at a time.
+const AMOUNTOFTIMEBETWEENANIMALS = 1000;  //amount of time between animals showing up in milliseconds
 const INITIALOFFSET = 40;   //how far down the animals fade in from.  
 //To change how oftten animals appear, just change the number in the sentInterval. It represents milliseconds.
 var intervalBetweenAnimals = window.setInterval(generateAnimal,AMOUNTOFTIMEBETWEENANIMALS);
