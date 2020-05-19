@@ -1,0 +1,50 @@
+#message_holder{
+    margin-top:5%;
+    display:flex;
+    flex-flow:column wrap;
+    align-items:center;
+    text-align:center;
+    
+}
+#error_text{
+    color:white;
+    font-size:4vh;
+    font-weight:bolder;
+   
+}
+
+#dev_wrapper{
+    display:flex;
+    flex-flow: row wrap;
+    
+    width:100%;
+    text-align:center;
+    border-radius:15px;
+    height:300px;
+
+    justify-content:space-around;
+    
+}
+.web_dev_holder{
+    margin-top:2%;
+    cursor:pointer;
+    
+}
+
+.web_dev_holder:hover .web_dev_img{
+    box-shadow:20px 20px 10px #00000060;
+}
+.web_dev_img{
+    box-shadow:10px 10px 10px #00000060;
+    background-color:white;
+    padding:5px;
+    border-radius:15px;
+    transition: box-shadow .5s;
+    
+}
+
+.web_dev_name{
+    color:white;
+    font-weight:bold;
+    font-size:2vh;
+}
