@@ -121,6 +121,7 @@ app.get('/animalSubmitting.js',function(req,res){
     res.status(200).send(page);
 })
 
+
 app.get('/404',function(req,res){
     var page = fs.readFileSync('404/404.html');
     res.type("text/html");
@@ -136,6 +137,14 @@ app.get('/404.js',function(req,res){
     res.type("aplication/javascript");
     res.status(200).send(page);
 })
+
+app.get('/dropdown.css',function(req,res){
+    var page = fs.readFileSync('dropdown.css');
+    res.type('text/css');
+    res.status(200).send(page);
+})
+
+
 
 
 
