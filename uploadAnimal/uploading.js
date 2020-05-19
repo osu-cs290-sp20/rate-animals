@@ -89,7 +89,20 @@ const fileTypes = [
         }
     
        alert("Animal with name: "+animalName +", age: "+animalAge +", and type: "+animalType +" ready to be submitted, image result shown down below.");
-    })
-   
-  
+        resetValues();
+    });
+}
+
+function resetValues(){
+    document.getElementById("nameInput").value = "";
+    document.getElementById("characterCount").textContent = "20";
+    document.getElementById("animalChoice").value = "select";
+    document.getElementById("animalAge").value = "select";
+    document.getElementById("otherInput").value = "";
+    document.getElementById("otherCount").textContent = "20";
+    document.getElementById("selector_label").textContent = "Choose an image:";
+    croppie_holder.style.display = "none";
+    fileSelector.value = null;
+    setButtonColor();
+    checkAnimalType();
 }

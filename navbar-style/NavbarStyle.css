@@ -32,10 +32,12 @@ body{
 #navlist li:nth-child(5){
     flex-grow:1;
     text-align:right;
-}
-#navlist li:nth-child(6){
     margin-right:2rem;
 }
+
+/*#navlist li:nth-child(6){
+    margin-right:2rem;
+}*/             /* if profile is ever added back in, bring this back */
 
 #navlist{
     padding:0px;
