@@ -121,6 +121,23 @@ app.get('/animalSubmitting.js',function(req,res){
     res.status(200).send(page);
 })
 
+
+app.get('/404',function(req,res){
+    var page = fs.readFileSync('404/404.html');
+    res.type("text/html");
+    res.status(200).send(page);
+})
+app.get('/404.css',function(req,res){
+    var page = fs.readFileSync('404/404.css');
+    res.type("text/css");
+    res.status(200).send(page);
+})
+app.get('/404.js',function(req,res){
+    var page = fs.readFileSync('404/404.js');
+    res.type("aplication/javascript");
+    res.status(200).send(page);
+})
+
 app.get('/dropdown.css',function(req,res){
     var page = fs.readFileSync('dropdown.css');
     res.type('text/css');
@@ -131,9 +148,11 @@ app.get('/dropdown.css',function(req,res){
 
 
 
-app.get("*",function(req,res){
 
-    res.send("I really wish we had a 404 page, that woudl be great, but for the moment this is all we got.")
+app.get("*",function(req,res){
+    var page = fs.readFileSync('404/404.html');
+    res.type("text/html")
+    res.send(page)
     console.log("File failed to load: " + req.url);
     res.status(404);
     res.end();
