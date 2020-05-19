@@ -16,6 +16,7 @@
     width:300px;
     border-radius:25px;
     transition:box-shadow .5s, opacity 1s;
+    cursor:pointer;
   
 }
 #rate-button:hover{
