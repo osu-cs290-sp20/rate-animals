@@ -123,3 +123,7 @@
 .selectOption{
     color:#cccccc;
 }
+
+#selector_label{
+    font-size:2vh;
+}
