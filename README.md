@@ -1,7 +1,9 @@
 # Animal Ranker
-Hello! Welcome to our Animal Ranking Project.
-Not much else to put in the ReadMe Right now.
-Bye!
+
+## To Run Project
+First make sure you have the current branch from master, then do npm install to get your node_modules folder. Then to start the server running on port 3000 do npm start.
+To access pages go to localhost:3000.
+If you need to add pages go into server.js and add them there. It should be pretty self explanatory how to add a page or file once you're in there.
 
 ## Note to other Contributors:
 Before you start editing check out this: https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging
