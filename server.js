@@ -121,6 +121,12 @@ app.get('/animalSubmitting.js',function(req,res){
     res.status(200).send(page);
 })
 
+app.get('/dropdown.css',function(req,res){
+    var page = fs.readFileSync('dropdown.css');
+    res.type('text/css');
+    res.status(200).send(page);
+})
+
 
 
 
