@@ -13,6 +13,7 @@
       <script src="/rate/rateBox.js" charset="utf-8" defer></script>
       <script src="/rate/buttonPress.js" charset="utf-8" defer></script>
       <script src="/rate/reportButton.js" charset="utf-8" defer></script>
+      
       <link rel="stylesheet" href="/rate/dropdown.css" />
 {{/section}}
 
@@ -28,4 +29,5 @@
     <a href="#">Link 3</a>
   </div>
 </div>
+<script>var current = document.getElementById("rate"); current.classList.toggle("current"); current.removeChild(document.getElementById("rate-link")); current.textContent = "Rate";</script>
 
