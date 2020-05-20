@@ -1,7 +1,6 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        
+
+
+{{#section 'head'}}
         <meta charset="utf-8">
         <title>Upload an Animal</title> <!--Title too long make it better-->
 
@@ -15,21 +14,8 @@
         <script src="/croppie.js"></script>
         <script src = "/upload/uploading.js" defer></script>
         <script src = "/upload/animalSubmitting.js" defer></script>
-
-    </head>
-    <body>
-        <div id="topbar">
-            <ul id="navlist">
-                
-                <li class="navitem"><a  href="/rate" class = "navitem-link">Rate</a></li>
-                <li class="navitem"><a href = "/guess" class="navitem-link">Guess!</a></li>
-                <li class="navitem"><a  href="/gallery" class = "navitem-link">Gallery</a></li>
-                <li class="navitem"><a href="/leaderboards" class = "navitem-link">Leaderboards</a></li>
-                <li class="navitem current">Upload Your Animal</li>
-                <!--<li class="navitem"><a href="../profile/profile.html" class = "navitem-link">My Profile</a></li>-->
-            </ul>
-        </div>
-        <div id="wrapper">
+{{/section}}
+ <div id="wrapper">
             <div id="submitAnimalHolder">
                 <div id="croppie_and_button_holder">
                     <div id="croppie_holder"></div>
@@ -79,10 +65,3 @@
             </div>
             
         </div>
-
-
-        
-    </body>
-
-
-</html>

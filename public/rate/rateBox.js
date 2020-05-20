@@ -49,7 +49,7 @@ function styleBox(){
     
     report1.style.textAlign = "left";
     let reportimg1 = document.createElement("img");
-    reportimg1.src = "icons/flag.png";
+    reportimg1.src = "/icons/flag.png";
     reportimg1.style.height = "100%";
     reportimg1.style.width = "auto";
     report1.appendChild(reportimg1);
@@ -77,7 +77,7 @@ function styleBox(){
     
     report2.style.textAlign = "left";
     let reportimg2 = document.createElement("img");
-    reportimg2.src = "icons/flag.png";
+    reportimg2.src = "/icons/flag.png";
     reportimg2.style.height = "100%";
     reportimg2.style.width = "auto";
     report2.appendChild(reportimg2);
