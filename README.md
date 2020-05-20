@@ -3,7 +3,12 @@
 ## To Run Project
 First make sure you have the current branch from master, then do npm install to get your node_modules folder. Then to start the server running on port 3000 do npm start.
 To access pages go to localhost:3000.
-If you need to add pages go into server.js and add them there. It should be pretty self explanatory how to add a page or file once you're in there.
+
+## Adding pages to be served.
+When you're a linking a js or css file from public, start it off with a / and then do the pathname within public. For isntance if I was serving a file called upload.css inside public/upload, I would link it by saying src="/upload/upload.css", and then the server should automatically grab it and serve it. 
+
+## Editing HTML
+To edit the HTML/the heads of each individual page go to the views folder, and edit the files from inside the appropriate .handlebars file.
 
 ## Note to other Contributors:
 Before you start editing check out this: https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging
