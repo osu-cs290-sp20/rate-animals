@@ -1,7 +1,6 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        
+
+
+    {{#section 'head'}}
         <meta charset="utf-8">
         <title>404 File Not Found</title> <!--Title too long make it better-->
 
@@ -11,21 +10,7 @@
         <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,700;0,900;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="/404/404.css" media="screen">
         <script src="/404/404.js" charset="utf-8" defer></script>
-      
-
-    </head>
-    <body>
-        <div id="topbar">
-            <ul id="navlist">
-                
-                <li class="navitem"><a  href="/rate" class = "navitem-link">Rate</a></li>
-                <li class="navitem"><a href="/guess" class="navitem-link">Guess!</a></li>
-                <li class="navitem"><a  href="/gallery" class = "navitem-link">Gallery</a></li>
-                <li class="navitem"><a href="/leaderboards" class = "navitem-link">Leaderboards</a></li>
-                <li class="navitem"><a class = "navitem-link"  href="/upload">Upload Your Animal</a></li>
-                <!--<li class="navitem"><a href="../profile/profile.html" class = "navitem-link">My Profile</a></li>-->
-            </ul>
-        </div>
+      {{/section}}
         <div id="message_holder">
             <p id="error_text">Whoops! You aren't supposed to be here. Pick one of our web developers to fire! Then we'll take you back to the home page.</p>
             <div id="dev_wrapper">
@@ -45,8 +30,3 @@
 
 
         </div>
-     
-    </body>
-
-
-</html>
