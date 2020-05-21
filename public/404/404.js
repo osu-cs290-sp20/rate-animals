@@ -1,10 +1,39 @@
-let developers = document.getElementsByClassName("web_dev_holder");
+let jacob = document.getElementById("jacob");
+let malini = document.getElementById("malini");
+let jessica = document.getElementById("jessica");
 
-for (var i = 0; i < developers.length; i++){
-    developers[i].addEventListener("click",goToMain);
+jacob.addEventListener("click",reportJacob);
+malini.addEventListener("click",reportMalini);
+jessica.addEventListener("click",reportJessica);
+
+
+
+
+function reportJacob(){
+    var request = new XMLHttpRequest();
+    var requestURL = '/report/jacob';
+    request.open('POST',requestURL);
+    request.send();
+    goToMain();
+}
+
+function reportMalini(){
+    var request = new XMLHttpRequest();
+    var requestURL = '/report/malini';
+    request.open('POST',requestURL);
+    request.send();
+    goToMain();
+}
+
+function reportJessica(){
+    var request = new XMLHttpRequest();
+    var requestURL = '/report/jessica';
+    request.open('POST',requestURL);
+    request.send();
+    goToMain();
 }
 
 
 function goToMain(){
-    window.location.href = "rate";
+    window.location.href = "/rate";
 }

@@ -15,13 +15,28 @@ function styleBox(){
 
     stuffHolder.style.height = "85%";
     stuffHolder.style.width = "85%";
-    stuffHolder.style.marginTop = "10%";
+    stuffHolder.style.marginTop = "5%";
     stuffHolder.style.marginLeft = "7.5%";
   
     stuffHolder.style.display = "relative";
 
     stuffHolder.style.display = "flex";
     stuffHolder.style.flexFlow = "column wrap";
+
+    let whichIsCuter = document.createElement("div");
+    whichIsCuter.style.marginBottom = "3%";
+    whichIsCuter.style.textAlign = "center";
+    whichIsCuter.id = "whichIsCuterHolder";
+    whichIsCuter.style.height = "10%";
+    whichIsCuter.style.width = "100%";
+    let whichIsCuterText = document.createElement("h2");
+    whichIsCuterText.textContent = "Which is cuter?";
+    whichIsCuterText.id = "cuterText";
+    whichIsCuterText.style.color = "black";
+    whichIsCuterText.style.fontSize = "5vh";
+    whichIsCuter.appendChild(whichIsCuterText);
+    stuffHolder.appendChild(whichIsCuter);
+
 
 
     let image_holder = document.createElement("div");
