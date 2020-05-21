@@ -1,7 +1,6 @@
 var rateButton = document.getElementById("rate-button");
 
-rateButton.addEventListener("mouseenter",fillUpButton);
-rateButton.addEventListener("mouseleave",stopFillingButton);
+
 
 rateButton.addEventListener("click",buttonClicked)
 
@@ -29,6 +28,7 @@ function buttonClicked(){ //might want to change this dissapearing thing.
     rateButton.style.transition ="box-shadow 1s, opacity 2s";
     rateButton.style.opacity = "0";
     rateButton.style.boxShadow="50px 50px 10px #0000004d"
+    showDropdown();
     setTimeout(ratingScreen, 1000);
 }
 
