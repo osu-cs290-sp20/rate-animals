@@ -1,11 +1,8 @@
+window.onload = setup();
 
+window.addEventListener("resize", fixSizes);
 
-
-window.onload= setup();
-
-window.addEventListener("resize",fixSizes);
-
-function fixSizes(){
+function fixSizes() {
     let submitHolder = document.getElementById("submitAnimalHolder");
     let navbar = document.getElementById("topbar");
     let navbarHeight = navbar.offsetHeight;
@@ -15,7 +12,7 @@ function fixSizes(){
     submitHolder.style.height = boxHeight + "px";
     submitHolder.style.width = boxHeight * 1.5 + "px";
 
-    let topMargin = (availableSpace - boxHeight) /2;
+    let topMargin = (availableSpace - boxHeight) / 2;
     submitHolder.style.marginTop = topMargin + "px";
 
 }
@@ -23,21 +20,21 @@ function fixSizes(){
 
 
 
-function setup(){
+function setup() {
 
     fixSizes();
-    
-   
+
+
 }
 
 let animalSelector = document.getElementById("animalChoice");
-animalSelector.addEventListener("change",checkAnimalType);
+animalSelector.addEventListener("change", checkAnimalType);
 
-function checkAnimalType(){
+function checkAnimalType() {
     let otherType = document.getElementById("otherInputHolder");
-    if(animalSelector.value === "other"){
+    if (animalSelector.value === "other") {
         otherInputHolder.style.display = "block";
-    }else{
+    } else {
         otherInputHolder.style.display = "none";
     }
     setButtonColor();
@@ -46,37 +43,37 @@ function checkAnimalType(){
 
 
 let nameInput = document.getElementById("nameInput");
-nameInput.addEventListener("input",checkCharactersRemaining);
+nameInput.addEventListener("input", checkCharactersRemaining);
 let maxChars = 20;
 
-function checkCharactersRemaining(){
+function checkCharactersRemaining() {
     let numberCharsLeft = document.getElementById("characterCount");
     let characters = nameInput.value.length;
-    numberCharsLeft.textContent = maxChars-characters;
-    if(maxChars-characters<0){
+    numberCharsLeft.textContent = maxChars - characters;
+    if (maxChars - characters < 0) {
         numberCharsLeft.style.color = "#ed2132";
-        numberCharsLeft.textContent = numberCharsLeft.textContent + ": Too Many Characters!"; 
-    }else{
+        numberCharsLeft.textContent = numberCharsLeft.textContent + ": Too Many Characters!";
+    } else {
         numberCharsLeft.style.color = "#3bc456";
     }
     setButtonColor();
 }
 
 let animalAge = document.getElementById("animalAge");
-animalAge.addEventListener("change",setButtonColor);
+animalAge.addEventListener("change", setButtonColor);
 
 let otherCount = document.getElementById("otherInput");
-otherCount.addEventListener("input",checkOtherCount);
+otherCount.addEventListener("input", checkOtherCount);
 let maxTypeChars = 20;
 
-function checkOtherCount(){
+function checkOtherCount() {
     let numberCharsLeft = document.getElementById("otherCount");
     let characters = otherCount.value.length;
-    numberCharsLeft.textContent = maxTypeChars-characters;
-    if(maxTypeChars-characters<0){
+    numberCharsLeft.textContent = maxTypeChars - characters;
+    if (maxTypeChars - characters < 0) {
         numberCharsLeft.style.color = "#ed2132";
-        numberCharsLeft.textContent = numberCharsLeft.textContent + ": Too Many Characters!"; 
-    }else{
+        numberCharsLeft.textContent = numberCharsLeft.textContent + ": Too Many Characters!";
+    } else {
         numberCharsLeft.style.color = "#3bc456";
     }
     setButtonColor();
@@ -84,85 +81,85 @@ function checkOtherCount(){
 
 
 
-let submitButton =document.getElementById("submitButton");
+let submitButton = document.getElementById("submitButton");
 
-submitButton.addEventListener("click",attemptSubmit);
+submitButton.addEventListener("click", attemptSubmit);
 
-function attemptSubmit(){
+function attemptSubmit() {
     let nameInput = document.getElementById("nameInput");
     let animalSelector = document.getElementById("animalChoice");
     let ageSelector = document.getElementById("animalAge");
     let otherInput = document.getElementById("otherInput")
-                                                                                                        //need to add testing for picture uploading as well.
+    //need to add testing for picture uploading as well.
     let goodToSubmit = true;
 
-    if(nameInput.value === "" || nameInput.value.length >maxChars){
+    if (nameInput.value === "" || nameInput.value.length > maxChars) {
         goodToSubmit = false;
         highlightName();
     }
-    if(animalSelector.value === "select"){
+    if (animalSelector.value === "select") {
         goodToSubmit = false;
         highlightAnimalSelector();
     }
-    if(ageSelector.value === "select"){
+    if (ageSelector.value === "select") {
         goodToSubmit = false;
         highlightAgeSelector();
     }
-    if(animalSelector.value === "other"){
-        if(otherInput.value === "" || otherInput.value > maxTypeChars){
+    if (animalSelector.value === "other") {
+        if (otherInput.value === "" || otherInput.value > maxTypeChars) {
             goodToSubmit = false;
             highlightOtherInput();
         }
     }
     const curFiles = fileSelector.files;
-    if(!validFileType(curFiles[0])){
+    if (!validFileType(curFiles[0])) {
         goodToSubmit = false;
         highlightImageSelector();
     }
 
-    if(goodToSubmit){
+    if (goodToSubmit) {
         submitInfo();
     }
 }
 
-function setButtonColor(){
+function setButtonColor() {
     let nameInput = document.getElementById("nameInput");
     let animalSelector = document.getElementById("animalChoice");
     let ageSelector = document.getElementById("animalAge");
     let otherInput = document.getElementById("otherInput")
     let fileSelector = document.getElementById("fileSelector");
-                                                                                                        //need to add testing for picture uploading as well.
+    //need to add testing for picture uploading as well.
     let goodToSubmit = true;
 
-    if(nameInput.value === "" || nameInput.value.length >maxChars){
+    if (nameInput.value === "" || nameInput.value.length > maxChars) {
         goodToSubmit = false;
-        
+
     }
-    if(animalSelector.value === "select"){
+    if (animalSelector.value === "select") {
         goodToSubmit = false;
-     
+
     }
-    if(ageSelector.value === "select"){
+    if (ageSelector.value === "select") {
         goodToSubmit = false;
-      
+
     }
-    if(animalSelector.value === "other"){
-        if(otherInput.value === "" || otherInput.value > maxTypeChars){
+    if (animalSelector.value === "other") {
+        if (otherInput.value === "" || otherInput.value > maxTypeChars) {
             goodToSubmit = false;
-         
+
         }
     }
     const curFiles = fileSelector.files;
 
-    if(!validFileType(curFiles[0])){
+    if (!validFileType(curFiles[0])) {
         goodToSubmit = false;
     }
 
     let button = document.getElementById("submitButton");
-    if(goodToSubmit){
+    if (goodToSubmit) {
         button.style.backgroundColor = "#69bf84"
         button.style.color = "white";
-    }else{
+    } else {
         button.style.backgroundColor = "#828282";
         button.style.color = "black";
     }
@@ -170,68 +167,70 @@ function setButtonColor(){
 
 
 let button = document.getElementById("submitButton");
-button.addEventListener("mouseenter",highlightButton);
+button.addEventListener("mouseenter", highlightButton);
 
-function highlightButton(){
-    if(button.style.color === "black" || button.style.color == ""){
+function highlightButton() {
+    if (button.style.color === "black" || button.style.color == "") {
         button.style.cursor = "default";
         button.style.boxShadow = "5px 5px 10px #00000086";
-    }else{
-        button.style.cursor="pointer";
+    } else {
+        button.style.cursor = "pointer";
         button.style.boxShadow = "10px 10px 10px #00000086";
     }
 }
-button.addEventListener("mouseleave",unhighlightButton);
+button.addEventListener("mouseleave", unhighlightButton);
 
-function unhighlightButton(){
+function unhighlightButton() {
     button.style.boxShadow = "5px 5px 10px #00000086";
 }
 
-function highlightName(){
+function highlightName() {
     let nameHolder = document.getElementById("nameInputHolder");
     nameHolder.style.transition = "background-color .5s";
     nameHolder.style.backgroundColor = "#d95757";
-    setTimeout(function(){
+    setTimeout(function () {
         nameHolder.style.backgroundColor = "white";
-    },500);
+    }, 500);
 
 }
-function highlightAnimalSelector(){
+
+function highlightAnimalSelector() {
     let animalSelector = document.getElementById("animalSelectorHolder");
     animalSelector.style.transition = "background-color .5s";
     animalSelector.style.backgroundColor = "#d95757";
-    setTimeout(function(){
+    setTimeout(function () {
         animalSelector.style.backgroundColor = "white";
-    },500);
+    }, 500);
 
 }
 
-function highlightAgeSelector(){
+function highlightAgeSelector() {
     let ageHolder = document.getElementById("ageHolder");
     ageHolder.style.transition = "background-color .5s";
     ageHolder.style.backgroundColor = "#d95757";
-    setTimeout(function(){
+    setTimeout(function () {
         ageHolder.style.backgroundColor = "white";
-    },500);
+    }, 500);
 
 }
-function highlightOtherInput(){
+
+function highlightOtherInput() {
     let otherHolder = document.getElementById("otherInputHolder");
     otherHolder.style.transition = "background-color .5s";
     otherHolder.style.backgroundColor = "#d95757";
-    setTimeout(function(){
+    setTimeout(function () {
         otherHolder.style.backgroundColor = "white";
-    },500);
+    }, 500);
 
 }
 
-function highlightImageSelector(){
-    let imageSelector = document.getElementById("buttonHolder");
-    imageSelector.style.transition = "background-color .5s";
-    imageSelector.style.backgroundColor = "#d95757";
-    setTimeout(function(){
-        imageSelector.style.backgroundColor = "white";
-    },500);
+function highlightImageSelector() {
+    if (document.getElementById("buttonHolder")) {
+        let imageSelector = document.getElementById("buttonHolder");
+        imageSelector.style.transition = "background-color .5s";
+        imageSelector.style.backgroundColor = "#d95757";
+        setTimeout(function () {
+            imageSelector.style.backgroundColor = "white";
+        }, 500);
+    }
 }
-
-
