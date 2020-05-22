@@ -1,10 +1,6 @@
 var rateButton = document.getElementById("rate-button");
 
-window.addEventListener("load",function(){                      //this is for the dropdown.
-    let all = document.getElementById("all");
-    all.classList.toggle('active');
-    all.classList.toggle('inactive');
-})
+
 
 rateButton.addEventListener("click",buttonClicked)
 

@@ -4,7 +4,7 @@ var app = express();
 var exphbs = require("express-handlebars");
 const PORT = process.env.PORT || 3000;
 
-const validSubDirectories = ['rate', '404', 'gallery', 'guess', 'icons', 'leaderboards', 'upload'];
+const validSubDirectories = ['rate', '404', 'gallery', 'guess', 'icons', 'leaderboards', 'upload', 'rate/all'];
 
 
 
@@ -36,6 +36,11 @@ app.get("/", function (req, res) {
     res.render('rate');
     res.status(200);
 })
+
+app.get("/rate/:type",function(req,res){
+    res.render('rate');
+    res.status(200);
+});
 
 //these are down here becaues they're in the node_modules directory. At some point should check if we can take them out of node moduesl.
 app.get('/croppie.js', function (req, res) {
