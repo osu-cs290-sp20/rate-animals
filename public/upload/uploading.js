@@ -69,9 +69,7 @@ const fileTypes = [
         quality:1,
         circle:false
     }).then(function(image){
-        var imageResult = document.createElement("img");
-        imageResult.src = image;
-        document.body.append(imageResult);
+      
         var animalName = document.getElementById("nameInput").value;
         var animalType = document.getElementById("animalChoice").value;
                         //if animal age is 0 its baby, 1 its adult.
@@ -87,10 +85,47 @@ const fileTypes = [
         }else{
             animalAge = 1;
         }
-    
-       alert("Animal with name: "+animalName +", age: "+animalAge +", and type: "+animalType +" ready to be submitted, image result shown down below.");
+        rocketMan(image);
+        
+        
         resetValues();
     });
+}
+
+
+function rocketMan(image){
+    var windowHeight = window.innerHeight;
+    var windowWidth = window.innerWidth;
+  
+    var div = document.createElement("div");
+    div.style.width = "100px";
+    div.style.height = "100px";
+    var imageResult = document.createElement("img");
+    imageResult.src = image;
+    imageResult.style.height = "auto";
+    imageResult.style.width = "100%";
+    imageResult.style.position = "relative";
+    div.appendChild(imageResult);
+    div.style.opacity = "1";
+    div.id = "rocket-holder";
+    div.style.zIndex = "100";
+    div.style.transition = "top 2.5s, opacity 4s";
+    div.style.transitionTimingFunction = "ease-in .5s";
+    div.style.position = "fixed";
+    div.style.top = windowHeight + "px";
+    div.style.left = windowWidth/2 - 50 + "px";
+    div.style.boxShadow = "10px 10px 10px #00000060"
+    setTimeout(function(){
+        div.style.top = "-300px";
+        div.style.opacity = "0";
+        setTimeout(function(){
+            document.body.removeChild(div);
+        },5000);
+    }, 1);
+    document.body.appendChild(div);
+
+
+
 }
 
 function resetValues(){
