@@ -11,6 +11,8 @@ let button = document.getElementById("rate-button")
 
 document.body.onload = fixBoxSize;
 
+window.addEventListener("resize",fixBoxSize);
+
 function fixBoxSize() {
     let navbar = document.getElementById("topbar");
     let navbarHeight = navbar.offsetHeight;
