@@ -5,14 +5,26 @@ let cats = document.getElementById("cats");
 let dogs = document.getElementById("dogs");
 let dropdown = document.querySelector(".dropdown");
 window.addEventListener("load",hideDropdown);
+let rate = document.getElementById("rate");
+rate.addEventListener('mouseenter',showDropdown);
+rate.addEventListener('mouseleave',hideDropdown);
+
+let dropdownContent = document.querySelector(".dropdown-content");
+dropdownContent.addEventListener("mouseenter",showDropdown);
+dropdownContent.addEventListener("mouseleave",hideDropdown);
 
 function hideDropdown(){
-    dropdown.style.display = "none";
-    dropdown.style.opacity = "0";
+   
+    
+  
+    dropdownContent.style.top = "-150px";
+   
 }
 function showDropdown(){
     dropdown.style.display = "inline-block";
-    dropdown.style.opacity = "1";
+    
+   
+    dropdownContent.style.top = "0px";
 }
 
 
@@ -29,6 +41,8 @@ function rateAll(){
     dogs.classList.add('inactive');
     all.classList.remove('inactive');
     all.classList.add('active');
+    
+    
     dissapearBoth();
 }
 function rateCats(){
@@ -38,6 +52,8 @@ function rateCats(){
     dogs.classList.add('inactive');
     all.classList.remove('active');
     all.classList.add('inactive');
+   
+    
     dissapearBoth();
 }
 function rateDogs(){

@@ -5,6 +5,10 @@
 <!DOCTYPE html>
 <html>
   <head>
+      <link rel="stylesheet" href="/navbar-style/NavbarStyle.css" media="screen">
+      
+      <link rel="stylesheet" href="/rate/dropdown.css" />
+      <script src="/rate/dropdown.js" charset="utf-8" defer></script>
       {{{_sections.head}}}
     </head>
 
@@ -20,7 +24,13 @@
             <!--<li class="navitem"><a href="profile/profile.html" class="navitem-link">My Profile</a></li>-->
           </ul>
       </div>
-
+      <div class="dropdown">
+        <div class="dropdown-content">
+          <a href="#" class="inactive" id="all">All</a>
+          <a href="#" class="inactive" id="cats">Cats</a>
+          <a href="#" class="inactive" id="dogs">Dogs</a>
+        </div>
+      </div>
       {{{body}}}
 
 

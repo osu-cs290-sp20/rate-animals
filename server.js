@@ -36,6 +36,7 @@ app.get("/", function (req, res) {
     res.render('rate');
     res.status(200);
 })
+
 //these are down here becaues they're in the node_modules directory. At some point should check if we can take them out of node moduesl.
 app.get('/croppie.js', function (req, res) {
     var page = fs.readFileSync('node_modules/croppie/croppie.js');
