@@ -20,9 +20,9 @@
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index:5;
     border-radius:5px;
-    top: -150px;
+    top: -300px;
     opacity:1;
-    transition:top 1s, opacity 1s;
+    transition:top 1s ease-in-out, opacity 1s;
   }
   
   /* Links inside the dropdown */
