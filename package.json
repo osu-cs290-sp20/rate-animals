@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/osu-cs290-sp20/final-project-blue-team#readme",
   "dependencies": {
+    "body-parser": "^1.19.0",
     "croppie": "^2.6.4",
     "express": "^4.17.1",
     "express-handlebars": "^4.0.4",

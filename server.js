@@ -2,6 +2,7 @@ var express = require('express');
 var fs = require('fs');
 var app = express();
 var exphbs = require("express-handlebars");
+var bodyParser = require('body-parser');
 const PORT = process.env.PORT || 3000;
 
 const validSubDirectories = ['rate', '404', 'gallery', 'guess', 'icons', 'leaderboards', 'upload', 'rate/all'];
@@ -27,6 +28,9 @@ app.engine('handlebars', exphbs({
 app.set('view engine', 'handlebars');
 
 app.use(express.static('public'));
+app.use(bodyParser.json({limit: '50mb'}));
+
+
 
 
 
@@ -74,6 +78,22 @@ app.get("*", function (req, res) {
 })
 
 
+//ANIMAL UPLOADING
+app.post('/uploadAnimal',function(req,res){
+    if(req.body.animalType && req.body.animalAge && req.body.animalName && req.body.animalImage){
+        console.log("Animal Type is:", req.body.animalType);
+        console.log("Animal Age is: ",req.body.animalAge);
+        console.log("Animal Name is: ",req.body.animalName);
+        res.status(200).send("Photo successfuly added!");
+    }else{
+        res.status(400).send("Requests to this path must contain a JSON body with an animalType, animalImage, animalAge, and animalName fields");
+    }
+    res.end();
+
+});
+
+
+
 
 
 app.post('/report/:userID'),
@@ -82,17 +102,7 @@ app.post('/report/:userID'),
         console.log("Person reported: ", person);
     }
 
-app.post('*', function (req, res) {
-    console.log("got one");
-    if (req.url == "/report/jacob") {
-        reportJacob();
-    } else if (req.url == "/report/malini") {
-        reportMalini();
-    } else if (req.url == "/report/jessica") {
-        reportJessica();
-    }
-    console.log(req.url);
-})
+
 
 var numOfReports = [];
 

@@ -74,22 +74,55 @@ const fileTypes = [
         var animalType = document.getElementById("animalChoice").value;
                         //if animal age is 0 its baby, 1 its adult.
         var animalAge;
-        var otherType;
+        var otherType = "-1";
         var otherSelected=false;
         if(animalType == "other"){
             otherSelected = true;
-            otherType = document.getElementById("otherInput");
+            otherType = document.getElementById("otherInput").value;
         }
         if(document.getElementById("animalAge").value === "baby"){
             animalAge = 0;
         }else{
             animalAge = 1;
         }
-        rocketMan(image);
+
+        if(otherType != "-1"){
+            animalType = otherType;
+        }
+        animalType = animalType.toLowerCase();
+        uploadAnimalToDB(animalAge,animalName,animalType,image);
+
         
         
         resetValues();
     });
+}
+
+function uploadAnimalToDB(age, name, type, image){
+    var request = new XMLHttpRequest();
+    var requestURL = '/uploadAnimal';
+    request.open('POST',requestURL);
+
+    var animalObj = {
+        animalType: type,
+        animalAge: age,
+        animalName: name,
+        animalImage: image
+
+    };
+    var requestBody = JSON.stringify(animalObj);
+    request.setRequestHeader('Content-Type', 'application/json');
+    request.addEventListener('load',function(event){
+        if(event.target.status !== 200){
+            var message = event.target.response;
+            alert("Error storing photo in database: ",message);
+        }else{
+             rocketMan(image)
+        }
+    
+    });
+    request.send(requestBody);
+
 }
 
 
