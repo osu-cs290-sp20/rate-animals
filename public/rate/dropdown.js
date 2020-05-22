@@ -46,11 +46,13 @@ function fixDropdownState() {
 
 function hideDropdown() {
     dropdownContent.style.top = "-150px";
-
+    dropdownContent.style.opacity = "0"
 }
 
 function showDropdown() {
-    dropdown.style.display = "inline-block";
-
-    dropdownContent.style.top = "0px";
+    dropdownContent.style.opacity = "1";
+    setTimeout(function(){
+        dropdownContent.style.top = "0px"
+    },1);
+    
 }
