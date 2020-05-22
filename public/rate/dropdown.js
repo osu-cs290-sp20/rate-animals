@@ -3,6 +3,8 @@ let cats = document.getElementById("cats");
 let dogs = document.getElementById("dogs");
 let dropdown = document.querySelector(".dropdown");
 
+var hidden = true;
+
 let rate = document.getElementById("rate");
 rate.addEventListener('mouseenter', showDropdown);
 rate.addEventListener('mouseleave', hideDropdown);
@@ -10,7 +12,6 @@ rate.addEventListener('mouseleave', hideDropdown);
 let dropdownContent = document.querySelector(".dropdown-content");
 dropdownContent.addEventListener("mouseenter", showDropdown);
 dropdownContent.addEventListener("mouseleave", hideDropdown);
-
 startUp();
 
 function startUp() {
@@ -45,14 +46,21 @@ function fixDropdownState() {
 }
 
 function hideDropdown() {
-    dropdownContent.style.top = "-150px";
+ 
+    dropdownContent.style.top = "-300px";
     dropdownContent.style.opacity = "0"
+
+
 }
 
+
 function showDropdown() {
+
+  
+    dropdown.style.zIndex = "5";
     dropdownContent.style.opacity = "1";
+   
     setTimeout(function(){
         dropdownContent.style.top = "0px"
     },1);
-    
 }
