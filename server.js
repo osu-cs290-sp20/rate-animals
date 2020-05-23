@@ -80,7 +80,8 @@ app.get("*", function (req, res) {
 
 //ANIMAL UPLOADING
 app.post('/uploadAnimal',function(req,res){
-    if(req.body.animalType && req.body.animalAge && req.body.animalName && req.body.animalImage){
+  
+    if(req.body.animalType!== ""  && req.body.animalName!== "" && req.body.animalImage && (req.body.animalAge == "0" || req.body.animalAge == "1")){   
         console.log("Animal Type is:", req.body.animalType);
         console.log("Animal Age is: ",req.body.animalAge);
         console.log("Animal Name is: ",req.body.animalName);
