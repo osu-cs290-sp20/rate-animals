@@ -6,7 +6,7 @@ var bodyParser = require('body-parser');
 const PORT = process.env.PORT || 3000;
 
 const validSubDirectories = ['rate', '404', 'gallery', 'guess', 'icons', 'leaderboards', 'upload', 'rate/all'];
-
+const ImageDir = '/animalImages';
 
 
 app.listen(PORT, function () {
@@ -80,15 +80,37 @@ app.get("*", function (req, res) {
 
 //ANIMAL UPLOADING
 app.post('/uploadAnimal',function(req,res){
-    if(req.body.animalType && req.body.animalAge && req.body.animalName && req.body.animalImage){
+  
+    if(req.body.animalType!== ""  && req.body.animalName!== "" && req.body.animalImage && (req.body.animalAge == "0" || req.body.animalAge == "1")){   
         console.log("Animal Type is:", req.body.animalType);
         console.log("Animal Age is: ",req.body.animalAge);
         console.log("Animal Name is: ",req.body.animalName);
-        res.status(200).send("Photo successfuly added!");
+        var data = req.body.animalImage.replace(/^data:image\/\w+;base64,/, "");
+       
+        var buf = Buffer.from(data, 'base64');
+        var images = fs.readdirSync(__dirname + ImageDir);
+        var amountOfImages = images.length;
+        
+        var imageURL = __dirname + ImageDir + '/' + req.body.animalName + '0' + '.png';
+        var looping = true;
+        var count = 0;
+        while(looping){
+            if(fs.existsSync(imageURL)){    //doing sync because this should be pretty fast.
+                count++;
+                imageURL = __dirname + ImageDir + '/' + req.body.animalName + count + '.png';
+            }else{
+                looping = false;
+            }
+        }
+        fs.writeFile(imageURL, buf,function(){
+            res.status(200).send("Photo successfuly added!");
+            res.end();
+        });
     }else{
         res.status(400).send("Requests to this path must contain a JSON body with an animalType, animalImage, animalAge, and animalName fields");
+        res.end();
     }
-    res.end();
+    
 
 });
 

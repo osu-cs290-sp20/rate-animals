@@ -1,4 +1,4 @@
-
+const DEBUG = false;
 
 
 var cropper = new Croppie(document.getElementById("croppie_holder"),{
@@ -117,6 +117,7 @@ function uploadAnimalToDB(age, name, type, image){
             var message = event.target.response;
             alert("Error storing photo in database: ",message);
         }else{
+            
              rocketMan(image)
         }
     
@@ -127,6 +128,8 @@ function uploadAnimalToDB(age, name, type, image){
 
 
 function rocketMan(image){
+    console.log("rocketing");
+    
     var windowHeight = window.innerHeight;
     var windowWidth = window.innerWidth;
   
@@ -148,14 +151,18 @@ function rocketMan(image){
     div.style.top = windowHeight + "px";
     div.style.left = windowWidth/2 - 50 + "px";
     div.style.boxShadow = "10px 10px 10px #00000060"
+    
+    document.body.appendChild(div);
+    if(DEBUG){
+    console.log("Rocket top is: " + div.style.top + "Rocket left is: " + div.style.left + "Rocket opacity is:" + div.style.opacity);
+    }
     setTimeout(function(){
         div.style.top = "-300px";
-        div.style.opacity = "0";
         setTimeout(function(){
             document.body.removeChild(div);
-        },5000);
-    }, 1);
-    document.body.appendChild(div);
+        },2000);
+    }, 1000);
+    
 
 
 
