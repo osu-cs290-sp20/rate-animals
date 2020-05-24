@@ -1,18 +1,17 @@
 var express = require('express');
 var fs = require('fs');
-var app = express();
+
 var exphbs = require("express-handlebars");
 var bodyParser = require('body-parser');
+var MongoClient = require('mongodb').MongoClient;
 const PORT = process.env.PORT || 3000;
 
 const validSubDirectories = ['rate', '404', 'gallery', 'guess', 'icons', 'leaderboards', 'upload', 'rate/all'];
 const ImageDir = '/animalImages';
 
 
-app.listen(PORT, function () {
-    console.log("listening on port " + PORT);
-})
 
+var app = express();
 
 
 app.engine('handlebars', exphbs({
@@ -32,7 +31,73 @@ app.use(bodyParser.json({limit: '50mb'}));
 
 
 
+const IP = process.env.IP;      //IP for jacob is 127.0.0.1
+const MONGOPORT = process.env.MONGOPORT  //typically 27017
 
+const URL = "mongodb://localhost:"+MONGOPORT+"/main";
+
+var animalDB;   //where we'll make all our entries and such.
+
+
+MongoClient.connect(URL,function(err,client){
+    if(err){
+        throw err;
+    }
+    db = mongoDBDatabase = client.db('main');
+    animalDB = db.collection('animals');
+    
+    app.listen(PORT, function () {
+        console.log("listening on port " + PORT);   //don't start listening until connected.
+    })
+    
+
+})
+
+
+
+app.get("/twoNewAnimals/:animalType",function(req,res){
+    console.log("request received");
+    var animalCursor;
+   
+    if(req.params.animalType == "all"){
+        animalCursor = animalDB.find({reported:{$gte:0}});
+    }else{
+        animalCursor= animalDB.find({animalType:req.params.animalType,reported:{$gte: 0} });   //if their report is negative we don't add this to the list.
+    }
+    var animal1;
+    var animal2;
+    var animal1image;
+    var animal2image;
+   
+    animalCursor.toArray(function(err,animalDocs){
+
+        if(err){
+            res.status(500).send("Error fetching photo from database");
+        }else{
+            var pick = Math.floor(Math.random() * animalDocs.length);
+            animal1 = animalDocs[pick];
+            do{
+                pick = Math.floor(Math.random()*animalDocs.length);
+                animal2 = animalDocs[pick];
+            }while(animal1 === animal2) //makes sure it isn't the same animal.
+        }
+
+        animal1image = fs.readFileSync(animal1.imageURL,{encoding:'base64'});
+        animal2image = fs.readFileSync(animal2.imageURL,{encoding:'base64'});
+    
+        
+        var response = {
+            Animal1: animal1,
+            Animal2: animal2,
+            animal1Image: animal1image,
+            animal2Image: animal2image
+        }
+        response = JSON.stringify(response);
+        res.status(200).send(response);
+        res.end();
+    })
+
+})
 
 
 
@@ -72,6 +137,7 @@ app.get("/:subdir", function (req, res) {
 })
 
 app.get("*", function (req, res) {
+    console.log(req.URL);
     res.render('404');
     res.status(404);
 
@@ -102,6 +168,7 @@ app.post('/uploadAnimal',function(req,res){
                 looping = false;
             }
         }
+        addToDB(req.body.animalType,req.body.animalName,req.body.animalAge,imageURL);
         fs.writeFile(imageURL, buf,function(){
             res.status(200).send("Photo successfuly added!");
             res.end();
@@ -113,6 +180,23 @@ app.post('/uploadAnimal',function(req,res){
     
 
 });
+
+
+function addToDB(type,name,age,url){
+    const initialScore = 800;
+    const initialTypeScore = 800;
+    
+    animalDB.insertOne({
+        animalType:type,
+        animalName:name,
+        animalAge:age,
+        imageURL:url,
+        score: initialScore,
+        typeScore:initialTypeScore,
+        reported:0                               //safe is 0 if unknown, 1 if known, and negative if it's been reported.
+
+    })
+}
 
 
 
@@ -146,3 +230,38 @@ function updateReports() {
         console.log(data);
     })
 }
+
+
+
+var minimum
+
+var minimumRank = 100;
+var maximumRank = 1600;
+function updateScores(animal1ID,animal1Score,animal2ID,animal2Score,winner){
+    console.log("changeScoreTwoAnimals");
+    
+    var k = 30; //constant that affects how much the score changes by
+    var probabilitySecond = (1.0/(1.0+Math.pow(10,(animal1Score-animal2Score)/400))); //probability of winning of player 2
+    var probabilityFirst = (1.0/(1.0+Math.pow(10,(animal2Score-animal1Score)/400))); //probablility of winning of player 1
+    if(winner===1){
+        animal1Score = (animal1Score + k*(1-probabilityFirst)).toFixed(1);
+        animal2Score = (animal2Score + k*(0-probabilitySecond)).toFixed(1);
+    }else{
+        animal1Score = (animal1Score + k*(0-probabilityFirst)).toFixed(1);
+        animal2Score = (animal2Score + k*(1-probabilitySecond)).toFixed(1);
+    }
+    if (animal1Score < minimumRank){
+        animal1Score = minimumRank;
+    }
+    if(animal1Score > maximumRank){
+        animal1Score = maximumRank;
+    }
+    if(animal2Score < minimumRank){
+        animal2Score = minimumRank;
+    }
+    if(animal2Score > maximumRank){
+        animal2Score = maximumRank;
+    }
+
+};
+
