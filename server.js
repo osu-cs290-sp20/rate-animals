@@ -76,6 +76,7 @@ app.get("/twoNewAnimals/:animalType", function (req, res) {
             }
         });
     } else {
+        console.log(req.params.animalType);
         animalCursor = animalDB.find({
             animalType: req.params.animalType,
             reported: {

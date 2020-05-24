@@ -14,7 +14,7 @@ var winnerNumber
 function styleBox() {
     let rateBox = document.querySelector("#rate-box");
     let stuffHolder = document.createElement("div");
-
+    
     let rateHeight = rateBox.offsetHeight;
 
     stuffHolder.style.height = "85%";
@@ -23,7 +23,7 @@ function styleBox() {
     stuffHolder.style.marginLeft = "7.5%";
 
     stuffHolder.style.display = "relative";
-
+    rateBox.style.position = "relative";
     stuffHolder.style.display = "flex";
     stuffHolder.style.flexFlow = "column wrap";
 
@@ -272,6 +272,7 @@ function stopFillImageTwo() {
 
 function selectAnimalOne() { //here will be the calling of the updating scores of the animals.
     //alert("animal one selected");
+    
     image1 = document.querySelector("#image-1");
     image1_text = document.querySelector("#animal1-text");
     image1.style.opacity = "0";
@@ -296,7 +297,24 @@ function selectAnimalTwo() {
     setTimeout(createNewAnimals, 1000);
 }
 
+function createCantClick(){
+    let cantClick = document.createElement("div");
+    let rateContainer = document.getElementById("rate-container");
+    rateContainer.style.position = "relative";
+    var height = rateContainer.offsetHeight;
+    var width = rateContainer.offsetWidth;
+    cantClick.style.width = width + "px";
+    cantClick.style.height = height + "px";
+    cantClick.style.position="absolute";
+    cantClick.style.zIndex = "1000";
+    cantClick.style.top = "0";
+    cantClick.style.left = "0";
+    cantClick.id = "cantClick"
+    rateContainer.appendChild(cantClick);
+}
+
 function dissapearBoth() {
+    createCantClick();
     canHover = false;
     image1 = document.querySelector("#image-1");
     image1_text = document.querySelector("#animal1-text");
@@ -423,15 +441,15 @@ function getNewAnimals() {
         lastPart = "all";
     }
 
+   
 
-    
     let animalImage1 = document.getElementById("image-1")
     let animalImage2 = document.getElementById("image-2")
     let animalText1 = document.getElementById("animal1-text")
     let animalText2 = document.getElementById("animal2-text")
 
     var request = new XMLHttpRequest();
-    var requestURL = '/twoNewAnimals/' + lastPart;
+    var requestURL = '/twoNewAnimals/' + animalType;
     request.open('GET', requestURL);
 
 
@@ -446,6 +464,9 @@ function getNewAnimals() {
         animalText2.textContent = results.Animal2.animalName;
         animal1=results.Animal1;
         animal2=results.Animal2;
+        setTimeout(function(){
+            document.getElementById("rate-container").removeChild(document.getElementById("cantClick"))
+        },500)
     }
     request.send();
 }
