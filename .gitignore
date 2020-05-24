@@ -1,7 +1,5 @@
 .DS_Store
 leaderboards/.DS_Store
 node_modules/
-animalImages/
+MongoDB/Server/4.2/bin
 secret stuff.txt
-
-MongoDB/

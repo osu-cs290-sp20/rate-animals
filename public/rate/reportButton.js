@@ -31,9 +31,33 @@ function fixReportSizes(){
 
 function getRidOfAnimal(animalChoice){
     closeReportBox();
-    alert("Animal " + animalChoice+" was reported.");
-    dissapearBoth();
-    setTimeout(createNewAnimals,1000);
+    var animalURL;
+    if(animalChoice == 1){
+        animalURL = animal1.imageURL;
+    }else{
+        animalURL = animal2.imageURL;
+    }
+
+
+    var request = new XMLHttpRequest();
+    var requestURL = '/reportAnimal';
+    request.open('POST',requestURL);
+    var reportAnimal = {
+        reportURL: animalURL
+    }
+    request.setRequestHeader('Content-Type','application/json')
+    var requestBody = JSON.stringify(reportAnimal);
+    request.addEventListener('load',function(event){
+        if(event.target.status !== 200){
+            alert("error reporting animal");
+        }
+        dissapearBoth();
+        setTimeout(createNewAnimals,1000);
+    });
+    request.send(requestBody);
+
+
+    
 
 }
 

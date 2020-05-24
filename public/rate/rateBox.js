@@ -3,7 +3,7 @@
 var animal1; //will store animal info here, and access this when user decides who won.
 var animal2;
 let canHover = true;
-
+var winnerNumber
 
 
 
@@ -34,7 +34,7 @@ function styleBox() {
     whichIsCuter.style.height = "10%";
     whichIsCuter.style.width = "100%";
     let whichIsCuterText = document.createElement("h2");
-    whichIsCuterText.textContent = "Which is cuter?";
+    whichIsCuterText.textContent = "Choose the Best Animal";
     whichIsCuterText.id = "cuterText";
     whichIsCuterText.style.color = "black";
     whichIsCuterText.style.fontSize = "5vh";
@@ -276,6 +276,8 @@ function selectAnimalOne() { //here will be the calling of the updating scores o
     image1_text = document.querySelector("#animal1-text");
     image1.style.opacity = "0";
     image1_text.style.opacity = "0";
+    winnerNumber = 1;
+    updateScores();
     dissapearBoth();
     setTimeout(createNewAnimals, 1000);
 
@@ -288,6 +290,8 @@ function selectAnimalTwo() {
     image2_text = document.querySelector("#animal2-text");
     image2.style.opacity = "0";
     image2_text.style.opacity = "0";
+    winnerNumber = 2;
+    updateScores();
     dissapearBoth();
     setTimeout(createNewAnimals, 1000);
 }
@@ -352,9 +356,61 @@ function createNewAnimals() {
 }
 
 
+function updateScores(){
+    var lastPart = window.location.href.split("/").pop();
+    if(!lastPart){
+        lastPart = "all"
+    }
+    if(animal1){    //updating scores, if the animal exists.
+        if(lastPart == "all"){
+            var request = new XMLHttpRequest();
+            var requestURL = '/updateScores';
+            request.open('POST',requestURL);
+            var animalsObject = {
+                animal1ID: animal1.imageURL,
+                animal2ID: animal2.imageURL,
+                animal1Score: animal1.score,
+                animal2Score: animal2.score,
+                winner:winnerNumber,
+                scope:1
+            }
+            var requestBody = JSON.stringify(animalsObject);
+            request.setRequestHeader('Content-Type','application/json')
+            request.addEventListener('load',function(event){
+                if(event.target.status !== 200){
+                    alert("error uploading new scores to server");
+                }
+            })
+            request.send(requestBody);
+
+
+        }else{
+            var request = new XMLHttpRequest();
+            var requestURL = '/updateScores';
+            request.open('POST',requestURL);
+            var animalsObject = {
+                animal1ID: animal1.imageURL,
+                animal2ID: animal2.imageURL,
+                animal1Score: animal1.typeScore,
+                animal2Score: animal2.typeScore,
+                winner:winnerNumber,
+                scope:2
+            }
+            var requestBody = JSON.stringify(animalsObject);
+            request.setRequestHeader('Content-Type','application/json')
+            request.addEventListener('load',function(event){
+                if(event.target.status !== 200){
+                    alert("error uploading new scores to server");
+                }
+            })
+            request.send(requestBody);
+        }
+    }
+}
+
 function getNewAnimals() {
     var lastPart = window.location.href.split("/").pop();
-
+    
 
     var animalType;
     if (lastPart == "all") {
@@ -366,6 +422,9 @@ function getNewAnimals() {
     } else {
         lastPart = "all";
     }
+
+
+    
     let animalImage1 = document.getElementById("image-1")
     let animalImage2 = document.getElementById("image-2")
     let animalText1 = document.getElementById("animal1-text")
@@ -377,7 +436,6 @@ function getNewAnimals() {
 
 
     request.onload = function () {
-        console.log("response received");
 
         results = JSON.parse(request.response);
 
@@ -386,6 +444,8 @@ function getNewAnimals() {
 
         animalText1.textContent = results.Animal1.animalName;
         animalText2.textContent = results.Animal2.animalName;
+        animal1=results.Animal1;
+        animal2=results.Animal2;
     }
     request.send();
 }

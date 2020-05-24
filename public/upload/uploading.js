@@ -1,6 +1,10 @@
 const DEBUG = false;
 
 
+
+
+var ip;
+
 var cropper = new Croppie(document.getElementById("croppie_holder"),{
     viewport: {
         width:100,
@@ -101,13 +105,19 @@ const fileTypes = [
 function uploadAnimalToDB(age, name, type, image){
     var request = new XMLHttpRequest();
     var requestURL = '/uploadAnimal';
+   
+
     request.open('POST',requestURL);
+
+
+
 
     var animalObj = {
         animalType: type,
         animalAge: age,
         animalName: name,
-        animalImage: image
+        animalImage: image,
+        userIP:ip
 
     };
     var requestBody = JSON.stringify(animalObj);
