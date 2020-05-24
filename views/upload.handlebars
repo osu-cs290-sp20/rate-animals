@@ -67,4 +67,15 @@
         </div>
 
 
-<script>var current = document.getElementById("upload"); current.classList.toggle("current"); current.removeChild(document.getElementById("upload-link")); current.textContent = "Upload Your Animal";</script>
+<script>var current = document.getElementById("upload"); current.classList.toggle("current"); current.removeChild(document.getElementById("upload-link")); current.textContent = "Upload Your Animal";</script>\
+<script type="application/javascript">
+  function getIP(json) {
+      if(json){
+        ip = json.ip
+      }else{
+          ip = 0;
+      }
+  }
+</script>
+
+<script type="application/javascript" src="https://api.ipify.org?format=jsonp&callback=getIP"></script>
