@@ -7,7 +7,14 @@ var MongoClient = require('mongodb').MongoClient;
 const PORT = process.env.PORT || 3000;
 
 const validSubDirectories = ['rate', '404', 'gallery', 'guess', 'icons', 'leaderboards', 'upload', 'rate/all'];
-const ImageDir = '/animalImages';
+
+
+
+var pathToImages = "C:/Users/jacob/cs290/finalproject/animalImages"                  //to get the path to the images.
+if(process.env.IMAGEPATH){      //to change this path if things glitch out make a environmental variable with the entire path to the images folder
+                                //THIS folder should be outside of the git repository, so that it doesn't get backed up by git. contact Jacob with any questions.
+    pathToImages = IMAGEPATh
+}
 
 
 
@@ -89,21 +96,32 @@ app.get("/twoNewAnimals/:animalType", function (req, res) {
     var animal1image;
     var animal2image;
     var count = 0;
+    var valid = false;
     animalCursor.toArray(function (err, animalDocs) {
 
         if (err) {
             res.status(500).send("Error fetching photo from database");
         } else {
-            var pick = Math.floor(Math.random() * animalDocs.length);
-            animal1 = animalDocs[pick];
+            var pick 
+            while(!valid){
+                pick= Math.floor(Math.random() * animalDocs.length);
+                 animal1 = animalDocs[pick];
+                 if(fs.existsSync(animal1.imageURL)){
+                     valid = true;
+                 }
+             }
+             valid = false;
             do {
                 pick = Math.floor(Math.random() * animalDocs.length);
                 animal2 = animalDocs[pick];
+                if(fs.existsSync(animal2.imageURL)){
+                    valid = true;
+                }
                 count++;
                 if(count>=100){
                     break;
                 }
-            } while (animal1 === animal2) //makes sure it isn't the same animal.
+            } while (animal1 === animal2 && !valid) //makes sure it isn't the same animal.
         }
         if(count>=100){
             res.status(400).send("Not enough animals of that type found");
@@ -186,16 +204,15 @@ app.post('/uploadAnimal', function (req, res) {
         var data = req.body.animalImage.replace(/^data:image\/\w+;base64,/, "");
 
         var buf = Buffer.from(data, 'base64');
-        var images = fs.readdirSync(__dirname + ImageDir);
-        var amountOfImages = images.length;
+        var images = fs.readdirSync(pathToImages);
 
-        var imageURL = __dirname + ImageDir + '/' + req.body.animalName + '0' + '.png';
+        var imageURL = pathToImages + '/' + req.body.animalName + '0' + '.png';
         var looping = true;
         var count = 0;
         while (looping) {
             if (fs.existsSync(imageURL)) { //doing sync because this should be pretty fast.
                 count++;
-                imageURL = __dirname + ImageDir + '/' + req.body.animalName + count + '.png';
+                imageURL = pathToImages + '/' + req.body.animalName + count + '.png';
             } else {
                 looping = false;
             }
