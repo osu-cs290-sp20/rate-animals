@@ -138,7 +138,7 @@ function uploadAnimalToDB(age, name, type, image){
 
 
 function rocketMan(image){
-    console.log("rocketing");
+
     
     var windowHeight = window.innerHeight;
     var windowWidth = window.innerWidth;

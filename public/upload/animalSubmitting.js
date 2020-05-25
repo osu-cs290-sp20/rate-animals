@@ -85,6 +85,17 @@ let submitButton = document.getElementById("submitButton");
 
 submitButton.addEventListener("click", attemptSubmit);
 
+window.addEventListener('keypress', function (e) {
+    if(e.keyCode === 13){
+        attemptSubmit();
+    }
+}, false);
+
+
+
+
+
+
 function attemptSubmit() {
     let nameInput = document.getElementById("nameInput");
     let animalSelector = document.getElementById("animalChoice");
@@ -225,8 +236,8 @@ function highlightOtherInput() {
 }
 
 function highlightImageSelector() {
-    if (document.getElementById("buttonHolder")) {
-        let imageSelector = document.getElementById("buttonHolder");
+    if (document.getElementById("button_holder")) {
+        let imageSelector = document.getElementById("button_holder");
         imageSelector.style.transition = "background-color .5s";
         imageSelector.style.backgroundColor = "#d95757";
         setTimeout(function () {

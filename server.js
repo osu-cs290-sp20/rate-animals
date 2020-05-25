@@ -58,14 +58,17 @@ MongoClient.connect(URL, function (err, client) {
     app.listen(PORT, function () {
         console.log("listening on port " + PORT); //don't start listening until connected.
     })
-    var resettingScores = 0;            //ONLY CHANGE THIS IF YOU KNOW WHAT YOU"RE DOING THIS WILL RESET ALL SCORES
-    if(resettingScores === "reset"){
+    var adminOption = 0;          //ONLY CHANGE THIS IF YOU KNOW WHAT YOU"RE DOING THIS WILL RESET ALL SCORES
+    if(adminOption === "reset"){
     console.log("reset all scores");
     animalDB.updateMany({}, {$set: {
         typeScore: 800,
         score:800
     }})
-}
+    }else if(adminOption === "valid"){
+        console.log("Approving all animals");
+        animalDB.updateMany({},{$set:{reported:1}})
+    }
 
 
 })
@@ -83,7 +86,7 @@ app.get("/twoNewAnimals/:animalType", function (req, res) {
             }
         });
     } else {
-        console.log(req.params.animalType);
+      
         animalCursor = animalDB.find({
             animalType: req.params.animalType,
             reported: {
@@ -121,7 +124,7 @@ app.get("/twoNewAnimals/:animalType", function (req, res) {
                 if(count>=100){
                     break;
                 }
-            } while (animal1 === animal2 && !valid) //makes sure it isn't the same animal.
+            } while (animal1 === animal2 || !valid) //makes sure it isn't the same animal.
         }
         if(count>=100){
             res.status(400).send("Not enough animals of that type found");
@@ -189,6 +192,7 @@ app.get("/:subdir", function (req, res) {
 })
 
 app.get("*", function (req, res) {
+    console.log("page attempted: ")
     console.log(req.URL);
     res.render('404');
     res.status(404);
@@ -324,9 +328,7 @@ const minimumRank = 100;
 const maximumRank = 1600;
 
 function updateScores(animal1ID, animal1Score, animal2ID, animal2Score, winner, scope) { //if scope = 1 then it's all animals, 2 is specific type.
-    console.log("changeScoreTwoAnimals");
-    //animal1Score = Number(animal1Score);
-    //animal2Score = Number(animal2Score);
+    
     var k = 30; //constant that affects how much the score changes by
     var probabilitySecond = (1.0 / (1.0 + Math.pow(10, (animal1Score - animal2Score) / 400))); //probability of winning of player 2
     var probabilityFirst = (1.0 / (1.0 + Math.pow(10, (animal2Score - animal1Score) / 400))); //probablility of winning of player 1
@@ -365,7 +367,7 @@ function updateScores(animal1ID, animal1Score, animal2ID, animal2Score, winner, 
                imageURL: animal1ID
             }, {
                 $set: {
-                    typeScore: Nuumber(animal1Score)
+                    typeScore: Number(animal1Score)
                 }
             }
         )
