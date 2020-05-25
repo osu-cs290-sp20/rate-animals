@@ -1,5 +1,5 @@
 const MAXANIMALS = 20; //how many animals can be on the screen at a time.
-const AMOUNTOFTIMEBETWEENANIMALS = 1000; //amount of time between animals showing up in milliseconds
+const AMOUNTOFTIMEBETWEENANIMALS = 750; //amount of time between animals showing up in milliseconds
 const INITIALOFFSET = 40; //how far down the animals fade in from.  
 //To change how oftten animals appear, just change the number in the sentInterval. It represents milliseconds.
 var intervalBetweenAnimals = window.setInterval(generateAnimal, AMOUNTOFTIMEBETWEENANIMALS);
@@ -33,7 +33,27 @@ function generateAnimal() {
     newImage.classList.add("animal-image")
     let randomHeight = (100 + (Math.random() * 200))
     newImage.style.height = randomHeight + "px";
-    newImage.src = "http://placekitten.com/" + Math.floor(randomHeight) + "/" + Math.floor(randomHeight); //this will be what we change.
+    var lastPart = window.location.href.split("/").pop();
+    var animalType;
+    if (lastPart == "all") {
+        animalType = "all";
+    } else if (lastPart == "cats") {
+        animalType = "cat";
+    } else if (lastPart == "dogs") {
+        animalType = "dog";
+    } else {
+        animalType = "all";
+    }
+    var request = new XMLHttpRequest();
+    var requestURL = '/randomAnimal' + '/' + animalType; 
+    console.log(requestURL);
+    request.open('GET',requestURL);
+    request.onload=function(){
+        results=JSON.parse(request.response);
+        newImage.src = 'data:image/png;base64, ' + results.image;
+        console.log("request received");
+    }
+    request.send();
     newImage.style.width = "auto";
     newImage.style.boxShadow = "10px 10px 10px #0000004d";
     newImage.style.position = "absolute";

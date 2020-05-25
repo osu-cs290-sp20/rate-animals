@@ -34,7 +34,7 @@ function styleBox() {
     whichIsCuter.style.height = "10%";
     whichIsCuter.style.width = "100%";
     let whichIsCuterText = document.createElement("h2");
-    whichIsCuterText.textContent = "Choose the Best Animal";
+    whichIsCuterText.textContent = "Choose Your Favorite Animal";
     whichIsCuterText.id = "cuterText";
     whichIsCuterText.style.color = "black";
     whichIsCuterText.style.fontSize = "5vh";
@@ -438,7 +438,7 @@ function getNewAnimals() {
     } else if (lastPart == "dogs") {
         animalType = "dog";
     } else {
-        lastPart = "all";
+        animalType = "all";
     }
 
    

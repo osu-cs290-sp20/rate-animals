@@ -74,6 +74,42 @@ MongoClient.connect(URL, function (err, client) {
 })
 
 
+app.get('/randomAnimal/:animalType',function(req,res){
+    var animalCursor;
+    if(req.params.animalType == "all"){
+        animalCursor = animalDB.find({});
+    }else{
+        animalCursor = animalDB.find({animalType: req.params.animalType});
+    }
+        animalCursor.toArray(function(err,animalDocs){
+            var valid = false;
+            if (err) {
+                res.status(500).send("Error fetching photo from database");
+            } else {
+                var pick 
+                while(!valid){
+                    pick= Math.floor(Math.random() * animalDocs.length);
+                     animal1 = animalDocs[pick];
+                     if(fs.existsSync(animal1.imageURL)){
+                         valid = true;
+                     }
+                 }
+                 animal1image = fs.readFileSync(animal1.imageURL, {
+                    encoding: 'base64'
+                });
+                requestBody = {
+                    image:animal1image
+                }
+                var responseBody = JSON.stringify(requestBody);
+                res.status(200).send(responseBody);
+                res.end();
+            }
+
+        })
+    
+})
+
+
 
 app.get("/twoNewAnimals/:animalType", function (req, res) {
     
