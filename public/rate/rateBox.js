@@ -380,7 +380,7 @@ function updateScores(){
         lastPart = "all"
     }
     if(animal1){    //updating scores, if the animal exists.
-        if(lastPart == "all"){
+        if(lastPart == "all" || lastPart == "other"){
             var request = new XMLHttpRequest();
             var requestURL = '/updateScores';
             request.open('POST',requestURL);
@@ -437,7 +437,9 @@ function getNewAnimals() {
         animalType = "cat";
     } else if (lastPart == "dogs") {
         animalType = "dog";
-    } else {
+    } else if(lastPart =="other"){
+        animalType = "other"
+    }else{
         animalType = "all";
     }
 

@@ -41,8 +41,10 @@ function generateAnimal() {
         animalType = "cat";
     } else if (lastPart == "dogs") {
         animalType = "dog";
-    } else {
-        animalType = "all";
+    } else if(lastPart == "other"){
+        animalType = "other";
+    }else{
+        lastPart = "all"
     }
     var request = new XMLHttpRequest();
     var requestURL = '/randomAnimal' + '/' + animalType; 

@@ -77,9 +77,11 @@ MongoClient.connect(URL, function (err, client) {
 app.get('/randomAnimal/:animalType',function(req,res){
     var animalCursor;
     if(req.params.animalType == "all"){
-        animalCursor = animalDB.find({});
+        animalCursor = animalDB.find({reported:{$gte:0}});
+    }else if(req.params.animalType == "other"){
+        animalCursor = animalDB.find({$and: [{animalType:{$ne: "cat"}},{animalType:{$ne: "dog"}},{reported:{$gte:0}}]});
     }else{
-        animalCursor = animalDB.find({animalType: req.params.animalType});
+        animalCursor = animalDB.find({$and:[{animalType: req.params.animalType},{reported:{$gte:0}}]});
     }
         animalCursor.toArray(function(err,animalDocs){
             var valid = false;
@@ -113,15 +115,21 @@ app.get('/randomAnimal/:animalType',function(req,res){
 
 app.get("/twoNewAnimals/:animalType", function (req, res) {
     
-    var animalCursor;
-
+    var animalCursor; 
     if (req.params.animalType == "all") {
         animalCursor = animalDB.find({
             reported: {
                 $gte: 0
             }
         });
-    } else {
+    } else if(req.params.animalType == "other"){
+
+        animalCursor = animalDB.find({$and: 
+            [{animalType:{$ne: "cat"}},
+            {animalType:{$ne: "dog"}},
+            {reported:{$gte:0}}]}
+        );
+    }else{
       
         animalCursor = animalDB.find({
             animalType: req.params.animalType,

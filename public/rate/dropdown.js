@@ -1,7 +1,11 @@
 let all = document.getElementById("all");
 let cats = document.getElementById("cats");
 let dogs = document.getElementById("dogs");
+let other = document.getElementById("other");
 let dropdown = document.querySelector(".dropdown");
+
+let dropdownOptions = [all,cats,dogs,other];
+
 
 var hidden = true;
 
@@ -21,12 +25,11 @@ function startUp() {
 
 function fixDropdownState() {
     var lastPart = window.location.href.split("/").pop();
-    all.classList.remove('active');
-    cats.classList.remove('active');
-    dogs.classList.remove('active');
-    all.classList.add('inactive');
-    cats.classList.add('inactive');
-    dogs.classList.add('inactive');
+    dropdownOptions.forEach(function(item,index){
+       item.classList.remove('active');
+       item.classList.add('inactive'); 
+    })
+    
    
     switch (lastPart) {
         case 'all':
@@ -42,6 +45,10 @@ function fixDropdownState() {
             dogs.classList.add("active");
             dogs.classList.remove("inactive");
             break;
+        case 'other':
+            other.classList.add("active");
+            other.classList.remove("inactive");
+
     }
 }
 
