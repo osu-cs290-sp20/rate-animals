@@ -75,6 +75,7 @@ MongoClient.connect(URL, function (err, client) {
 
 
 app.get('/randomAnimal/:animalType',function(req,res){
+    console.log("animalType: ",req.params.animalType)
     var animalCursor;
     if(req.params.animalType == "all"){
         animalCursor = animalDB.find({reported:{$gte:0}});
@@ -84,6 +85,7 @@ app.get('/randomAnimal/:animalType',function(req,res){
         animalCursor = animalDB.find({$and:[{animalType: req.params.animalType},{reported:{$gte:0}}]});
     }
         animalCursor.toArray(function(err,animalDocs){
+          
             var valid = false;
             if (err) {
                 res.status(500).send("Error fetching photo from database");
@@ -92,6 +94,7 @@ app.get('/randomAnimal/:animalType',function(req,res){
                 while(!valid){
                     pick= Math.floor(Math.random() * animalDocs.length);
                      animal1 = animalDocs[pick];
+                     console.log("Animal 1 is: ",animal1);
                      if(fs.existsSync(animal1.imageURL)){
                          valid = true;
                      }

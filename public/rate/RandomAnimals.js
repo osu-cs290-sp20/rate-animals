@@ -44,7 +44,7 @@ function generateAnimal() {
     } else if(lastPart == "other"){
         animalType = "other";
     }else{
-        lastPart = "all"
+        animalType = "all"
     }
     var request = new XMLHttpRequest();
     var requestURL = '/randomAnimal' + '/' + animalType; 
