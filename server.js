@@ -270,10 +270,10 @@ app.get("/rate/:type", function (req, res) {
 
 //these are down here becaues they're in the node_modules directory. At some point should check if we can take them out of node moduesl.
 app.get('/croppie.js', function (req, res) {
-    res.sendFile(node_modules / croppie / croppie.js);
+    res.sendFile(__dirname + "/node_modules/croppie/croppie.js");
 })
 app.get('/croppie.css', function (req, res) {
-    res.sendFile('node_modules/croppie/croppie.css')
+    res.sendFile(__dirname +'/node_modules/croppie/croppie.css')
 })
 
 app.get("/:subdir", function (req, res) {
