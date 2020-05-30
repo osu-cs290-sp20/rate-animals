@@ -4,7 +4,7 @@
     flex: 0 1 28%;
     display: flex;
     margin: 10px;
-    padding: 70px;
+    padding: 40px;
     border: 1px solid #dadada;
     border-radius: 2px;
     background-image: linear-gradient(#89cff0,#bb99ff);
@@ -14,6 +14,7 @@
     margin: 50px 10%;
     display: flex;
     flex-wrap: wrap;
+    text-align: center;
 }
 
 .picture {
@@ -49,10 +50,11 @@ h1 {
     text-align: center;
 }
 
-h3 {
+.content .animalName {
     position: relative;
-    top: -35px;
+    top: -20px;
     text-align: center;
+    text-decoration: None;
 }
 
 
@@ -66,6 +68,10 @@ h3 {
     justify-content: center;
 }
 
+#options :hover {
+    color: #319df6;
+}
+
 .listOption a{
     font-size: 60px;
     position: relative;
@@ -73,4 +79,41 @@ h3 {
     padding-left: 25px;
 }
 
+#greaterContainer {
+    border-radius: 30px;
+    background-color: #ffffff;
+    height: 70%;
+    width: 70%;
+    padding: 30px;
+    margin: 80px;
+    border: 10px;
+}
+
+
+.listOption-navbar-search {
+    display: flex;
+    list-style: none;
+    margin-left: 20px;
+    margin-right: 20px;
+    padding: 40px 20px 10px 10px;
+    position: relative;
+    justify-content: center;
+    max-height: 30px;
+}
+
+#navbar-search-button {
+    margin-left: 20px;
+    font-size: 15px;
+    border-radius: 5px;
+    min-width: 30px;
+    background-image: linear-gradient(#89cff0,#bb99ff);
+}
+
+#navbar-search-button:hover {
+    color: #ffffff;
+  }
+
+a:hover, a:focus {
+  color: #319df6;
+}
 

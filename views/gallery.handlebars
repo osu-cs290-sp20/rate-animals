@@ -5,17 +5,22 @@
     <title>Gallery</title> 
 
     <link rel="stylesheet" href="/gallery/gallery.css" media="screen">
-
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css" crossorigin="anonymous">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,700;0,900;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <script src="/gallery/gallery.js" charset="utf-8" defer></script>
 {{/section}}
-    
+    <div id = "greaterContainer" >
     <h1>Gallery</h1>
 
         <ul id="options">
             <li class="listOption"><a href="#"class = "navitem-link"></a>Name</a></li>
             <li class="listOption"><a href="#"class = "navitem-link"></a>Animal</a></li>
             <li class="listOption"><a href="#"class = "navitem-link"></a>Age</a></li>
+            <li class="listOption-navbar-search">
+                <input type="text" id="navbar-search-input" placeholder="Search...">
+                <button type="button" id="navbar-search-button"><i class="fas fa-search"></i></button>
+           </li>
         </ul>
 
 
@@ -23,7 +28,9 @@
         <article class="gallery">
             
             <div class = "content">  
-                <h3> Animal </h3>    
+                <h3 class = "animalName"> 
+                    <a href="#">Dog</a>
+                </h3>    
                 <div class = "picture">
                 </div>
                 <p class = "lol"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean vehicula vestibulum mauris sed iaculis. Curabitur mi augue, pulvinar at suscipit sed, aliquet ut augue. Pellentesque nec placerat sem. Proin a.</p>
@@ -32,7 +39,9 @@
 
         <article class="gallery">
             <div class = "content">      
-                <h3> Animal </h3>   
+                <h3 class = "animalName"> 
+                    <a href="#">Cat</a>
+                </h3> 
                 <div class = "picture">
                 </div>
                 <p class = "lol"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean vehicula vestibulum mauris sed iaculis. Curabitur mi augue, pulvinar at suscipit sed, aliquet ut augue. Pellentesque nec placerat sem. Proin a.</p>
@@ -41,7 +50,9 @@
 
         <article class="gallery">
             <div class = "content">      
-                <h3> Animal </h3>   
+                <h3 class = "animalName"> 
+                    <a href="#">Zebra</a>
+                </h3>  
                 <div class = "picture">
                 </div>
                 <p class = "lol"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean vehicula vestibulum mauris sed iaculis. Curabitur mi augue, pulvinar at suscipit sed, aliquet ut augue. Pellentesque nec placerat sem. Proin a.</p>
@@ -50,12 +61,14 @@
 
         <article class="gallery">
             <div class = "content"> 
-                <h3> Animal </h3>        
+                <h3 class = "animalName"> 
+                    <a href="#">Lion</a>
+                </h3>       
                 <div class = "picture">
                 </div>
                 <p class = "lol"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean vehicula vestibulum mauris sed iaculis. Curabitur mi augue, pulvinar at suscipit sed, aliquet ut augue. Pellentesque nec placerat sem. Proin a.</p>
             </div>
         </article>
 
-
+    </div>
 <script>var current = document.getElementById("gallery"); current.classList.toggle("current"); current.removeChild(document.getElementById("gallery-link")); current.textContent = "Gallery";</script>
