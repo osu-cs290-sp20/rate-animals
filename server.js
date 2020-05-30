@@ -342,7 +342,8 @@ app.post('/uploadAnimal', function (req, res) {
 function addToDB(type, name, age, url, userIP) {
     const initialScore = 800;
     const initialTypeScore = 800;
-
+    var today = new Date();
+    var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
     animalDB.insertOne({
         animalType: type,
         animalName: name,
@@ -350,8 +351,9 @@ function addToDB(type, name, age, url, userIP) {
         imageURL: url,
         score: initialScore,
         typeScore: initialTypeScore,
-        reported: 0,
-        IP: userIP //safe is 0 if unknown, 1 if known, and negative if it's been reported.
+        reported: 0,//safe is 0 if unknown, 1 if known, and negative if it's been reported.
+        IP: userIP, 
+        dateAdded: date
 
     })
 }
