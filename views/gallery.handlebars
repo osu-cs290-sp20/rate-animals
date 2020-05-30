@@ -8,7 +8,10 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css" crossorigin="anonymous">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,700;0,900;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+     <script src="/gallery/galleryTemplate.js"charset = "utf-8" defer></script>
+     <script src="/gallery/loadAnimals.js" charset="utf-8"defer></script>
     <script src="/gallery/gallery.js" charset="utf-8" defer></script>
+   
 {{/section}}
     <div id = "greaterContainer" >
     <h1>Gallery</h1>
@@ -25,49 +28,8 @@
 
 
     <main class="gallery-container">
-        <article class="gallery">
-            <div class = "content">  
-                <h3 class = "animalName"> 
-                    <a href="#">Dog</a>
-                </h3>    
-                <div class = "picture">
-                </div>
-                <p class = "lol"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean vehicula vestibulum mauris sed iaculis. Curabitur mi augue, pulvinar at suscipit sed, aliquet ut augue. Pellentesque nec placerat sem. Proin a.</p>
-            </div>
-        </article>
+        
 
-        <article class="gallery">
-            <div class = "content">      
-                <h3 class = "animalName"> 
-                    <a href="#">Cat</a>
-                </h3> 
-                <div class = "picture">
-                </div>
-                <p class = "lol"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean vehicula vestibulum mauris sed iaculis. Curabitur mi augue, pulvinar at suscipit sed, aliquet ut augue. Pellentesque nec placerat sem. Proin a.</p>
-            </div>
-        </article>
-
-        <article class="gallery">
-            <div class = "content">      
-                <h3 class = "animalName"> 
-                    <a href="#">Zebra</a>
-                </h3>  
-                <div class = "picture">
-                </div>
-                <p class = "lol"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean vehicula vestibulum mauris sed iaculis. Curabitur mi augue, pulvinar at suscipit sed, aliquet ut augue. Pellentesque nec placerat sem. Proin a.</p>
-            </div>
-        </article>
-
-        <article class="gallery">
-            <div class = "content"> 
-                <h3 class = "animalName"> 
-                    <a href="#">Lion</a>
-                </h3>       
-                <div class = "picture">
-                </div>
-                <p class = "lol"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean vehicula vestibulum mauris sed iaculis. Curabitur mi augue, pulvinar at suscipit sed, aliquet ut augue. Pellentesque nec placerat sem. Proin a.</p>
-            </div>
-        </article>
-
-    </div>
+   </main>
+   <button type="button" id="loadMore">Load More</button>
 <script>var current = document.getElementById("gallery"); current.classList.toggle("current"); current.removeChild(document.getElementById("gallery-link")); current.textContent = "Gallery";</script>
