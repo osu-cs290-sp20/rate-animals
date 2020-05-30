@@ -48,7 +48,7 @@ const MONGOPORT = process.env.MONGOPORT //typically 27017
 const URL = "mongodb://localhost:" + MONGOPORT + "/main";
 
 var animalDB; //where we'll make all our entries and such.
-
+var devDB
 
 MongoClient.connect(URL, function (err, client) {
     if (err) {
@@ -56,6 +56,7 @@ MongoClient.connect(URL, function (err, client) {
     }
     db = mongoDBDatabase = client.db('main');
     animalDB = db.collection('animals');
+    devDB = db.collection('dev');
 
     app.listen(PORT, function () {
         console.log("listening on port " + PORT); //don't start listening until connected.
@@ -76,10 +77,14 @@ MongoClient.connect(URL, function (err, client) {
                 reported: 1
             }
         })
+    }else if (adminOption === "create"){
+        createDevs();
     }
 
 
 })
+
+
 
 
 
@@ -360,36 +365,36 @@ function addToDB(type, name, age, url, userIP) {
 
 
 
+function createDevs(){
+    devDB.insertOne({
+        name:'jacob',
+        reports:0
+    })
+    devDB.insertOne({
+        name:'malini',
+        reports:0
+    })
+    devDB.insertOne({
+        name:'jessica',
+        reports:0
+    })
+}
 
+const validUserIDs = ["jacob","malini","jessica"]
 
 app.post('/report/:userID',
     function (req, res) { //WHY ISNT THIS WORKING.
         var person = req.params.userID;
-        console.log("Person reported: ", person);
+            
+        if(validUserIDs.includes(person)){
+            devDB.updateOne(
+                {name:person},{$inc: {reports:1}}
+            );
+        }else{
+            console.log("Invalid person reported: " +person)
+        }
     });
 
-
-
-var numOfReports = [];
-
-function reportJacob() {
-    updateReports();
-
-}
-
-function reportMalini() {
-    updateReports();
-}
-
-function reportJessica() {
-    updateReports();
-}
-
-function updateReports() {
-    fs.readFile('reports.txt', 'utf8', function (err, data) {
-        console.log(data);
-    })
-}
 
 
 
