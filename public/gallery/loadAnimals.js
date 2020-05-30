@@ -40,9 +40,7 @@ function loadNewAnimals(){
 
 
     });
-
-
-
+}
 function createDescription(type,name,age){
     var description;
     var selector
@@ -57,7 +55,7 @@ function createDescription(type,name,age){
 
 
 
-}
+
 
 function addNewAnimal(type,image,description){
     var newImage = 'data:image/png;base64, ' + image;

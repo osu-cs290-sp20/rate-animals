@@ -378,6 +378,80 @@ app.get("/loadNewAnimals/:animalType/:animalNumber/:animalsLoaded",function(req,
 
 });
 
+//leaderboards
+app.get("/updateLeaderboard/:animalType/:animalNumber/:animalsLoaded/:sortingBy",function(req,res){  //sends back an array of animal objects.
+    var typeRequested = req.params.animalType;
+    var amountRequested = Number(req.params.animalNumber);
+    var currentlyLoaded = Number(req.params.animalsLoaded);
+    var sortingBy = Number(req.params.sortingBy);
+    var animalCursor;
+
+    if (typeRequested == "all") {
+        animalCursor = animalDB.find({
+            reported: {
+                $gte: 0
+            }
+        }).sort({score:sortingBy});
+    }else{
+        animalCursor = animalDB.find({
+            $and: [{
+                    animalType: typeRequested
+                },
+              
+                {
+                    reported: {
+                        $gte: 0
+                    }
+                }
+            ]
+        }).sort({typescore:sortingBy});
+        
+    }
+    animalCursor.toArray(function (err, animalDocs) {
+        var response = {
+            ranOut:false
+        };
+        response.animalArray = new Array();
+        console.log("Currently Loaded: ",currentlyLoaded);
+        console.log("Requested: ",amountRequested);
+        for(var i = currentlyLoaded; i < currentlyLoaded + amountRequested; i++){
+            if(!(animalDocs[i])){
+                response.ranOut = true;
+                break;
+            }
+         
+            var animalType = animalDocs[i].animalType;
+            var animalAge;
+            if(animalDocs[i].animalAge == 0){
+                animalAge = "baby";
+            }else{
+                animalAge = "adult";
+            }
+            animalImage = fs.readFileSync(animalDocs[i].imageURL, {
+                encoding: 'base64'
+            });
+            var animalName = animalDocs[i].animalName;
+
+            response.animalArray.push({
+                type:animalType,
+                name:animalName,
+                age:animalAge,
+                image:animalImage
+            })
+        }
+        response = JSON.stringify(response);
+
+        res.status(200).send(response);
+        res.end();
+
+        
+    })
+
+
+
+
+});
+
 
 
 app.get("*", function (req, res) {
