@@ -48,6 +48,11 @@ function fixSizes(){
     container.style.marginTop = marginTop + "px";
     container.style.marginLeft = margins + "px";
     container.style.marginRight = margins + "px";
-    
+}
 
+
+
+function requestNewImages(){
+
+    
 }
