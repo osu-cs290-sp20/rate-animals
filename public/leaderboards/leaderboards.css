@@ -29,13 +29,12 @@ button {
   border: solid;
 }
 button:hover {
-  background-color: #b3ecff;
+  background-color: grey;
   cursor: pointer;
 }
 
 #sort-dropdown{
   position: relative;
-  top: 50px;
   left: 150px;
   padding: 2px 5px 2px 5px; 
   list-style: none;
@@ -52,7 +51,7 @@ ul{
 
 #createBox{
     width: 400px;
-    height: 350px;
+    height: 500px;
     border: 5px solid white;
     color: white;
     overflow: scroll;
@@ -60,13 +59,12 @@ ul{
     position: relative;
     top: 50px;
     margin: auto;
-    width: 40%;
+    width: 60%;
     padding: 10px;
     text-align: center;
     background: rgba(0, 0, 0, 0.7); /*can be anything, of course*/
     background-color:  #b3ecff;
     box-shadow: 5px 10px #e6e6e660
-
 }
 
 #boardColumns {
@@ -83,8 +81,7 @@ ul{
 
 .boardItem {
     position: relative;
-    padding-inline: 60px;
-    padding: 8px 25px 0px 25px; 
+    padding-inline: 70px;
     font-weight: bold;
     color: white;
 }
@@ -113,7 +110,8 @@ a:link{
   border-radius: 10px;
   position: relative;
   justify-content: left;
- /* padding: 15px; */
+  padding: 15px; 
+  padding-bottom: 8px;
   list-style: none;
   display: flex;
   font-size: 30px;
@@ -138,24 +136,24 @@ img {
 
 /* condense */
 li.animal-rank{
-  padding: 5px 20px 5px 20px;
+  padding: 5px 60px 5px 20px;
   position: relative;
   top: 7px;
 }
 
 li.animal-name{
-  padding: 5px 20px 5px 20px;
+  padding: 5px 60px 5px 20px;
   position: relative;
   top: 7px;
 }
 li.animal-type{
-  padding: 5px 20px 5px 20px;
+  padding: 5px 60px 5px 20px;
   position: relative;
   top: 7px;
 }
 
 li.animal-age{
-  padding: 5px 20px 5px 20px;
+  padding: 5px 60px 5px 20px;
   position: relative;
   top: 7px;
 }
