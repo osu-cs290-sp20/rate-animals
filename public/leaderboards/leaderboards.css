@@ -158,3 +158,9 @@ li.animal-age{
   position: relative;
   top: 7px;
 }
+
+
+.animalImage{
+  width:200px;
+  height:200px;
+}

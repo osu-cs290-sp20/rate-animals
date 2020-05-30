@@ -5,6 +5,8 @@
         <link rel="stylesheet" href="/leaderboards/leaderboards.css" media="screen">
         
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="/leaderboards/leaderboardTemplate.js"charset = "utf-8" defer></script>
+        <script src="/leaderboards/loadAnimals.js" charset="utf-8"defer></script>
       <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,700;0,900;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
       <link href="https://fonts.googleapis.com/css2?family=Bungee+Inline&family=Bungee+Outline&display=swap" rel="stylesheet">
 
@@ -33,188 +35,13 @@
         <div id="box">
             <div id="createBox">
 
-                <ul class="animal">
-                    <li class="animal-rank">
-                        <i class="fas fa-trophy"></i> 1                    
-                    </li>
-                    <li class="animal-pic">
-                        <img src="http://placekitten.com/g/100/100">
-                    </li>
-                    <li class="animal-name">
-                        Oreo
-                    <li class="animal-type">
-                        Cat
-                    </li>
-                    <li class="animal-age">
-                        Baby
-                    </li>
-                    </li>
-                </ul>
-                
-                <ul class="animal">
-                    <li class="animal-rank">
-                        <i class="fas fa-trophy"></i> 2                    
-                    </li>
-                    <li class="animal-pic">
-                        <img src="http://placekitten.com/g/100/100">
-                    </li>
-                    <li class="animal-name">
-                        Loli
-                    <li class="animal-type">
-                        Dog
-                    </li>
-                    <li class="animal-age">
-                        Baby
-                    </li>
-                    </li>
-                </ul>
-
-                <ul class="animal">
-                    <li class="animal-rank">
-                        <i class="fas fa-trophy"></i> 3                    
-                    </li>
-                    <li class="animal-pic">
-                        <img src="http://placekitten.com/g/100/100">
-                    </li>
-                    <li class="animal-name">
-                        Milo
-                    <li class="animal-type">
-                        Dog
-                    </li>
-                    <li class="animal-age">
-                        Adult
-                    </li>
-                    </li>
-                </ul>
-
-                <ul class="animal">
-                    <li class="animal-rank">
-                        <i class="fas fa-trophy"></i> 4                    
-                    </li>
-                    <li class="animal-pic">
-                        <img src="http://placekitten.com/g/100/100">
-                    </li>
-                    <li class="animal-name">
-                        Coco
-                    <li class="animal-type">
-                        Cat
-                    </li>
-                    <li class="animal-age">
-                        Adult
-                    </li>
-                    </li>
-                </ul>
-
-                <ul class="animal">
-                    <li class="animal-rank">
-                        <i class="fas fa-trophy"></i> 5                    
-                    </li>
-                    <li class="animal-pic">
-                        <img src="http://placekitten.com/g/100/100">
-                    </li>
-                    <li class="animal-name">
-                        Moon
-                    <li class="animal-type">
-                        Cat
-                    </li>
-                    <li class="animal-age">
-                        Baby
-                    </li>
-                    </li>
-                </ul>
-                
-                <ul class="animal">
-                    <li class="animal-rank">
-                        <i class="fas fa-trophy"></i> 6                   
-                    </li>
-                    <li class="animal-pic">
-                        <img src="http://placekitten.com/g/100/100">
-                    </li>
-                    <li class="animal-name">
-                        Cleo
-                    <li class="animal-type">
-                        Dog
-                    </li>
-                    <li class="animal-age">
-                        Baby
-                    </li>
-                    </li>
-                </ul>
-
-                <ul class="animal">
-                    <li class="animal-rank">
-                        <i class="fas fa-trophy"></i> 7                   
-                    </li>
-                    <li class="animal-pic">
-                        <img src="http://placekitten.com/g/100/100">
-                    </li>
-                    <li class="animal-name">
-                        Ginger
-                    <li class="animal-type">
-                        Dog
-                    </li>
-                    <li class="animal-age">
-                        Adult
-                    </li>
-                    </li>
-                </ul>
-
-                <ul class="animal">
-                    <li class="animal-rank">
-                        <i class="fas fa-trophy"></i> 8                    
-                    </li>
-                    <li class="animal-pic">
-                        <img src="http://placekitten.com/g/100/100">
-                    </li>
-                    <li class="animal-name">
-                        Choco
-                    <li class="animal-type">
-                        Cat
-                    </li>
-                    <li class="animal-age">
-                        Adult
-                    </li>
-                    </li>
-                </ul>
-
-                <ul class="animal">
-                    <li class="animal-rank">
-                        <i class="fas fa-trophy"></i> 9                    
-                    </li>
-                    <li class="animal-pic">
-                        <img src="http://placekitten.com/g/100/100">
-                    </li>
-                    <li class="animal-name">
-                        Lucky
-                    <li class="animal-type">
-                        Cat
-                    </li>
-                    <li class="animal-age">
-                        Baby
-                    </li>
-                    </li>
-                </ul>
-                
-                <ul class="animal">
-                    <li class="animal-rank">
-                        <i class="fas fa-trophy"></i> 10                   
-                    </li>
-                    <li class="animal-pic">
-                        <img src="http://placekitten.com/g/100/100">
-                    </li>
-                    <li class="animal-name">
-                        Fluffy
-                    <li class="animal-type">
-                        Dog
-                    </li>
-                    <li class="animal-age">
-                        Baby
-                    </li>
-                    </li>
-                </ul>
+               
 
             </div>
+             
         </div>
+        <button type="button" id="loadMore">Load More</button> <!--Move this where you will -->
+       
 
   <body>
 

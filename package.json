@@ -7,6 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node node_modules/nodemon/bin/nodemon.js server.js",
     "build":"handlebars views/partials/galleryAnimal.handlebars -f public/gallery/galleryTemplate.js",
+    "build2": "handlebars views/partials/leaderboardAnimal.handlebars -f public/leaderboards/leaderboardTemplate.js",
     "prestart":"npm run build"
   },
   "repository": {
