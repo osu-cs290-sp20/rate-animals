@@ -11,7 +11,7 @@ let button = document.getElementById("rate-button")
 
 document.body.onload = fixBoxSize;
 
-window.addEventListener("resize",fixBoxSize);
+window.addEventListener("resize", fixBoxSize);
 
 function fixBoxSize() {
     let navbar = document.getElementById("topbar");
@@ -35,25 +35,31 @@ function generateAnimal() {
     newImage.style.height = randomHeight + "px";
     var lastPart = window.location.href.split("/").pop();
     var animalType;
-    if (lastPart == "all") {
-        animalType = "all";
-    } else if (lastPart == "cats") {
-        animalType = "cat";
-    } else if (lastPart == "dogs") {
-        animalType = "dog";
-    } else if(lastPart == "other"){
-        animalType = "other";
-    }else{
-        animalType = "all"
+    switch (lastPart) {
+        case "all":
+            animalType = "all";
+            break;
+        case "cats":
+            animalType = "cats";
+            break;
+        case "dogs":
+            animalType = "dog";
+            break;
+        case "other":
+            animalType = "dog";
+            break;
+        default:
+            animalType = "all";
+            break;
     }
+
     var request = new XMLHttpRequest();
-    var requestURL = '/randomAnimal' + '/' + animalType; 
-    console.log(requestURL);
-    request.open('GET',requestURL);
-    request.onload=function(){
-        results=JSON.parse(request.response);
+    var requestURL = '/randomAnimal' + '/' + animalType;
+    request.open('GET', requestURL);
+    request.onload = function () {
+        results = JSON.parse(request.response);
         newImage.src = 'data:image/png;base64, ' + results.image;
-        console.log("request received");
+
     }
     request.send();
     newImage.style.width = "auto";
@@ -73,7 +79,7 @@ function generateAnimal() {
         objectWidth = Math.random() * (buttonHolder.clientWidth - randomHeight);
         //minus 300 because we need to make sure it's in the box not at the edges.
         newImage.style.left = objectWidth + "px";
-    
+
         newImage.style.top = objectHeight + "px";
         number_of_collides++;
     } while (!collideWithButton(newImage));

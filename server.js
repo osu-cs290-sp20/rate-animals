@@ -8,12 +8,14 @@ const PORT = process.env.PORT || 3000;
 
 const validSubDirectories = ['rate', '404', 'gallery', 'guess', 'icons', 'leaderboards', 'upload', 'rate/all'];
 
+const validTypes = ["all", "other", "cats", "dogs"]
 
 
-var pathToImages = "C:/Users/jacob/cs290/finalproject/animalImages"                  //to get the path to the images.
-if(process.env.IMAGEPATH){      //to change this path if things glitch out make a environmental variable with the entire path to the images folder
-                                //THIS folder should be outside of the git repository, so that it doesn't get backed up by git. contact Jacob with any questions.
-    pathToImages = IMAGEPATh
+
+var pathToImages = "C:/Users/jacob/cs290/finalproject/animalImages" //to get the path to the images.
+if (process.env.IMAGEPATH) { //to change this path if things glitch out make a environmental variable with the entire path to the images folder
+    //THIS folder should be outside of the git repository, so that it doesn't get backed up by git. contact Jacob with any questions.
+    pathToImages = process.env.IMAGEPATH
 }
 
 
@@ -46,7 +48,7 @@ const MONGOPORT = process.env.MONGOPORT //typically 27017
 const URL = "mongodb://localhost:" + MONGOPORT + "/main";
 
 var animalDB; //where we'll make all our entries and such.
-
+var devDB
 
 MongoClient.connect(URL, function (err, client) {
     if (err) {
@@ -54,86 +56,143 @@ MongoClient.connect(URL, function (err, client) {
     }
     db = mongoDBDatabase = client.db('main');
     animalDB = db.collection('animals');
+    devDB = db.collection('dev');
 
     app.listen(PORT, function () {
         console.log("listening on port " + PORT); //don't start listening until connected.
     })
-    var adminOption = 0;          //ONLY CHANGE THIS IF YOU KNOW WHAT YOU"RE DOING THIS WILL RESET ALL SCORES
-    if(adminOption === "reset"){
-    console.log("reset all scores");
-    animalDB.updateMany({}, {$set: {
-        typeScore: 800,
-        score:800
-    }})
-    }else if(adminOption === "valid"){
-        console.log("Approving all animals");
-        animalDB.updateMany({},{$set:{reported:1}})
-    }
-
-
-})
-
-
-app.get('/randomAnimal/:animalType',function(req,res){
-    console.log("animalType: ",req.params.animalType)
-    var animalCursor;
-    if(req.params.animalType == "all"){
-        animalCursor = animalDB.find({reported:{$gte:0}});
-    }else if(req.params.animalType == "other"){
-        animalCursor = animalDB.find({$and: [{animalType:{$ne: "cat"}},{animalType:{$ne: "dog"}},{reported:{$gte:0}}]});
-    }else{
-        animalCursor = animalDB.find({$and:[{animalType: req.params.animalType},{reported:{$gte:0}}]});
-    }
-        animalCursor.toArray(function(err,animalDocs){
-          
-            var valid = false;
-            if (err) {
-                res.status(500).send("Error fetching photo from database");
-            } else {
-                var pick 
-                while(!valid){
-                    pick= Math.floor(Math.random() * animalDocs.length);
-                     animal1 = animalDocs[pick];
-                     console.log("Animal 1 is: ",animal1);
-                     if(fs.existsSync(animal1.imageURL)){
-                         valid = true;
-                     }
-                 }
-                 animal1image = fs.readFileSync(animal1.imageURL, {
-                    encoding: 'base64'
-                });
-                requestBody = {
-                    image:animal1image
-                }
-                var responseBody = JSON.stringify(requestBody);
-                res.status(200).send(responseBody);
-                res.end();
+    var adminOption = 0; //ONLY CHANGE THIS IF YOU KNOW WHAT YOU"RE DOING THIS WILL RESET ALL SCORES
+    if (adminOption === "reset") {
+        console.log("reset all scores");
+        animalDB.updateMany({}, {
+            $set: {
+                typeScore: 800,
+                score: 800
             }
-
         })
-    
+    } else if (adminOption === "valid") {
+        console.log("Approving all animals");
+        animalDB.updateMany({}, {
+            $set: {
+                reported: 1
+            }
+        })
+    }else if (adminOption === "create"){
+        createDevs();
+    }
+
+
 })
 
 
+
+
+
+const betterTypes = ["all", "other", "cat", "dog"]
+
+app.get('/randomAnimal/:animalType', function (req, res) {
+
+    var animalCursor;
+    if (betterTypes.includes(req.params.animalType)) {
+        if (req.params.animalType == "other") {
+            animalCursor = animalDB.find({
+                $and: [{
+                    animalType: {
+                        $ne: "cat"
+                    }
+                }, {
+                    animalType: {
+                        $ne: "dog"
+                    }
+                }, {
+                    reported: {
+                        $gte: 0
+                    }
+                }]
+            });
+        } else if (req.params.animalType == "all") {
+            animalCursor = animalDB.find({
+                reported: {
+                    $gte: 0
+                }
+            });
+        } else {
+            animalCursor = animalDB.find({
+                $and: [{
+                    animalType: req.params.animalType
+                }, {
+                    reported: {
+                        $gte: 0
+                    }
+                }]
+            });
+        }
+    } else {
+        res.status(404);
+        res.render('404');
+    }
+
+    animalCursor.toArray(function (err, animalDocs) {
+
+        var valid = false;
+        if (err) {
+            res.status(500).send("Error fetching photo from database");
+        } else {
+            var pick
+            while (!valid) {
+                pick = Math.floor(Math.random() * animalDocs.length);
+                animal1 = animalDocs[pick];
+
+                if (fs.existsSync(animal1.imageURL)) {
+                    valid = true;
+                }
+            }
+            animal1image = fs.readFileSync(animal1.imageURL, {
+                encoding: 'base64'
+            });
+            requestBody = {
+                image: animal1image
+            }
+            var responseBody = JSON.stringify(requestBody);
+            res.status(200).send(responseBody);
+            res.end();
+        }
+
+    })
+
+})
 
 app.get("/twoNewAnimals/:animalType", function (req, res) {
-    
-    var animalCursor; 
+
+    var animalCursor;
     if (req.params.animalType == "all") {
         animalCursor = animalDB.find({
             reported: {
                 $gte: 0
             }
         });
-    } else if(req.params.animalType == "other"){
+    } else if (req.params.animalType == "other") {
 
-        animalCursor = animalDB.find({$and: 
-            [{animalType:{$ne: "cat"}},
-            {animalType:{$ne: "dog"}},
-            {reported:{$gte:0}}]}
-        );
-    }else{
-      
+        animalCursor = animalDB.find({
+            $and: [{
+                    animalType: {
+                        $ne: "cat"
+                    }
+                },
+                {
+                    animalType: {
+                        $ne: "dog"
+                    }
+                },
+                {
+                    reported: {
+                        $gte: 0
+                    }
+                }
+            ]
+        });
+    } else {
+
         animalCursor = animalDB.find({
             animalType: req.params.animalType,
             reported: {
@@ -141,10 +200,7 @@ app.get("/twoNewAnimals/:animalType", function (req, res) {
             }
         }); //if their report is negative we don't add this to the list.
     }
-    var animal1;
-    var animal2;
-    var animal1image;
-    var animal2image;
+    var animal1, animal2, animal1image, animal2image;
     var count = 0;
     var valid = false;
     animalCursor.toArray(function (err, animalDocs) {
@@ -152,39 +208,37 @@ app.get("/twoNewAnimals/:animalType", function (req, res) {
         if (err) {
             res.status(500).send("Error fetching photo from database");
         } else {
-            var pick 
-            while(!valid){
-                pick= Math.floor(Math.random() * animalDocs.length);
-                 animal1 = animalDocs[pick];
-                 if(fs.existsSync(animal1.imageURL)){
-                     valid = true;
-                 }
-             }
-             valid = false;
+            var pick
+            while (!valid) {
+                pick = Math.floor(Math.random() * animalDocs.length);
+                animal1 = animalDocs[pick];
+                if (fs.existsSync(animal1.imageURL)) {
+                    valid = true;
+                }
+            }
+            valid = false;
             do {
                 pick = Math.floor(Math.random() * animalDocs.length);
                 animal2 = animalDocs[pick];
-                if(fs.existsSync(animal2.imageURL)){
+                if (fs.existsSync(animal2.imageURL)) {
                     valid = true;
                 }
                 count++;
-                if(count>=100){
+                if (count >= 100) {
                     break;
                 }
             } while (animal1 === animal2 || !valid) //makes sure it isn't the same animal.
         }
-        if(count>=100){
+        if (count >= 100) {
             res.status(400).send("Not enough animals of that type found");
             res.end()
-        }else{
+        } else {
             animal1image = fs.readFileSync(animal1.imageURL, {
                 encoding: 'base64'
             });
             animal2image = fs.readFileSync(animal2.imageURL, {
                 encoding: 'base64'
             });
-
-
             var response = {
                 Animal1: animal1,
                 Animal2: animal2,
@@ -195,11 +249,8 @@ app.get("/twoNewAnimals/:animalType", function (req, res) {
             res.status(200).send(response);
             res.end();
         }
-    }
-    
-
-
-)})
+    })
+})
 
 
 
@@ -208,23 +259,21 @@ app.get("/", function (req, res) {
     res.status(200);
 })
 
+
 app.get("/rate/:type", function (req, res) {
-    res.render('rate');
-    res.status(200);
+    if (!(validTypes.includes(req.params.type))) {
+        res.render('404');
+    } else {
+        res.render('rate');
+    }
 });
 
 //these are down here becaues they're in the node_modules directory. At some point should check if we can take them out of node moduesl.
 app.get('/croppie.js', function (req, res) {
-    var page = fs.readFileSync('node_modules/croppie/croppie.js');
-    res.type("application/javascript");
-    res.status(200).send(page);
-    res.end();
+    res.sendFile(__dirname + "/node_modules/croppie/croppie.js");
 })
 app.get('/croppie.css', function (req, res) {
-    var page = fs.readFileSync('node_modules/croppie/croppie.css');
-    res.type("text/css");
-    res.status(200).send(page);
-    res.end();
+    res.sendFile(__dirname +'/node_modules/croppie/croppie.css')
 })
 
 app.get("/:subdir", function (req, res) {
@@ -238,9 +287,22 @@ app.get("/:subdir", function (req, res) {
     }
 })
 
+
+app.get("/public/devs/:devname", function (req, res) {
+    var fileName = req.params.devname;
+    var fileLocation = __dirname + '/public/devs/' + fileName;
+
+    if (fs.existsSync(fileLocation)) {
+        res.sendFile(fileLocation);
+    } else {
+        res.status(404).send("Image not found");
+    }
+
+});
+
 app.get("*", function (req, res) {
     console.log("page attempted: ")
-    console.log(req.URL);
+    console.log(req.url);
     res.render('404');
     res.status(404);
 
@@ -251,7 +313,7 @@ app.get("*", function (req, res) {
 app.post('/uploadAnimal', function (req, res) {
 
     if (req.body.animalType !== "" && req.body.animalName !== "" && req.body.animalImage && (req.body.animalAge == "0" || req.body.animalAge == "1")) {
-       
+
         var data = req.body.animalImage.replace(/^data:image\/\w+;base64,/, "");
 
         var buf = Buffer.from(data, 'base64');
@@ -268,7 +330,7 @@ app.post('/uploadAnimal', function (req, res) {
                 looping = false;
             }
         }
-        addToDB(req.body.animalType, req.body.animalName, req.body.animalAge, imageURL,req.body.userIP);
+        addToDB(req.body.animalType, req.body.animalName, req.body.animalAge, imageURL, req.body.userIP);
         fs.writeFile(imageURL, buf, function () {
             res.status(200).send("Photo successfuly added!");
             res.end();
@@ -282,10 +344,11 @@ app.post('/uploadAnimal', function (req, res) {
 });
 
 
-function addToDB(type, name, age, url,userIP) {
+function addToDB(type, name, age, url, userIP) {
     const initialScore = 800;
     const initialTypeScore = 800;
-
+    var today = new Date();
+    var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
     animalDB.insertOne({
         animalType: type,
         animalName: name,
@@ -293,50 +356,51 @@ function addToDB(type, name, age, url,userIP) {
         imageURL: url,
         score: initialScore,
         typeScore: initialTypeScore,
-        reported: 0,
-        IP: userIP //safe is 0 if unknown, 1 if known, and negative if it's been reported.
+        reported: 0,//safe is 0 if unknown, 1 if known, and negative if it's been reported.
+        IP: userIP, 
+        dateAdded: date
 
     })
 }
 
 
 
+function createDevs(){
+    devDB.insertOne({
+        name:'jacob',
+        reports:0
+    })
+    devDB.insertOne({
+        name:'malini',
+        reports:0
+    })
+    devDB.insertOne({
+        name:'jessica',
+        reports:0
+    })
+}
 
+const validUserIDs = ["jacob","malini","jessica"]
 
-app.post('/report/:userID'),
+app.post('/report/:userID',
     function (req, res) { //WHY ISNT THIS WORKING.
         var person = req.params.userID;
-        console.log("Person reported: ", person);
-    }
+            
+        if(validUserIDs.includes(person)){
+            devDB.updateOne(
+                {name:person},{$inc: {reports:1}}
+            );
+        }else{
+            console.log("Invalid person reported: " +person)
+        }
+    });
 
-
-
-var numOfReports = [];
-
-function reportJacob() {
-    updateReports();
-
-}
-
-function reportMalini() {
-    updateReports();
-}
-
-function reportJessica() {
-    updateReports();
-}
-
-function updateReports() {
-    fs.readFile('reports.txt', 'utf8', function (err, data) {
-        console.log(data);
-    })
-}
 
 
 
 
 app.post('/updateScores', function (req, res) {
-    
+
 
     if (req.body.animal1ID && req.body.animal2ID && req.body.animal1Score && req.body.animal2Score && req.body.winner && req.body.scope) {
 
@@ -353,11 +417,20 @@ app.post('/updateScores', function (req, res) {
 })
 
 
-app.post('/reportAnimal',function(req,res){
+app.post('/reportAnimal', function (req, res) {
     console.log("reporting animal");
     var animalURL = req.body.reportURL;
     console.log(animalURL);
-    animalDB.updateOne({imageURL: animalURL, reported:{$lte: 0}}, { $set: { reported:-1 } })
+    animalDB.updateOne({
+        imageURL: animalURL,
+        reported: {
+            $lte: 0
+        }
+    }, {
+        $set: {
+            reported: -1
+        }
+    })
     res.status(200).send("Animal Reported");
     res.end();
 })
@@ -375,11 +448,11 @@ const minimumRank = 100;
 const maximumRank = 1600;
 
 function updateScores(animal1ID, animal1Score, animal2ID, animal2Score, winner, scope) { //if scope = 1 then it's all animals, 2 is specific type.
-    
+
     var k = 30; //constant that affects how much the score changes by
     var probabilitySecond = (1.0 / (1.0 + Math.pow(10, (animal1Score - animal2Score) / 400))); //probability of winning of player 2
     var probabilityFirst = (1.0 / (1.0 + Math.pow(10, (animal2Score - animal1Score) / 400))); //probablility of winning of player 1
-   
+
     if (winner == 1) {
         animal1Score = (animal1Score + k * (1 - probabilityFirst)).toFixed(0);
         animal2Score = (animal2Score + k * (0 - probabilitySecond)).toFixed(0);
@@ -400,24 +473,28 @@ function updateScores(animal1ID, animal1Score, animal2ID, animal2Score, winner, 
         animal2Score = maximumRank;
     }
     if (scope == 1) { //update all scores 
-        animalDB.updateOne({imageURL: animal1ID}, { $set: { score: Number(animal1Score) } })
         animalDB.updateOne({
-                imageURL: animal2ID
-            }, {
-                $set: {
-                    score: Number(animal2Score)
-                }
+            imageURL: animal1ID
+        }, {
+            $set: {
+                score: Number(animal1Score)
             }
-        )
-    } else {        //update all type scores.
+        })
         animalDB.updateOne({
-               imageURL: animal1ID
-            }, {
-                $set: {
-                    typeScore: Number(animal1Score)
-                }
+            imageURL: animal2ID
+        }, {
+            $set: {
+                score: Number(animal2Score)
             }
-        )
+        })
+    } else { //update all type scores.
+        animalDB.updateOne({
+            imageURL: animal1ID
+        }, {
+            $set: {
+                typeScore: Number(animal1Score)
+            }
+        })
         animalDB.updateOne({
             imageURL: animal2ID
         }, {
@@ -427,5 +504,3 @@ function updateScores(animal1ID, animal1Score, animal2ID, animal2Score, winner, 
         })
     }
 }
-
-
