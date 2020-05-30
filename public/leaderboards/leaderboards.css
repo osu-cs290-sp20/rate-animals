@@ -1,3 +1,8 @@
+*{
+  margin:0px;
+  padding:0px;
+  font-family: 'Rubik', sans-serif;
+}
 
 h1{
     font-family: 'Bungee Outline', cursive;
@@ -8,19 +13,45 @@ h1{
     text-align: center;
 }
 
-h2 {
-  font-family: 'Bungee Outline', cursive;
+button {
+  background: none;
+  cursor: pointer;
   color: white;
+  background-color: #b3ecff;
   font-size: 50px;
+  /* c
+  top: 50px;
+  left: 150px;
+  padding: 2px 5px 2px 5px; */
+  padding: 3px;
+  border-radius: 15px;
+  border-color: none;
+  border: solid;
+}
+button:hover {
+  background-color: grey;
+  cursor: pointer;
+}
+
+#sort-dropdown{
   position: relative;
-  top: 112px;
-  left: 100px;
-  text-align: left;
+  left: 150px;
+  padding: 2px 5px 2px 5px; 
+  list-style: none;
+}
+
+a#sort-choice{
+  color: white;
+
+}
+
+ul{
+  list-style: none;
 }
 
 #createBox{
     width: 400px;
-    height: 350px;
+    height: 500px;
     border: 5px solid white;
     color: white;
     overflow: scroll;
@@ -28,13 +59,12 @@ h2 {
     position: relative;
     top: 50px;
     margin: auto;
-    width: 40%;
+    width: 60%;
     padding: 10px;
     text-align: center;
     background: rgba(0, 0, 0, 0.7); /*can be anything, of course*/
     background-color:  #b3ecff;
-    box-shadow: 5px 10px #e6e6e6
-
+    box-shadow: 5px 10px #e6e6e660
 }
 
 #boardColumns {
@@ -44,15 +74,14 @@ h2 {
     margin: 0px 0px 0px 0px;
     position: relative;
     top: 40px;
-  position: relative;
+    position: relative;
     justify-content: center;
     font-size: 30px;  
 }
 
 .boardItem {
     position: relative;
-    padding-inline: 60px;
-    padding: 8px 25px 0px 25px; 
+    padding-inline: 70px;
     font-weight: bold;
     color: white;
 }
@@ -65,6 +94,9 @@ h2 {
   color: white;
 }
 
+a:link{
+  text-decoration: none;
+}
 
 /* Mini boxes */
 #createBox {
@@ -78,7 +110,8 @@ h2 {
   border-radius: 10px;
   position: relative;
   justify-content: left;
- /* padding: 15px; */
+  padding: 15px; 
+  padding-bottom: 8px;
   list-style: none;
   display: flex;
   font-size: 30px;
@@ -91,17 +124,11 @@ h2 {
   background-image: linear-gradient(#89cff0,#bb99ff);
 
 }
-
+/*
 ul .animal{
   padding: 10px;
-}
+}*/
 
-
-li{
-  padding: 5px 20px 5px 20px;
-  position: relative;
-  top: 7px;
-}
 
 img {
   border-radius: 20%;
@@ -109,20 +136,24 @@ img {
 
 /* condense */
 li.animal-rank{
+  padding: 5px 60px 5px 20px;
   position: relative;
   top: 7px;
 }
 
 li.animal-name{
+  padding: 5px 60px 5px 20px;
   position: relative;
   top: 7px;
 }
 li.animal-type{
+  padding: 5px 60px 5px 20px;
   position: relative;
   top: 7px;
 }
 
 li.animal-age{
+  padding: 5px 60px 5px 20px;
   position: relative;
   top: 7px;
 }
