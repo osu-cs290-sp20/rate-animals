@@ -11,10 +11,14 @@
   }
 
 .gallery-container {
-    margin: 50px 10%;
+    margin-top:30px;
     display: flex;
     flex-wrap: wrap;
     text-align: center;
+    justify-content:center;
+    height:70%;
+    overflow-y:auto;
+    width:100%;
 }
 
 .picture {
@@ -82,10 +86,11 @@ h1 {
 #greaterContainer {
     border-radius: 30px;
     background-color: #ffffff;
-    height: 70%;
+    height:750px;
+    
     width: 70%;
-    padding: 30px;
-    margin: 80px;
+   
+    margin-top:80px;
     border: 10px;
 }
 
