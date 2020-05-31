@@ -57,15 +57,15 @@ function createDescription(type,name,age){
 
 
 
-function addNewAnimal(type,image,description){
+function addNewAnimal(name,image,description){
     var newImage = 'data:image/png;base64, ' + image;
     
     var animalContext = {
-        animalType:type,
+        animalName:name,
         animalImage: newImage,
         description:description
     }
-    console.log(animalContext.animalImage);
+   
     var animalHTML = Handlebars.templates.galleryAnimal(animalContext);
     
     var container = document.querySelector(".gallery-container");
