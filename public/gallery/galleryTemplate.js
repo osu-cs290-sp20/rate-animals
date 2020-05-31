@@ -8,9 +8,9 @@ templates['galleryAnimal'] = template({"compiler":[8,">= 4.3.0"],"main":function
         return undefined
     };
 
-  return "<article class=\"gallery\">\r\n    <div class = \"content\">  \r\n        <h3 class = \"animalName\"> \r\n            <p>"
-    + alias4(((helper = (helper = lookupProperty(helpers,"animalName") || (depth0 != null ? lookupProperty(depth0,"animalName") : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"animalName","hash":{},"data":data,"loc":{"start":{"line":4,"column":15},"end":{"line":4,"column":29}}}) : helper)))
-    + "</p>\r\n        </h3>    \r\n        <img class = \"animalPicture\" src=\""
+  return "<article class=\"gallery\">\r\n    <div class = \"content\">  \r\n        <h3 class = \"animalName\"> \r\n            "
+    + alias4(((helper = (helper = lookupProperty(helpers,"animalName") || (depth0 != null ? lookupProperty(depth0,"animalName") : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"animalName","hash":{},"data":data,"loc":{"start":{"line":4,"column":12},"end":{"line":4,"column":26}}}) : helper)))
+    + "\r\n        </h3>    \r\n        <img class = \"animalPicture\" src=\""
     + alias4(((helper = (helper = lookupProperty(helpers,"animalImage") || (depth0 != null ? lookupProperty(depth0,"animalImage") : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"animalImage","hash":{},"data":data,"loc":{"start":{"line":6,"column":42},"end":{"line":6,"column":57}}}) : helper)))
     + "\" />\r\n        <p class = \"description\">"
     + alias4(((helper = (helper = lookupProperty(helpers,"description") || (depth0 != null ? lookupProperty(depth0,"description") : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"description","hash":{},"data":data,"loc":{"start":{"line":7,"column":33},"end":{"line":7,"column":48}}}) : helper)))
