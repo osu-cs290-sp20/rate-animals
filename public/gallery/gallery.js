@@ -41,7 +41,7 @@ function fixSizes(){
     var container = document.getElementById("greaterContainer");
     var navbar = document.getElementById("topbar")
     var navbarHeight = navbar.offsetHeight;
-    var boxHeight =(window.innerHeight-navbarHeight)*.8;
+    var boxHeight =(window.innerHeight-navbarHeight)*.9;
     var marginTop = ((window.innerHeight-navbarHeight)-boxHeight)/2;
     container.style.width = boxWidth + "px";
     container.style.height = boxHeight+ "px";

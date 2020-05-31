@@ -59,9 +59,14 @@ h1 {
     top: -20px;
     text-align: center;
     text-decoration: None;
+    color:white;
+    font-size:2vw;
 }
 
-
+.description{
+    color:white;
+    font-size:1.5vw;
+}
 
 #options {
     display: flex;
