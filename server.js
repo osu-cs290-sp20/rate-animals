@@ -317,7 +317,7 @@ app.get("/loadNewAnimals/:animalType/:animalNumber/:animalsLoaded",function(req,
             reported: {
                 $gte: 0
             }
-        }).sort({_id:1});
+        }).sort({animalName:1});
     }else{
         animalCursor = animalDB.find({
             $and: [{
@@ -330,7 +330,7 @@ app.get("/loadNewAnimals/:animalType/:animalNumber/:animalsLoaded",function(req,
                     }
                 }
             ]
-        }).sort({_id:1});
+        }).sort({animalName:1});
         
     }
     animalCursor.toArray(function (err, animalDocs) {
