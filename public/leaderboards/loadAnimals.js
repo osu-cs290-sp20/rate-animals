@@ -5,6 +5,9 @@ var sortingBy = "-1"                 //1 low to high, -1 if high to low.
 
 let animals = [];
 
+
+
+
 window.addEventListener("load",loadNewAnimals);
 
 document.getElementById("loadMore").addEventListener("click",loadNewAnimals);
@@ -27,33 +30,48 @@ function loadNewAnimals(){
         }
         for(var i = 0; i < animalArray.length;i++){
             animalsLoaded+=1;
-            animals.push(animalArray[i]);
-            addNewAnimal(animalArray[i].type,animalArray[i].image,animalArray[i].name,animalArray[i].age);
-        
+            animals.push({animal:animalArray[i],
+                numberRank:animalsLoaded});
+            addNewAnimal(animalArray[i].type,animalArray[i].image,animalArray[i].name,animalArray[i].age);  
         }
 
 
 
     });
-
-
-    function addNewAnimal(type,image,name,age){
-        var newImage = 'data:image/png;base64, ' + image;
-        type = type[0].toUpperCase() + type.slice(1);
-        age = age[0].toUpperCase() + age.slice(1);
-        var animalContext = {
-            animalImage:newImage,
-            animalName:name,
-            animalType: type,
-            animalAge:age
-        }
-        
-        var animalHTML = Handlebars.templates.leaderboardAnimal(animalContext);
-        
-        var container = document.querySelector("#createBox");
-        container.insertAdjacentHTML("beforeend",animalHTML);
-    
-    
-    
-    }
 }
+function addNewAnimal(type,image,name,age){
+    var newImage = 'data:image/png;base64, ' + image;
+    type = type[0].toUpperCase() + type.slice(1);
+    age = age[0].toUpperCase() + age.slice(1);
+    var animalContext = {
+        animalImage:newImage,
+        animalName:name,
+        animalType: type,
+        animalAge:age
+    }
+    
+    var animalHTML = Handlebars.templates.leaderboardAnimal(animalContext);
+    
+    var container = document.querySelector("#createBox");
+    container.insertAdjacentHTML("beforeend",animalHTML);
+}
+
+
+function demo(){
+    
+    if(sortingBy === "-1"){
+        sortingBy = "1";
+    }else{
+        sortingBy = "-1";
+    }
+    animalsLoaded = 0;
+    animals = [];
+    var box = document.querySelector("#createBox");
+    while (box.firstChild) {
+        box.removeChild(box.firstChild);
+    }
+    loadNewAnimals();
+
+}
+
+
