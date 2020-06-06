@@ -1,17 +1,19 @@
 var animalsLoaded = 0;
-var numberPerLoad = 10;
+var numberPerLoad = 15;
 var animalType = "all"; //this should be things like "dog" "cat" "monkey" etc...
 var sortingBy = "-1"                 //1 low to high, -1 if high to low.
 
 let animals = [];
 
 
-
+var loadMoreButton = document.getElementById("loadMore")
 
 window.addEventListener("load",loadNewAnimals);
 
 document.getElementById("loadMore").addEventListener("click",loadNewAnimals);
 function loadNewAnimals(){
+    var container = document.querySelector("#createBox");
+    container.removeChild(loadMoreButton);
     var request = new XMLHttpRequest();
     var requestURL =  "/updateLeaderboard/"+animalType+"/"+numberPerLoad+"/"+animalsLoaded + "/" + sortingBy; 
     console.log(requestURL);                                   //make this better later
@@ -23,20 +25,16 @@ function loadNewAnimals(){
         
         var animalArray = results.animalArray;
         var ranOut = results.ranOut;
-        if(ranOut){
-            var button = document.getElementById("loadMore");
-            button.textContent = "All animals have loaded"
-            button.style.cursor = "default";
-        }
+        
         for(var i = 0; i < animalArray.length;i++){
             animalsLoaded+=1;
             animals.push({animal:animalArray[i],
                 numberRank:animalsLoaded});
             addNewAnimal(animalArray[i].type,animalArray[i].image,animalArray[i].name,animalArray[i].age);  
         }
-
-
-
+        if(!ranOut){
+            container.appendChild(loadMoreButton);
+        }
     });
 }
 function addNewAnimal(type,image,name,age){

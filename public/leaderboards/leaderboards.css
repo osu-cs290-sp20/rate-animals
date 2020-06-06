@@ -66,12 +66,7 @@ ul{
     background-color:  #b3ecff;
     box-shadow: 5px 10px #e6e6e660
 }
-button#loadMore{
-  font-size: 30px;
-  position: relative;
-  bottom: 45px;
-  left: 770px;
-}
+
 
 #boardColumns {
     display: flex;
@@ -169,4 +164,12 @@ li.animal-age{
 .animalImage{
   width:200px;
   height:200px;
+}
+
+
+#loadMore{
+  position: relative;
+  justify-content: left;
+  margin-left:0px;
+  padding-left:0px;
 }
