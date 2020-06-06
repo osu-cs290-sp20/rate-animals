@@ -1,9 +1,7 @@
 
 var animalsLoaded = 0; //We will send this number and request items from the sorted array of animals beginning at this index.
 var numberPerLoad = 10; //how many animals load whenever we load more.
-var animalType = "all"
-
-
+var animalType = "all" //dog cat 
 let animals = [];
 
 
@@ -41,6 +39,8 @@ function loadNewAnimals(){
 
     });
 }
+
+
 function createDescription(type,name,age){
     var description;
     var selector
@@ -72,5 +72,15 @@ function addNewAnimal(name,image,description){
     container.insertAdjacentHTML("beforeend",animalHTML);
 
 
+}
+
+
+function demo(){
+
+    var box = document.querySelector(".gallery-container");
+    while (box.firstChild) {
+        box.removeChild(box.firstChild);
+    }
+    
 
 }
