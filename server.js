@@ -61,6 +61,7 @@ MongoClient.connect(URL, function (err, client) {
     app.listen(PORT, function () {
         console.log("listening on port " + PORT); //don't start listening until connected.
     })
+    cleanDatabase();
     var adminOption = 0; //ONLY CHANGE THIS IF YOU KNOW WHAT YOU"RE DOING THIS WILL RESET ALL SCORES
     if (adminOption === "reset") {
         console.log("reset all scores");
@@ -454,6 +455,10 @@ app.get("/updateLeaderboard/:animalType/:animalNumber/:animalsLoaded/:sortingBy"
 
 
 
+
+
+
+
 app.get("*", function (req, res) {
     console.log("page attempted: ")
     console.log(req.url);
@@ -657,4 +662,25 @@ function updateScores(animal1ID, animal1Score, animal2ID, animal2Score, winner, 
             }
         })
     }
+}
+
+
+
+
+function cleanDatabase(){       //cleans animal database and flags all animals that don't have images. Sets their flag to -10
+    const missingImageTag = -10
+    var animalCursor = animalDB.find({reported:{$not: {$lte:missingImageTag}}});
+    animalCursor.toArray(function (err, animalDocs) {
+       
+        for(var i = 0; i < animalDocs.length; i++){
+            var currentAnimal = animalDocs[i];
+            
+            if(!(fs.existsSync(currentAnimal.imageURL))){
+                animalDB.updateOne(
+                    {imageURL:currentAnimal.imageURL},
+                    {$set:{reported:-10}}
+                )
+            }
+        }
+    })
 }
