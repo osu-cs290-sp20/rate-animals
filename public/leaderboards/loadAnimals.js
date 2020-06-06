@@ -1,5 +1,5 @@
 var animalsLoaded = 0;
-var numberPerLoad = 50;
+var numberPerLoad = 10;
 var animalType = "all"; //this should be things like "dog" "cat" "monkey" etc...
 var sortingBy = "-1"                 //1 low to high, -1 if high to low.
 
@@ -25,7 +25,7 @@ function loadNewAnimals(){
         var ranOut = results.ranOut;
         if(ranOut){
             var button = document.getElementById("loadMore");
-            button.textContent = "No more animals!"
+            button.textContent = "All animals have loaded"
             button.style.cursor = "default";
         }
         for(var i = 0; i < animalArray.length;i++){
