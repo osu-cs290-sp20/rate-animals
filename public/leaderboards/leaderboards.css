@@ -62,7 +62,7 @@ ul{
     width: 60%;
     padding: 10px;
     text-align: center;
-    background: rgba(0, 0, 0, 0.7); /*can be anything, of course*/
+    background: rgba(0, 0, 0, 0.7); 
     background-color:  #b3ecff;
     box-shadow: 5px 10px #e6e6e660
 }
@@ -142,18 +142,18 @@ li.animal-rank{
   top: 7px;
 }
 
-li.animal-name{
+h1.animal-name{
   padding: 5px 60px 5px 20px;
   position: relative;
   top: 7px;
 }
-li.animal-type{
+p.animal-type{
   padding: 5px 60px 5px 20px;
   position: relative;
   top: 7px;
 }
 
-li.animal-age{
+p.animal-age{
   padding: 5px 60px 5px 20px;
   position: relative;
   top: 7px;
