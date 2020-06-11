@@ -60,8 +60,7 @@ ul{
     margin: auto;
     width: 60%;
     padding: 10px;
-    text-align: center;
-    background: rgba(0, 0, 0, 0.7); /*can be anything, of course*/
+    background: rgba(0, 0, 0, 0.7); 
     background-color:  #b3ecff;
     box-shadow: 5px 10px #e6e6e660
 }
@@ -85,13 +84,12 @@ a:link{
   padding: 15px; 
   padding-bottom: 8px;
   list-style: none;
-  display: flex;
+  /* display: flex; */
   font-size: 30px;
   justify-content: left;
   /* space between each row */
   margin: 2px 10px 10px 2px;
   background-image: linear-gradient(#89cff0,#bb99ff);
-
 }
 
 img {
@@ -99,10 +97,25 @@ img {
 }
 
 /* condense */
-li.animal-rank{
-  padding: 5px 60px 5px 20px;
-  position: relative;
-  top: 7px;
+.animal-rank{
+  /* padding: 5px 60px 5px 20px; */
+  /* position: relative; */
+  /* top: 40px; */
+  float: right;
+  font-size: 45px;
+  /* right: 30px; */
+  margin-top: 49px;
+  margin-right: 30px;
+}
+
+
+.animal-rank-trophy{
+  float: right;
+  font-size: 45px;
+  /* right: 30px; */
+  /* margin-left: 0px; */
+  margin-top: 49px;
+  margin-right: 30px;
 }
 
 li.animal-name{
@@ -124,8 +137,12 @@ li.animal-age{
 
 
 .animalImage{
-  width:200px;
-  height:200px;
+  width: 150px;
+  height: 150px;
+  float: left;
+  margin-right: 15px;
+  border: solid;
+  padding: 5px;
 }
 
 
@@ -134,4 +151,17 @@ li.animal-age{
   justify-content: left;
   margin-left:0px;
   padding-left:0px;
+}
+
+ul.animal {
+  height: 170px;
+}
+
+h3 {
+  font-weight: 500;
+
+}
+
+h5 {
+  font-weight: 100;
 }
