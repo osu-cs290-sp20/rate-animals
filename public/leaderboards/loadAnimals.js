@@ -24,6 +24,34 @@ var menu = document.getElementById("sort-dropdown");
 var specifiedElement = document.getElementById('sort-dropdown');
 
 
+
+function fixColors(){
+    var animalRanks = document.getElementsByClassName("animal-rank");
+    console.log(animalRanks);
+    for(var i = 0; i < animalRanks.length; i++){
+        if(animalRanks[i].textContent === "1"){
+            setColor(animalRanks[i],'#Daa520')
+            
+        }else if(animalRanks[i].textContent === "2"){
+            setColor(animalRanks[i],'#C0C0C0')
+        }else if(animalRanks[i].textContent === "3"){
+            setColor(animalRanks[i],'#B87333')
+
+        }
+    }
+
+}
+function setColor(node,color){
+    node.style.color = color;
+    var parent = node.parentNode;
+    console.log(parent.children);
+    var trophy = parent.children[0].children[0];
+    trophy.style.color = color;
+
+}
+
+
+
 function displaySortOptions(){
     byHighest.style.visibility = "visible";
     byLowest.style.visibility = "visible";
@@ -105,7 +133,9 @@ function loadNewAnimals(){
          if(!ranOut){
              container.appendChild(loadMoreButton);
          }
+         fixColors()
     });
+   
 }
 
 function addNewAnimal(type,image,name,age,score){
