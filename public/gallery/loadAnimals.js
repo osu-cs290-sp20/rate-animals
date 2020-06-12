@@ -116,3 +116,46 @@ function showSearch(){
       }
 }
 
+
+var choiceDropdown = document.getElementById("choice");
+var choice = "alpha";
+console.log(choice);
+
+choiceDropdown.addEventListener('change',  sortFunction)
+
+function sortFunction(){
+    console.log(animals);
+    choice = choiceDropdown.value;
+    console.log(choice);
+
+    switch (choice){
+        case "alpha": 
+            removeAnimals();
+            for(var i=0; i < animals.length; i++){
+                var description = createDescription(animals[i].type,animals[i].name,animals[i].age);
+                addNewAnimal(animals[i].name,animals[i].image,description);
+                
+            }
+            break;
+        case "reverse":
+            removeAnimals();
+            for(var i= animals.length -1; i >= 0; i--){
+            
+                var description = createDescription(animals[i].type,animals[i].name,animals[i].age);
+                addNewAnimal(animals[i].name,animals[i].image,description);
+                
+            }
+            break;
+        default:
+            removeAnimals();
+            for(var i=0; i < animals.length; i++){
+                if (animals[i].age === choice){
+                    var description = createDescription(animals[i].type,animals[i].name,animals[i].age);
+                    addNewAnimal(animals[i].name,animals[i].image,description);
+                }
+                
+            }
+
+    }
+}
+

@@ -104,9 +104,10 @@ h1 {
     margin-left: 20px;
     margin-right: 20px;
     padding: 0px 20px 20px 20px;
-    position: relative;
+    position: fixed;
     justify-content: center;
     max-height: 30px;
+    visibility: hidden;
 }
 
 #navbar-search-button {
@@ -114,6 +115,11 @@ h1 {
     font-size: 15px;
     border-radius: 5px;
     background-image: linear-gradient(#89cff0,#bb99ff);
+    visibility: hidden;
+}
+
+#navbar-search-input {
+    visibility: hidden;
 }
 
 #navbar-search-button:hover {
