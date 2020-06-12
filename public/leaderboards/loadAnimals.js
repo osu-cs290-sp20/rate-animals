@@ -21,7 +21,7 @@ var byHighest = document.getElementById("topFirst");
 var byLowest = document.getElementById("lastFirst");
 var menu = document.getElementById("sort-dropdown");
 
-var specifiedElement = document.getElementById('sort-dropdown');
+var specifiedElement = sortButton;
 
 
 
