@@ -1,9 +1,10 @@
 
 var animalsLoaded = 0; //We will send this number and request items from the sorted array of animals beginning at this index.
-var numberPerLoad = 15; //how many animals load whenever we load more.
+var numberPerLoad = 10; //how many animals load whenever we load more.
 var animalType = "all" //dog cat 
 let animals = [];
 var nameSearch = Handlebars.templates.nameSearch();
+
 
 window.addEventListener("load",loadNewAnimals);
 
@@ -12,7 +13,7 @@ document.getElementById("loadMore").addEventListener("click",loadNewAnimals);
 
 function loadNewAnimals(){
     var request = new XMLHttpRequest();
-    var requestURL =  "/loadNewAnimals/"+animalType+"/"+numberPerLoad+"/"+animalsLoaded; 
+    var requestURL =  "/loadNewAnimals/"+animalType+"/"+numberPerLoad+"/"+animalsLoaded;
     console.log(requestURL);                                   //make this better later
     request.open('GET',requestURL);
     request.send();
@@ -34,8 +35,10 @@ function loadNewAnimals(){
             addNewAnimal(animalArray[i].name,animalArray[i].image,description);
             
         }
+        
         sortFunction();
-
+        
+        
 
 
     });
@@ -77,7 +80,6 @@ function addNewAnimal(name,image,description){
 
 
 function removeAnimals(){
-
     var box = document.querySelector(".gallery-container");
     while (box.firstChild) {
         box.removeChild(box.firstChild);
@@ -115,34 +117,33 @@ var choice = "alpha";
 choiceDropdown.addEventListener('change',  sortFunction)
 
 function sortFunction(){
-    console.log(animals);
+
     choice = choiceDropdown.value;
 
     removeName();
     switch (choice){
         case "alpha": 
+            loadingBy = 1
             removeAnimals();
-            for(var i=0; i < animals.length; i++){
+            for(var i = 0; i < animals.length; i++){
                 var description = createDescription(animals[i].type,animals[i].name,animals[i].age);
                 addNewAnimal(animals[i].name,animals[i].image,description);
-                
             }
             break;
         case "reverse":
+            loadingBy = -1
             removeAnimals();
-            for(var i= animals.length -1; i >= 0; i--){
-            
+            for(var i = animals.length-1; i >=0; i--){
                 var description = createDescription(animals[i].type,animals[i].name,animals[i].age);
                 addNewAnimal(animals[i].name,animals[i].image,description);
-                
             }
             break;
         case "name":
             addName();
             break;
-            
         default:
             removeAnimals();
+            console.log("Default behavior");
             for(var i=0; i < animals.length; i++){
                 if (animals[i].age === choice){
                     var description = createDescription(animals[i].type,animals[i].name,animals[i].age);
@@ -159,9 +160,9 @@ function sortFunction(){
 function addName(){
     var options = document.getElementById("options");
     var searchBar = document.querySelector(".listOption-navbar-search");
-    console.log(options);
-   
+    
     options.insertAdjacentHTML("beforeend",nameSearch);
+    document.getElementById("navbar-search-button").addEventListener('click',showSearch);
    
 };
 function removeName(){

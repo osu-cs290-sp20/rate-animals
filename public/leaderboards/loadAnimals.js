@@ -21,7 +21,7 @@ var byHighest = document.getElementById("topFirst");
 var byLowest = document.getElementById("lastFirst");
 var menu = document.getElementById("sort-dropdown");
 
-var specifiedElement = document.getElementById('sort-dropdown');
+var specifiedElement = sortButton;
 
 
 
@@ -45,7 +45,7 @@ function setColor(node,color){
     node.style.color = color;
     var parent = node.parentNode;
     console.log(parent.children);
-    var trophy = parent.children[0].children[0];
+    var trophy = parent.children[0].children[0];        //make this work better, it should work no matter where the trophy is.
     trophy.style.color = color;
 
 }
@@ -186,5 +186,6 @@ function removeAnimals(){
 }
 
 sortButton.addEventListener('click', displaySortOptions);
+
 //window.addEventListener('click', outsideClick);
 //byLowest.addEventListener('click', sortbyLowest);
