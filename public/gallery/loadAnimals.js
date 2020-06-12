@@ -1,6 +1,6 @@
 
 var animalsLoaded = 0; //We will send this number and request items from the sorted array of animals beginning at this index.
-var numberPerLoad = 10; //how many animals load whenever we load more.
+var numberPerLoad = 2; //how many animals load whenever we load more.
 var animalType = "all" //dog cat 
 let animals = [];
 

@@ -71,15 +71,12 @@ h1 {
 #options {
     display: flex;
     list-style: none;
-    padding: 8px 20px 10px 0px;
+    padding: 20px 20px 20px 20px;
     position: relative;
-    top: 40px;
+    top: 50px;
     justify-content: center;
 }
 
-#options :hover {
-    color: #319df6;
-}
 
 .listOption a{
     font-size: 60px;
@@ -101,22 +98,21 @@ h1 {
 }
 
 
-.listOption-navbar-search {
+#listOption-navbar-search{
     display: flex;
     list-style: none;
     margin-left: 20px;
     margin-right: 20px;
-    padding: 40px 20px 10px 10px;
+    padding: 0px 20px 20px 20px;
     position: relative;
     justify-content: center;
     max-height: 30px;
 }
 
 #navbar-search-button {
-    margin-left: 20px;
+    margin-left: 10px;
     font-size: 15px;
     border-radius: 5px;
-    min-width: 30px;
     background-image: linear-gradient(#89cff0,#bb99ff);
 }
 
@@ -126,5 +122,37 @@ h1 {
 
 a:hover, a:focus {
   color: #319df6;
+}
+
+
+#loadMore {
+    margin-left: 20px;
+    font-size: 25px;
+    border-radius: 5px;
+    background-image: linear-gradient(#89cff0,#bb99ff);
+
+}
+
+#loadButton{
+    width:100%;
+    text-align:center;
+    position:relative;
+    overflow:hidden;
+    z-index:0;
+    margin-top: 20px;
+}
+
+
+#ageSelectorHolder{
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 20px;
+
+}
+
+
+#nameSelectorHolder{
+    padding-left: 10px;
+
 }
 

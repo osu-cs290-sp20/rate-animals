@@ -16,20 +16,35 @@
     <div id = "greaterContainer" >
     <h1>Gallery</h1>
 
-        <ul id="options">
-            <li class="listOption"><a href="#"class = "navitem-link"></a>Name</a></li>
-            <li class="listOption"><a href="#"class = "navitem-link"></a>Animal</a></li>
-            <li class="listOption"><a href="#"class = "navitem-link"></a>Age</a></li>
-            <li class="listOption-navbar-search">
-                <input type="text" id="navbar-search-input" placeholder="Search...">
+        <div id="options">
+            <div id="nameSelectorHolder">
+                <select id="choice">
+                    <option value="alpha" class="selectOption">A-Z</option>
+                    <option value="reverse">Z-A</option> 
+                    <option value="age" class="selectOption">Age</option>
+                    <option value="adult">Adult </option>
+                    <option value="baby">Baby</option>
+                </select>  
+            </div>
+
+
+            <div class="listOption-navbar-search">
+                <input type="text" id="navbar-search-input" placeholder="Search for name...">
                 <button type="button" id="navbar-search-button"><i class="fas fa-search"></i></button>
-           </li>
-        </ul>
+            </div>
+        </div>
 
 
     <main class="gallery-container">
         
 
    </main>
-   <button type="button" id="loadMore">Load More</button>
+
+   <div id = "loadButton"> 
+    <button type="button" id="loadMore">Load More</button>
+   </div>
+
+
+
+
 <script>var current = document.getElementById("gallery"); current.classList.toggle("current"); current.removeChild(document.getElementById("gallery-link")); current.textContent = "Gallery";</script>
