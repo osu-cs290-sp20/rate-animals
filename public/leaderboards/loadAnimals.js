@@ -3,6 +3,8 @@ var numberPerLoad = 10;
 var animalType = "all"; //this should be things like "dog" "cat" "monkey" etc...
 var sortingBy = "-1"                 //1 low to high, -1 if high to low (default is high to low)
 var rank = 0;
+var totalAnimals = 0;
+
 
 let animals = [];
 
@@ -64,6 +66,7 @@ function loadNewAnimals(){
         
         var animalArray = results.animalArray;
         var ranOut = results.ranOut;
+        totalAnimals = results.totalAnimals;
         
          for(var i = 0; i < animalArray.length;i++){
              animalsLoaded+=1;
