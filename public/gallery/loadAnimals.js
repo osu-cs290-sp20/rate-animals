@@ -1,6 +1,6 @@
 
 var animalsLoaded = 0; //We will send this number and request items from the sorted array of animals beginning at this index.
-var numberPerLoad = 2; //how many animals load whenever we load more.
+var numberPerLoad = 15; //how many animals load whenever we load more.
 var animalType = "all" //dog cat 
 let animals = [];
 
@@ -17,7 +17,7 @@ function loadNewAnimals(){
     request.open('GET',requestURL);
     request.send();
     request.addEventListener('load',function(event){
-        console.log("got response");
+       
         var results = JSON.parse(request.response);
         
         var animalArray = results.animalArray;
@@ -32,8 +32,9 @@ function loadNewAnimals(){
             animals.push(animalArray[i]);
             var description = createDescription(animalArray[i].type,animalArray[i].name,animalArray[i].age);
             addNewAnimal(animalArray[i].name,animalArray[i].image,description);
-        
+            
         }
+        showSearch()
 
 
 
@@ -75,12 +76,86 @@ function addNewAnimal(name,image,description){
 }
 
 
-function demo(){
+function removeAnimals(){
 
     var box = document.querySelector(".gallery-container");
     while (box.firstChild) {
         box.removeChild(box.firstChild);
     }
     
-
 }
+
+
+var searchButton = document.getElementById("navbar-search-button");
+
+searchButton.addEventListener('click',  showSearch)
+
+
+window.addEventListener('keypress', function (e) {
+    if(e.keyCode === 13){
+        showSearch();
+    }
+}, false);
+
+
+
+function showSearch(){
+    console.log("the search button was clicked");
+    var searchInput = document.getElementById("navbar-search-input").value.toLowerCase();
+    console.log(searchInput);
+
+    removeAnimals();
+
+    for(var i=0; i < animals.length; i++){
+        var animalTitle = animals[i].name.toLowerCase();
+        
+        if (animalTitle.indexOf(searchInput) !== -1){
+            var description = createDescription(animals[i].type,animals[i].name,animals[i].age);
+            addNewAnimal(animals[i].name,animals[i].image,description);
+        }
+      }
+}
+
+
+var choiceDropdown = document.getElementById("choice");
+var choice = "alpha";
+console.log(choice);
+
+choiceDropdown.addEventListener('change',  sortFunction)
+
+function sortFunction(){
+    console.log(animals);
+    choice = choiceDropdown.value;
+    console.log(choice);
+
+    switch (choice){
+        case "alpha": 
+            removeAnimals();
+            for(var i=0; i < animals.length; i++){
+                var description = createDescription(animals[i].type,animals[i].name,animals[i].age);
+                addNewAnimal(animals[i].name,animals[i].image,description);
+                
+            }
+            break;
+        case "reverse":
+            removeAnimals();
+            for(var i= animals.length -1; i >= 0; i--){
+            
+                var description = createDescription(animals[i].type,animals[i].name,animals[i].age);
+                addNewAnimal(animals[i].name,animals[i].image,description);
+                
+            }
+            break;
+        default:
+            removeAnimals();
+            for(var i=0; i < animals.length; i++){
+                if (animals[i].age === choice){
+                    var description = createDescription(animals[i].type,animals[i].name,animals[i].age);
+                    addNewAnimal(animals[i].name,animals[i].image,description);
+                }
+                
+            }
+
+    }
+}
+
