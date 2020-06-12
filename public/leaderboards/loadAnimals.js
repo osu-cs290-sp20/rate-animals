@@ -1,20 +1,58 @@
 var animalsLoaded = 0;
 var numberPerLoad = 10;
 var animalType = "all"; //this should be things like "dog" "cat" "monkey" etc...
-var sortingBy = "-1"                 //1 low to high, -1 if high to low.
+var sortingBy = "-1"                 //1 low to high, -1 if high to low (default is high to low)
 var rank = 0;
 
 let animals = [];
 
 
-var loadMoreButton = document.getElementById("loadMore")
+var loadMoreButton = document.getElementById("loadMore");
+
+
+
+/***************************************************************/
+
+
+/* Leaderboards sorting button */
+var sortButton = document.getElementById("sort-by-button");
+var byHighest = document.getElementById("topFirst");
+var byLowest = document.getElementById("lastFirst");
+var menu = document.getElementById("sort-dropdown");
+
+function displaySortOptions(){
+    byHighest.style.visibility = "visible";
+    byLowest.style.visibility = "visible";
+}
+
+function displayLowestFirst() {
+    sortingBy = "1";
+    removeAnimals();
+    loadNewAnimals();
+}
+
+function displayHighestFirst() {
+    sortingBy = "-1";
+    removeAnimals();
+    loadNewAnimals();
+}
+
+
+/***************************************************************/
+byLowest.addEventListener("click",displayLowestFirst);
+byHighest.addEventListener("click",displayHighestFirst);
+
+
+
 
 window.addEventListener("load",loadNewAnimals);
 
 document.getElementById("loadMore").addEventListener("click",loadNewAnimals);
 function loadNewAnimals(){
     var container = document.querySelector("#createBox");
-    container.removeChild(loadMoreButton);
+    if(container.contains(loadMoreButton)){
+        container.removeChild(loadMoreButton);
+    }
     var request = new XMLHttpRequest();
     var requestURL =  "/updateLeaderboard/"+animalType+"/"+numberPerLoad+"/"+animalsLoaded + "/" + sortingBy; 
     console.log(requestURL);                                   //make this better later
@@ -27,15 +65,15 @@ function loadNewAnimals(){
         var animalArray = results.animalArray;
         var ranOut = results.ranOut;
         
-        for(var i = 0; i < animalArray.length;i++){
-            animalsLoaded+=1;
-            animals.push({animal:animalArray[i],
-                numberRank:animalsLoaded});
-            addNewAnimal(animalArray[i].type,animalArray[i].image,animalArray[i].name,animalArray[i].age,animalArray[i].score);  
-        }
-        if(!ranOut){
-            container.appendChild(loadMoreButton);
-        }
+         for(var i = 0; i < animalArray.length;i++){
+             animalsLoaded+=1;
+             animals.push({animal:animalArray[i],
+                 numberRank:animalsLoaded});
+             addNewAnimal(animalArray[i].type,animalArray[i].image,animalArray[i].name,animalArray[i].age,animalArray[i].score);  
+         }
+         if(!ranOut){
+             container.appendChild(loadMoreButton);
+         }
     });
 }
 function addNewAnimal(type,image,name,age,score){
@@ -60,40 +98,25 @@ function addNewAnimal(type,image,name,age,score){
     container.insertAdjacentHTML("beforeend",animalHTML);
 }
 
-function demo(){
+function removeAnimals(){
     
-    if(sortingBy === "-1"){
-        sortingBy = "1";
-    }else{
-        sortingBy = "-1";
-    }
     animalsLoaded = 0;
     animals = [];
     var box = document.querySelector("#createBox");
     while (box.firstChild) {
+        if(box.firstChild.id == "loadMore"){
+            break;
+        }
         box.removeChild(box.firstChild);
     }
     loadNewAnimals();
 
 }
 
-/* Leaderboards sorting button */
-var sortButton = document.getElementById("sort-by-button");
-var byHighest = document.getElementById("topFirst");
-var byLowest = document.getElementById("lastFirst");
-var menu = document.getElementById("sort-dropdown");
 
-function displaySortOptions(){
-    byHighest.style.visibility = "visible";
-    byLowest.style.visibility = "visible";
-}
 
-// function outsideClick(e){
-//     if(e.target != menu ){
-//         byHighest.style.visibility = "hidden";
-//         byLowest.style.visibility = "hidden";      
-//     }
-// }
+
 
 sortButton.addEventListener('click', displaySortOptions);
-window.addEventListener('click', outsideClick);
+//window.addEventListener('click', outsideClick);
+//byLowest.addEventListener('click', sortbyLowest);

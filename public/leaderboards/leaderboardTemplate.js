@@ -19,7 +19,7 @@ templates['leaderboardAnimal'] = template({"compiler":[8,">= 4.3.0"],"main":func
     + "\n    </h5>\n    <h5 class=\"animal-age\">\n        Age: "
     + alias4(((helper = (helper = lookupProperty(helpers,"animalAge") || (depth0 != null ? lookupProperty(depth0,"animalAge") : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"animalAge","hash":{},"data":data,"loc":{"start":{"line":15,"column":13},"end":{"line":15,"column":26}}}) : helper)))
     + "\n    </h5>\n    <h5 class=\"animal-votes\">\n        Score: "
-    + alias4(((helper = (helper = lookupProperty(helpers,"typeScore") || (depth0 != null ? lookupProperty(depth0,"typeScore") : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"typeScore","hash":{},"data":data,"loc":{"start":{"line":18,"column":15},"end":{"line":18,"column":28}}}) : helper)))
+    + alias4(((helper = (helper = lookupProperty(helpers,"animalScore") || (depth0 != null ? lookupProperty(depth0,"animalScore") : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"animalScore","hash":{},"data":data,"loc":{"start":{"line":18,"column":15},"end":{"line":18,"column":30}}}) : helper)))
     + "\n    </h5>\n</ul>\n\n \n";
 },"useData":true});
 })();
