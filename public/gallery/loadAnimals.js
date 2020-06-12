@@ -17,7 +17,7 @@ function loadNewAnimals(){
     request.open('GET',requestURL);
     request.send();
     request.addEventListener('load',function(event){
-        console.log("got response");
+       
         var results = JSON.parse(request.response);
         
         var animalArray = results.animalArray;

@@ -305,7 +305,7 @@ app.get("/public/devs/:devname", function (req, res) {
 
 
 
-//loading new animals.
+//loading new animals. gallery
 
 app.get("/loadNewAnimals/:animalType/:animalNumber/:animalsLoaded",function(req,res){  //sends back an array of animal objects.
     var typeRequested = req.params.animalType;
@@ -410,7 +410,8 @@ app.get("/updateLeaderboard/:animalType/:animalNumber/:animalsLoaded/:sortingBy"
     }
     animalCursor.toArray(function (err, animalDocs) {
         var response = {
-            ranOut:false
+            ranOut:false,
+            totalAnimals=0
         };
         response.animalArray = new Array();
         console.log("Currently Loaded: ",currentlyLoaded);
@@ -420,7 +421,7 @@ app.get("/updateLeaderboard/:animalType/:animalNumber/:animalsLoaded/:sortingBy"
                 response.ranOut = true;
                 break;
             }
-         
+            
             var animalType = animalDocs[i].animalType;
             var animalAge;
             if(animalDocs[i].animalAge == 0){
@@ -440,13 +441,11 @@ app.get("/updateLeaderboard/:animalType/:animalNumber/:animalsLoaded/:sortingBy"
                 image:animalImage,
                 score:animalScore
             })
+            response.totalAnimals = animalDocs.length;
         }
         response = JSON.stringify(response);
-
         res.status(200).send(response);
-        res.end();
-
-        
+        res.end();    
     })
 
 
