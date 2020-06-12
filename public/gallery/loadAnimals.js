@@ -93,7 +93,6 @@ window.addEventListener('keypress', function (e) {
 }, false);
 
 
-
 function showSearch(){
     var searchInput = document.getElementById("navbar-search-input").value.toLowerCase();
     removeAnimals();
@@ -160,8 +159,8 @@ function addName(){
     var options = document.getElementById("options");
     var searchBar = document.querySelector(".listOption-navbar-search");
     console.log(options);
-   
     options.insertAdjacentHTML("beforeend",nameSearch);
+    document.getElementById("navbar-search-button").addEventListener("click",showSearch);
    
 };
 function removeName(){
