@@ -12,7 +12,7 @@ const validTypes = ["all", "other", "cats", "dogs"]
 
 
 
-var pathToImages = "/Users/malini/Documents/webdev/animalimages" //to get the path to the images.
+var pathToImages = "C:/Users/jacob/cs290/finalproject/animalImages" //to get the path to the images.
 if (process.env.IMAGEPATH) { //to change this path if things glitch out make a environmental variable with the entire path to the images folder
     //THIS folder should be outside of the git repository, so that it doesn't get backed up by git. contact Jacob with any questions.
     pathToImages = process.env.IMAGEPATH
@@ -92,7 +92,7 @@ MongoClient.connect(URL, function (err, client) {
 const betterTypes = ["all", "other", "cat", "dog"]
 
 app.get('/randomAnimal/:animalType', function (req, res) {
-
+ 
     var animalCursor;
     if (betterTypes.includes(req.params.animalType)) {
         if (req.params.animalType == "other") {
@@ -339,8 +339,7 @@ app.get("/loadNewAnimals/:animalType/:animalNumber/:animalsLoaded",function(req,
             ranOut:false
         };
         response.animalArray = new Array();
-        console.log("Currently Loaded: ",currentlyLoaded);
-        console.log("Requested: ",amountRequested);
+       
         for(var i = currentlyLoaded; i < currentlyLoaded + amountRequested; i++){
             if(!(animalDocs[i])){
                 response.ranOut = true;
@@ -489,7 +488,8 @@ app.post('/uploadAnimal', function (req, res) {
                 looping = false;
             }
         }
-        addToDB(req.body.animalType, req.body.animalName, req.body.animalAge, imageURL, req.body.userIP);
+        var upperName = req.body.animalName.charAt(0).toUpperCase() + req.body.animalName.slice(1);
+        addToDB(req.body.animalType, upperName, req.body.animalAge, imageURL, req.body.userIP);
         fs.writeFile(imageURL, buf, function () {
             res.status(200).send("Photo successfuly added!");
             res.end();

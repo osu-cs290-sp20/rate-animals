@@ -47,6 +47,7 @@ function fixDropdownState() {
         case 'other':
             other.classList.add("active");
             other.classList.remove("inactive");
+            break;
         case '':
             all.classList.add("active");
             all.classList.remove("inactive");
