@@ -407,7 +407,6 @@ app.get("/updateLeaderboard/:animalType/:animalNumber/:animalsLoaded/:sortingBy"
                 }
             ]
         }).sort({typescore:sortingBy});
-        
     }
     animalCursor.toArray(function (err, animalDocs) {
         var response = {

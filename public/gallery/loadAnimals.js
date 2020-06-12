@@ -3,7 +3,7 @@ var animalsLoaded = 0; //We will send this number and request items from the sor
 var numberPerLoad = 15; //how many animals load whenever we load more.
 var animalType = "all" //dog cat 
 let animals = [];
-
+var nameSearch = Handlebars.templates.nameSearch();
 
 window.addEventListener("load",loadNewAnimals);
 
@@ -34,7 +34,7 @@ function loadNewAnimals(){
             addNewAnimal(animalArray[i].name,animalArray[i].image,description);
             
         }
-        showSearch()
+        sortFunction();
 
 
 
@@ -86,11 +86,6 @@ function removeAnimals(){
 }
 
 
-var searchButton = document.getElementById("navbar-search-button");
-
-searchButton.addEventListener('click',  showSearch)
-
-
 window.addEventListener('keypress', function (e) {
     if(e.keyCode === 13){
         showSearch();
@@ -100,12 +95,8 @@ window.addEventListener('keypress', function (e) {
 
 
 function showSearch(){
-    console.log("the search button was clicked");
     var searchInput = document.getElementById("navbar-search-input").value.toLowerCase();
-    console.log(searchInput);
-
     removeAnimals();
-
     for(var i=0; i < animals.length; i++){
         var animalTitle = animals[i].name.toLowerCase();
         
@@ -119,15 +110,15 @@ function showSearch(){
 
 var choiceDropdown = document.getElementById("choice");
 var choice = "alpha";
-console.log(choice);
+
 
 choiceDropdown.addEventListener('change',  sortFunction)
 
 function sortFunction(){
     console.log(animals);
     choice = choiceDropdown.value;
-    console.log(choice);
 
+    removeName();
     switch (choice){
         case "alpha": 
             removeAnimals();
@@ -146,6 +137,10 @@ function sortFunction(){
                 
             }
             break;
+        case "name":
+            addName();
+            break;
+            
         default:
             removeAnimals();
             for(var i=0; i < animals.length; i++){
@@ -156,6 +151,24 @@ function sortFunction(){
                 
             }
 
+    }
+}
+
+
+
+function addName(){
+    var options = document.getElementById("options");
+    var searchBar = document.querySelector(".listOption-navbar-search");
+    console.log(options);
+   
+    options.insertAdjacentHTML("beforeend",nameSearch);
+   
+};
+function removeName(){
+    var options = document.getElementById("options");
+    var searchBar = document.querySelector(".listOption-navbar-search");
+    if(searchBar){
+        options.removeChild(searchBar);
     }
 }
 
