@@ -38,8 +38,8 @@ h1 {
   padding: 3px;
   border-radius: 10px;
   border: solid 3px;
-  margin-bottom: 9px;
 }
+
 button:hover {
   background-color: grey;
   cursor: pointer;
@@ -169,16 +169,19 @@ h5 {
 
 .sortOption {
   color: white;
-  background-color: pink;
+  background-color: lightseagreen;
   border: solid white;
   padding: 5px;
   margin-left: 8px;
+  display: inline-block;
+  width: 150px;
+  font-size: 18px;
 }
 
-/* #topFirst {
-  visibility: hidden;
+#topFirst {
+   visibility: hidden;
 }
 
-#LastFirst {
+#lastFirst {
   visibility: hidden;
-}  */
+}  
