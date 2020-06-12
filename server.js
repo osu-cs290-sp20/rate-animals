@@ -365,6 +365,7 @@ app.get("/loadNewAnimals/:animalType/:animalNumber/:animalsLoaded",function(req,
                 age:animalAge,
                 image:animalImage
             })
+        
         }
         response = JSON.stringify(response);
 
@@ -411,7 +412,7 @@ app.get("/updateLeaderboard/:animalType/:animalNumber/:animalsLoaded/:sortingBy"
     animalCursor.toArray(function (err, animalDocs) {
         var response = {
             ranOut:false,
-            totalAnimals=0
+            totalAnimals:0
         };
         response.animalArray = new Array();
         console.log("Currently Loaded: ",currentlyLoaded);
