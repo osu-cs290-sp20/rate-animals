@@ -1,11 +1,7 @@
 
 
-
-
 window.addEventListener("load",fixSizes);
 window.addEventListener("resize",fixSizes);
-
-
 
 
 function fixSizes(){
