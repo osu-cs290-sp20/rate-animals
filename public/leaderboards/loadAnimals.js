@@ -59,7 +59,6 @@ function addNewAnimal(type,image,name,age){
     container.insertAdjacentHTML("beforeend",animalHTML);
 }
 
-
 function demo(){
     
     if(sortingBy === "-1"){
@@ -77,4 +76,23 @@ function demo(){
 
 }
 
+/* Leaderboards sorting button */
+var sortButton = document.getElementById("sort-by-button");
+var byHighest = document.getElementById("topFirst");
+var byLowest = document.getElementById("lastFirst");
+var menu = document.getElementById("sort-dropdown");
 
+function displaySortOptions(){
+    byHighest.style.visibility = "visible";
+    byLowest.style.visibility = "visible";
+}
+
+// function outsideClick(e){
+//     if(e.target != menu ){
+//         byHighest.style.visibility = "hidden";
+//         byLowest.style.visibility = "hidden";      
+//     }
+// }
+
+sortButton.addEventListener('click', displaySortOptions);
+window.addEventListener('click', outsideClick);
