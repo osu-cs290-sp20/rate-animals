@@ -185,3 +185,7 @@ button#loadMore{
 #lastFirst {
   visibility: hidden;
 }  
+
+.sortOption:hover{
+  background: #989898;
+}
