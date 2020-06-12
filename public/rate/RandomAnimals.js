@@ -40,13 +40,13 @@ function generateAnimal() {
             animalType = "all";
             break;
         case "cats":
-            animalType = "cats";
+            animalType = "cat";
             break;
         case "dogs":
             animalType = "dog";
             break;
         case "other":
-            animalType = "dog";
+            animalType = "other";
             break;
         default:
             animalType = "all";
