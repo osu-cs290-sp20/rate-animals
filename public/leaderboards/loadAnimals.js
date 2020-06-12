@@ -31,14 +31,14 @@ function loadNewAnimals(){
             animalsLoaded+=1;
             animals.push({animal:animalArray[i],
                 numberRank:animalsLoaded});
-            addNewAnimal(animalArray[i].type,animalArray[i].image,animalArray[i].name,animalArray[i].age);  
+            addNewAnimal(animalArray[i].type,animalArray[i].image,animalArray[i].name,animalArray[i].age,animalArray[i].score);  
         }
         if(!ranOut){
             container.appendChild(loadMoreButton);
         }
     });
 }
-function addNewAnimal(type,image,name,age){
+function addNewAnimal(type,image,name,age,score){
     var newImage = 'data:image/png;base64, ' + image;
     type = type[0].toUpperCase() + type.slice(1);
     age = age[0].toUpperCase() + age.slice(1);
@@ -50,7 +50,8 @@ function addNewAnimal(type,image,name,age){
         animalName:name,
         animalType: type,
         animalAge:age,
-        animalRank:rank
+        animalRank:rank,
+        animalScore:score
     }
     
     var animalHTML = Handlebars.templates.leaderboardAnimal(animalContext);
