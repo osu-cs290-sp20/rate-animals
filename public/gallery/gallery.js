@@ -4,12 +4,6 @@ window.addEventListener("load",fixSizes);
 window.addEventListener("resize",fixSizes);
 
 
-
-
-
-
-
-
 function fixSizes(){
     var windowWidth = window.innerWidth;
     var boxWidth = .7*windowWidth;

@@ -1,17 +1,22 @@
- <ul class="animal">
-     <li class="animal-rank">
-         <i class="fas fa-trophy"></i> 
-     </li>
-     <li class="animal-pic">
-         <img class="animalImage" src="{{animalImage}}">
-     </li>
-     <li class="animal-name">
-         {{animalName}}
-     <li class="animal-type">
-         {{animalType}}
-     </li>
-     <li class="animal-age">
-         {{animalAge}}
-     </li>
-     </li>
- </ul>
+<ul class="animal">
+    <div class="animal-rank-trophy">
+        <i class="fas fa-trophy"></i>
+    </div>
+    <div class="animal-rank">{{animalRank}}</div>
+    <h3 class="animal-pic">
+        <img class="animalImage" src="{{animalImage}}">
+    </h3>
+    <h3 class="animal-name">
+        {{animalName}}
+    <h5 class="animal-type">
+        Type: {{animalType}}
+    </h5>
+    <h5 class="animal-age">
+        Age: {{animalAge}}
+    </h5>
+    <h5 class="animal-votes">
+        Score: {{typeScore}}
+    </h5>
+</ul>
+
+ 

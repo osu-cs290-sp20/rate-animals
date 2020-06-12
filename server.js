@@ -12,7 +12,7 @@ const validTypes = ["all", "other", "cats", "dogs"]
 
 
 
-var pathToImages = "C:/Users/jacob/cs290/finalproject/animalImages" //to get the path to the images.
+var pathToImages = "/Users/malini/Documents/webdev/animalimages" //to get the path to the images.
 if (process.env.IMAGEPATH) { //to change this path if things glitch out make a environmental variable with the entire path to the images folder
     //THIS folder should be outside of the git repository, so that it doesn't get backed up by git. contact Jacob with any questions.
     pathToImages = process.env.IMAGEPATH
@@ -432,12 +432,13 @@ app.get("/updateLeaderboard/:animalType/:animalNumber/:animalsLoaded/:sortingBy"
                 encoding: 'base64'
             });
             var animalName = animalDocs[i].animalName;
-
+            var animalScore = animalDocs[i].score
             response.animalArray.push({
                 type:animalType,
                 name:animalName,
                 age:animalAge,
-                image:animalImage
+                image:animalImage,
+                score:animalScore
             })
         }
         response = JSON.stringify(response);
