@@ -186,3 +186,6 @@ button#loadMore{
   visibility: hidden;
 }  
 
+.sortOption:hover{
+  background: #989898;
+}
