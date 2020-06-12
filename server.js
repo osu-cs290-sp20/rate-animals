@@ -311,8 +311,6 @@ app.get("/loadNewAnimals/:animalType/:animalNumber/:animalsLoaded",function(req,
     var typeRequested = req.params.animalType;
     var amountRequested = Number(req.params.animalNumber);
     var currentlyLoaded = Number(req.params.animalsLoaded);
-    var loadingBy = Number(req.params.loadingBy);
-    
     var animalCursor;
 
     if (typeRequested == "all") {
