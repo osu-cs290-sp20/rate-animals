@@ -1,7 +1,8 @@
 var animalsLoaded = 0;
-var numberPerLoad = 15;
+var numberPerLoad = 10;
 var animalType = "all"; //this should be things like "dog" "cat" "monkey" etc...
 var sortingBy = "-1"                 //1 low to high, -1 if high to low.
+var rank = 0;
 
 let animals = [];
 
@@ -41,11 +42,15 @@ function addNewAnimal(type,image,name,age){
     var newImage = 'data:image/png;base64, ' + image;
     type = type[0].toUpperCase() + type.slice(1);
     age = age[0].toUpperCase() + age.slice(1);
+
+    rank++;
+
     var animalContext = {
         animalImage:newImage,
         animalName:name,
         animalType: type,
-        animalAge:age
+        animalAge:age,
+        animalRank:rank
     }
     
     var animalHTML = Handlebars.templates.leaderboardAnimal(animalContext);

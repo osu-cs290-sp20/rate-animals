@@ -1,7 +1,12 @@
 *{
-  margin:0px;
+  margin:px;
   padding:0px;
   font-family: 'Rubik', sans-serif;
+}
+
+#content{
+  margin-left: 10%;
+  margin-right: 10%;
 }
 
 h1 {
@@ -12,20 +17,28 @@ h1 {
   color: white;
 }
 
-button {
+/* button {
   background: none;
   cursor: pointer;
   color: white;
   background-color: #b3ecff;
   font-size: 50px;
-  /* c
-  top: 50px;
-  left: 150px;
-  padding: 2px 5px 2px 5px; */
   padding: 3px;
   border-radius: 15px;
   border-color: none;
   border: solid;
+} */
+
+
+#sort-by-button {
+  cursor: pointer;
+  color: white;
+  background-color: #b3ecff;
+  font-size: 40px;
+  padding: 3px;
+  border-radius: 10px;
+  border: solid 3px;
+  margin-bottom: 9px;
 }
 button:hover {
   background-color: grey;
@@ -33,10 +46,11 @@ button:hover {
 }
 
 #sort-dropdown{
-  position: relative;
-  left: 150px;
-  padding: 2px 5px 2px 5px; 
-  list-style: none;
+    list-style: none;
+    margin-left: 250px;
+    margin-top: px;
+    margin-bottom: 50px;
+
 }
 
 a#sort-choice{
@@ -56,7 +70,7 @@ ul{
     overflow: scroll;
     border-radius: 15px;
     position: relative;
-    top: -25px;
+    top: -10px;
     margin: auto;
     width: 60%;
     padding: 10px;
@@ -118,23 +132,11 @@ img {
   margin-right: 30px;
 }
 
-li.animal-name{
+.animal-name{
   padding: 5px 60px 5px 20px;
   position: relative;
   top: 7px;
 }
-li.animal-type{
-  padding: 5px 60px 5px 20px;
-  position: relative;
-  top: 7px;
-}
-
-li.animal-age{
-  padding: 5px 60px 5px 20px;
-  position: relative;
-  top: 7px;
-}
-
 
 .animalImage{
   width: 150px;
@@ -144,7 +146,6 @@ li.animal-age{
   border: solid;
   padding: 5px;
 }
-
 
 #loadMore{
   position: relative;
@@ -165,3 +166,19 @@ h3 {
 h5 {
   font-weight: 100;
 }
+
+.sortOption {
+  color: white;
+  background-color: pink;
+  border: solid white;
+  padding: 5px;
+  margin-left: 8px;
+}
+
+/* #topFirst {
+  visibility: hidden;
+}
+
+#LastFirst {
+  visibility: hidden;
+}  */
