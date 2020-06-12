@@ -87,12 +87,12 @@ function displaySortOptions(){
     byLowest.style.visibility = "visible";
 }
 
-function outsideClick(e){
-    if(e.target != menu ){
-        byHighest.style.visibility = "hidden";
-        byLowest.style.visibility = "hidden";      
-    }
-}
+// function outsideClick(e){
+//     if(e.target != menu ){
+//         byHighest.style.visibility = "hidden";
+//         byLowest.style.visibility = "hidden";      
+//     }
+// }
 
 sortButton.addEventListener('click', displaySortOptions);
 window.addEventListener('click', outsideClick);
