@@ -1,6 +1,6 @@
 
 var animalsLoaded = 0; //We will send this number and request items from the sorted array of animals beginning at this index.
-var numberPerLoad = 2; //how many animals load whenever we load more.
+var numberPerLoad = 15; //how many animals load whenever we load more.
 var animalType = "all" //dog cat 
 let animals = [];
 
@@ -32,8 +32,9 @@ function loadNewAnimals(){
             animals.push(animalArray[i]);
             var description = createDescription(animalArray[i].type,animalArray[i].name,animalArray[i].age);
             addNewAnimal(animalArray[i].name,animalArray[i].image,description);
-        
+            
         }
+        showSearch()
 
 
 
@@ -75,7 +76,7 @@ function addNewAnimal(name,image,description){
 }
 
 
-function demo(){
+function removeAnimals(){
 
     var box = document.querySelector(".gallery-container");
     while (box.firstChild) {
@@ -87,26 +88,31 @@ function demo(){
 
 var searchButton = document.getElementById("navbar-search-button");
 
-searchButton.addEventListener('click',  function (event){
+searchButton.addEventListener('click',  showSearch)
+
+
+window.addEventListener('keypress', function (e) {
+    if(e.keyCode === 13){
+        showSearch();
+    }
+}, false);
+
+
+
+function showSearch(){
     console.log("the search button was clicked");
     var searchInput = document.getElementById("navbar-search-input").value.toLowerCase();
     console.log(searchInput);
 
-    var galleryBoxes = document.getElementsByClassName("gallery");
+    removeAnimals();
 
-    for(var i=0; i < galleryBoxes.length; i++){
-        var animalTitle = document.getElementsByClassName("animalName")[i].textContent.toLowerCase();
-        if (animalTitle.indexOf(searchInput) === -1){
-            galleryBoxes[i].style.visibility = "hidden";
+    for(var i=0; i < animals.length; i++){
+        var animalTitle = animals[i].name.toLowerCase();
+        
+        if (animalTitle.indexOf(searchInput) !== -1){
+            var description = createDescription(animals[i].type,animals[i].name,animals[i].age);
+            addNewAnimal(animals[i].name,animals[i].image,description);
         }
       }
+}
 
-    if (searchInput === ""){
-        for (var i=0; i < galleryBoxes.length; i++){
-            galleryBoxes[i].style.visibility = "visible";
-        }
-      }
-
-})
-
-var searchButton = document.getElementById("navbar-search-button");
