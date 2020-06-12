@@ -432,12 +432,13 @@ app.get("/updateLeaderboard/:animalType/:animalNumber/:animalsLoaded/:sortingBy"
                 encoding: 'base64'
             });
             var animalName = animalDocs[i].animalName;
-
+            var animalScore = animalDocs[i].score
             response.animalArray.push({
                 type:animalType,
                 name:animalName,
                 age:animalAge,
-                image:animalImage
+                image:animalImage,
+                score:animalScore
             })
         }
         response = JSON.stringify(response);
